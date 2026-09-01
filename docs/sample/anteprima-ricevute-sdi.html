@@ -1,0 +1,602 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Ricevute SdI rese</title><style>body{font-family:'Segoe UI',Tahoma,sans-serif;margin:0;background:#f3f2f1}
+.bar{padding:10px 14px;background:#fff;border-bottom:1px solid #e1dfdd;position:sticky;top:0;z-index:2}
+.bar p{margin:0 0 10px;color:#605e5c;font-size:13px}
+button{font:inherit;padding:6px 12px;margin:0 6px 6px 0;border:1px solid #8a8886;background:#fff;border-radius:2px;cursor:pointer;text-align:left;vertical-align:top}
+button small{display:block;font-size:10.5px;color:#605e5c;max-width:200px}
+button.on{background:#0078d4;color:#fff;border-color:#0078d4}button.on small{color:#deecf9}
+iframe{width:calc(100% - 28px);height:calc(100vh - 200px);margin:14px;border:1px solid #e1dfdd;background:#fff;display:block}</style></head><body><div class="bar"><p>Tutti e nove i tipi di ricevuta SdI, resi con i <b>fogli di stile ufficiali</b> compilati in <code>fe-sef.js</code>. La prima scheda &egrave; una ricevuta reale ZZ Soft, che sta in un namespace diverso dai campioni ufficiali: lo stesso foglio la rende comunque.</p><button onclick="show(1)"><b>RC reale ZZ Soft</b><small>namespace ivaservizi &mdash; altra famiglia</small></button><button onclick="show(2)"><b>RC</b><small>Ricevuta di consegna</small></button><button onclick="show(3)"><b>NS</b><small>Notifica di scarto</small></button><button onclick="show(4)"><b>MC</b><small>Notifica di mancata consegna</small></button><button onclick="show(5)"><b>MT</b><small>File dei metadati</small></button><button onclick="show(6)"><b>NE</b><small>Notifica esito cedente/prestatore</small></button><button onclick="show(7)"><b>EC</b><small>Notifica esito cessionario/committente</small></button><button onclick="show(8)"><b>SE</b><small>Notifica di scarto esito committente</small></button><button onclick="show(9)"><b>DT</b><small>Notifica decorrenza termini</small></button><button onclick="show(10)"><b>AT</b><small>Attestazione trasmissione, impossibilita di recapito</small></button></div><div class="panel" id="p1" style="display:block"><iframe srcdoc="&lt;!DOCTYPE html
+ PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html xmlns:a=&quot;http://www.fatturapa.gov.it/sdi/messaggi/v1.0&quot; xmlns:ds=&quot;http://www.w3.org/2000/09/xmldsig#&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;style type=&quot;text/css&quot;&gt;
+					#notifica-container { width: 100%; position: relative; font-family: sans-serif; }
+
+					#notifica { margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 930px; padding: 0; }
+					#notifica h1 { padding: 20px 0 0 0; margin: 0; font-size: 30px; }
+					#notifica h2 { padding: 20px 0 0 0; margin: 0; font-size: 20px; border-bottom: 2px solid #333333; }
+					#notifica h3 { padding: 20px 0 0 0; margin: 0; font-size: 17px; }
+					#notifica h4 { padding: 20px 0 0 0; margin: 0; font-size: 15px; }
+					#notifica h5 { padding: 15px 0 0 0; margin: 0; font-size: 14px; font-style: italic; }
+					#notifica ul { list-style-type: none; margin: 0 !important; padding: 1em 0 1em 2em !important; }
+					#notifica ul li {}
+					#notifica ul li span { font-weight: bold; }
+					#notifica div { padding: 0; margin: 0; }
+
+					#notifica div.page {
+						background: #fff url(&quot;http://www.fatturapa.gov.it/img/sdi.png&quot;) right bottom no-repeat !important;
+						position: relative;
+	
+						margin: 20px 0
+						50px 0;
+						padding: 60px;
+	
+						background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
+						border: 1px solid #CCCCCC;
+						-webkitbox-shadow: 0 0 10px rgba(0, 0, 0,
+						0.3);
+						-mozbox-shadow: 0
+						0 10px rgba(0, 0, 0, 0.3);
+						box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+					}
+					
+					#notifica div.header { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica div.footer { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica-container .versione { font-size: 11px; float:right; color: #777777; }
+					
+					#notifica table { font-size: .9em; margin-top: 1em; border-collapse: collapse; border: 1px solid black; }
+					#notifica table caption { color: black; padding: .5em 0; font-weight: bold; }
+					#notifica table th { border: 1px solid black; background-color: #f0f0f0; padding: .2em .5em; }
+					#notifica table td { border: 1px solid black; padding: .2em .5em; }
+					#notifica table td:first-child { text-align: center; font-weight: bold; }
+				&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;notifica-container&quot;&gt;&lt;div id=&quot;notifica&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;versione&quot;&gt;
+									File con firma elettronica - 
+								
+								Versione 1.0&lt;br&gt;&lt;/div&gt;&lt;h1&gt;Ricevuta Consegna&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;
+									Identificativo SdI:
+									&lt;span&gt;13707785852&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Nome File:
+									&lt;span&gt;IT02155810225_HV1GH.xml.p7m&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Data Ora Ricezione:
+									&lt;span&gt;2025-01-02T10:11:16.000+01:00&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Data Ora Consegna:
+									&lt;span&gt;2025-01-02T11:30:49.000+01:00&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Destinatario:
+									&lt;span&gt;
+        SUBM70N
+        Trasmesso su canale registrato dal cessionario/committente
+    &lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Message Id:
+									&lt;span&gt;32971356169&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></div><div class="panel" id="p2" style="display:none"><iframe srcdoc="&lt;!DOCTYPE html
+ PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html xmlns:a=&quot;http://www.fatturapa.gov.it/sdi/messaggi/v1.0&quot; xmlns:ds=&quot;http://www.w3.org/2000/09/xmldsig#&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;style type=&quot;text/css&quot;&gt;
+					#notifica-container { width: 100%; position: relative; font-family: sans-serif; }
+
+					#notifica { margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 930px; padding: 0; }
+					#notifica h1 { padding: 20px 0 0 0; margin: 0; font-size: 30px; }
+					#notifica h2 { padding: 20px 0 0 0; margin: 0; font-size: 20px; border-bottom: 2px solid #333333; }
+					#notifica h3 { padding: 20px 0 0 0; margin: 0; font-size: 17px; }
+					#notifica h4 { padding: 20px 0 0 0; margin: 0; font-size: 15px; }
+					#notifica h5 { padding: 15px 0 0 0; margin: 0; font-size: 14px; font-style: italic; }
+					#notifica ul { list-style-type: none; margin: 0 !important; padding: 1em 0 1em 2em !important; }
+					#notifica ul li {}
+					#notifica ul li span { font-weight: bold; }
+					#notifica div { padding: 0; margin: 0; }
+
+					#notifica div.page {
+						background: #fff url(&quot;http://www.fatturapa.gov.it/img/sdi.png&quot;) right bottom no-repeat !important;
+						position: relative;
+	
+						margin: 20px 0
+						50px 0;
+						padding: 60px;
+	
+						background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
+						border: 1px solid #CCCCCC;
+						-webkitbox-shadow: 0 0 10px rgba(0, 0, 0,
+						0.3);
+						-mozbox-shadow: 0
+						0 10px rgba(0, 0, 0, 0.3);
+						box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+					}
+					
+					#notifica div.header { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica div.footer { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica-container .versione { font-size: 11px; float:right; color: #777777; }
+					
+					#notifica table { font-size: .9em; margin-top: 1em; border-collapse: collapse; border: 1px solid black; }
+					#notifica table caption { color: black; padding: .5em 0; font-weight: bold; }
+					#notifica table th { border: 1px solid black; background-color: #f0f0f0; padding: .2em .5em; }
+					#notifica table td { border: 1px solid black; padding: .2em .5em; }
+					#notifica table td:first-child { text-align: center; font-weight: bold; }
+				&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;notifica-container&quot;&gt;&lt;div id=&quot;notifica&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;versione&quot;&gt;
+									File con firma elettronica - 
+								
+								Versione 1.0&lt;br&gt; Flusso semplificato&lt;/div&gt;&lt;h1&gt;Ricevuta Consegna&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;
+									Identificativo SdI:
+									&lt;span&gt;111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Nome File:
+									&lt;span&gt;IT01234567890_11111.xml.p7m&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Data Ora Ricezione:
+									&lt;span&gt;2013-06-06T12:00:00Z&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Data Ora Consegna:
+									&lt;span&gt;2013-06-06T12:01:00Z&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Destinatario:
+									&lt;span&gt;
+    AAA111
+    Amministrazione di prova
+  &lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Message Id:
+									&lt;span&gt;123456&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+										Note:
+										&lt;span&gt;Esempio&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></div><div class="panel" id="p3" style="display:none"><iframe srcdoc="&lt;!DOCTYPE html
+ PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html xmlns:a=&quot;http://www.fatturapa.gov.it/sdi/messaggi/v1.0&quot; xmlns:ds=&quot;http://www.w3.org/2000/09/xmldsig#&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;style type=&quot;text/css&quot;&gt;
+					#notifica-container { width: 100%; position: relative; font-family: sans-serif; }
+
+					#notifica { margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 930px; padding: 0; }
+					#notifica h1 { padding: 20px 0 0 0; margin: 0; font-size: 30px; }
+					#notifica h2 { padding: 20px 0 0 0; margin: 0; font-size: 20px; border-bottom: 2px solid #333333; }
+					#notifica h3 { padding: 20px 0 0 0; margin: 0; font-size: 17px; }
+					#notifica h4 { padding: 20px 0 0 0; margin: 0; font-size: 15px; }
+					#notifica h5 { padding: 15px 0 0 0; margin: 0; font-size: 14px; font-style: italic; }
+					#notifica ul { list-style-type: none; margin: 0 !important; padding: 1em 0 1em 2em !important; }
+					#notifica ul li {}
+					#notifica ul li span { font-weight: bold; }
+					#notifica div { padding: 0; margin: 0; }
+
+					#notifica div.page {
+						background: #fff url(&quot;http://www.fatturapa.gov.it/img/sdi.png&quot;) right bottom no-repeat !important;
+						position: relative;
+	
+						margin: 20px 0
+						50px 0;
+						padding: 60px;
+	
+						background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
+						border: 1px solid #CCCCCC;
+						-webkitbox-shadow: 0 0 10px rgba(0, 0, 0,
+						0.3);
+						-mozbox-shadow: 0
+						0 10px rgba(0, 0, 0, 0.3);
+						box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+					}
+					
+					#notifica div.header { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica div.footer { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica-container .versione { font-size: 11px; float:right; color: #777777; }
+					
+					#notifica table { font-size: .9em; margin-top: 1em; border-collapse: collapse; border: 1px solid black; }
+					#notifica table caption { color: black; padding: .5em 0; font-weight: bold; }
+					#notifica table th { border: 1px solid black; background-color: #f0f0f0; padding: .2em .5em; }
+					#notifica table td { border: 1px solid black; padding: .2em .5em; }
+					#notifica table td:first-child { text-align: center; font-weight: bold; }
+				&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;notifica-container&quot;&gt;&lt;div id=&quot;notifica&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;versione&quot;&gt;
+									File con firma elettronica - 
+								
+								Versione 1.0&lt;/div&gt;&lt;h1&gt;Notifica Scarto&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;
+									Identificativo SdI:
+									&lt;span&gt;111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Nome File:
+									&lt;span&gt;IT01234567890_11111.xml.p7m&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Data Ora Ricezione:
+									&lt;span&gt;2013-06-06T12:00:00Z&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;h3&gt;Riferimento Archivio&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;
+											Identificativo SdI:
+											&lt;span&gt;100&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+											Nome File:
+											&lt;span&gt;IT01234567890_11111.zip&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;
+									Message Id:
+									&lt;span&gt;123456&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Note:
+									&lt;span&gt;Note&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;table summaty=&quot;La tabella riporta gli errori riscontrati dal SdI nel file inviato&quot;&gt;&lt;caption&gt;Lista errori&lt;/caption&gt;&lt;tr&gt;&lt;th&gt;Codice&lt;/th&gt;&lt;th&gt;Descrizione&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;00100&lt;/td&gt;&lt;td&gt;Certificato di firma scaduto&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></div><div class="panel" id="p4" style="display:none"><iframe srcdoc="&lt;!DOCTYPE html
+ PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html xmlns:a=&quot;http://www.fatturapa.gov.it/sdi/messaggi/v1.0&quot; xmlns:ds=&quot;http://www.w3.org/2000/09/xmldsig#&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;style type=&quot;text/css&quot;&gt;
+					#notifica-container { width: 100%; position: relative; font-family: sans-serif; }
+
+					#notifica { margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 930px; padding: 0; }
+					#notifica h1 { padding: 20px 0 0 0; margin: 0; font-size: 30px; }
+					#notifica h2 { padding: 20px 0 0 0; margin: 0; font-size: 20px; border-bottom: 2px solid #333333; }
+					#notifica h3 { padding: 20px 0 0 0; margin: 0; font-size: 17px; }
+					#notifica h4 { padding: 20px 0 0 0; margin: 0; font-size: 15px; }
+					#notifica h5 { padding: 15px 0 0 0; margin: 0; font-size: 14px; font-style: italic; }
+					#notifica ul { list-style-type: none; margin: 0 !important; padding: 1em 0 1em 2em !important; }
+					#notifica ul li {}
+					#notifica ul li span { font-weight: bold; }
+					#notifica div { padding: 0; margin: 0; }
+
+					#notifica div.page {
+					 	background: #fff url(&quot;http://www.fatturapa.gov.it/img/sdi.png&quot;) right bottom no-repeat !important;
+						
+						position: relative;
+	
+						margin: 20px 0
+						50px 0;
+						padding: 60px;
+	
+						background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
+						border: 1px solid #CCCCCC;
+						-webkitbox-shadow: 0 0 10px rgba(0, 0, 0,
+						0.3);
+						-mozbox-shadow: 0
+						0 10px rgba(0, 0, 0, 0.3);
+						box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+					}
+					
+					#notifica div.header { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica div.footer { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica-container .versione { font-size: .7em; float:right; color: #777777; }
+					
+					#notifica table { font-size: .9em; margin-top: 1em; border-collapse: collapse; border: 1px solid black; }
+					#notifica table caption { color: black; padding: .5em 0; font-weight: bold; }
+					#notifica table th { border: 1px solid black; background-color: #f0f0f0; padding: .2em .5em; }
+					#notifica table td { border: 1px solid black; padding: .2em .5em; }
+					#notifica table td:first-child { text-align: center; font-weight: bold; }
+				&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;notifica-container&quot;&gt;&lt;div id=&quot;notifica&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;versione&quot;&gt;
+									File con firma elettronica - 
+								
+								Versione 1.0&lt;/div&gt;&lt;h1&gt;Notifica Mancata Consegna&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;
+									Identificativo SdI:
+									&lt;span&gt;111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Nome File:
+									&lt;span&gt;IT01234567890_11111.xml.p7m&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Data Ora Ricezione:
+									&lt;span&gt;2013-06-06T12:00:00&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Descrizione:
+									&lt;span&gt;Notifica di esempio&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Message Id:
+									&lt;span&gt;123456&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Note:
+									&lt;span&gt;Esempio&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></div><div class="panel" id="p5" style="display:none"><iframe srcdoc="&lt;!DOCTYPE html
+ PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html xmlns:a=&quot;http://www.fatturapa.gov.it/sdi/messaggi/v1.0&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;style type=&quot;text/css&quot;&gt;
+					#notifica-container { width: 100%; position: relative; font-family: sans-serif; }
+
+					#notifica { margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 930px; padding: 0; }
+					#notifica h1 { padding: 20px 0 0 0; margin: 0; font-size: 30px; }
+					#notifica h2 { padding: 20px 0 0 0; margin: 0; font-size: 20px; border-bottom: 2px solid #333333; }
+					#notifica h3 { padding: 20px 0 0 0; margin: 0; font-size: 17px; }
+					#notifica h4 { padding: 20px 0 0 0; margin: 0; font-size: 15px; }
+					#notifica h5 { padding: 15px 0 0 0; margin: 0; font-size: 14px; font-style: italic; }
+					#notifica ul { list-style-type: none; margin: 0 !important; padding: 1em 0 1em 2em !important; }
+					#notifica ul li {}
+					#notifica ul li span { font-weight: bold; }
+					#notifica div { padding: 0; margin: 0; }
+
+					#notifica div.page {
+						background: #fff url(&quot;http://www.fatturapa.gov.it/img/sdi.png&quot;) right bottom no-repeat !important;
+						position: relative;
+	
+						margin: 20px 0
+						50px 0;
+						padding: 60px;
+	
+						background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
+						border: 1px solid #CCCCCC;
+						-webkitbox-shadow: 0 0 10px rgba(0, 0, 0,
+						0.3);
+						-mozbox-shadow: 0
+						0 10px rgba(0, 0, 0, 0.3);
+						box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+					}
+					
+					#notifica div.header { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica div.footer { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica-container .versione { font-size: 11px; float:right; color: #777777; }
+					
+					#notifica table { font-size: .9em; margin-top: 1em; border-collapse: collapse; border: 1px solid black; }
+					#notifica table caption { color: black; padding: .5em 0; font-weight: bold; }
+					#notifica table th { border: 1px solid black; background-color: #f0f0f0; padding: .2em .5em; }
+					#notifica table td { border: 1px solid black; padding: .2em .5em; }
+					#notifica table td:first-child { text-align: center; font-weight: bold; }
+				&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;notifica-container&quot;&gt;&lt;div id=&quot;notifica&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;versione&quot;&gt;
+								Versione 1.0&lt;/div&gt;&lt;h1&gt;Notifica Metadati&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;
+									Identificativo SdI:
+									&lt;span&gt;111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Nome File:
+									&lt;span&gt;IT01234567890_11111.xml.p7m&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Codice Destinatario:
+									&lt;span&gt;AAA111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Formato:
+									&lt;span&gt;SDI10&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Tentativi Invio:
+									&lt;span&gt;1&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Message Id:
+									&lt;span&gt;123456&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+										Note:
+										&lt;span&gt;Esempio&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></div><div class="panel" id="p6" style="display:none"><iframe srcdoc="&lt;!DOCTYPE html
+ PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html xmlns:a=&quot;http://www.fatturapa.gov.it/sdi/messaggi/v1.0&quot; xmlns:ds=&quot;http://www.w3.org/2000/09/xmldsig#&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;style type=&quot;text/css&quot;&gt;
+					#notifica-container { width: 100%; position: relative; font-family: sans-serif; }
+
+					#notifica { margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 930px; padding: 0; }
+					#notifica h1 { padding: 20px 0 0 0; margin: 0; font-size: 30px; }
+					#notifica h2 { padding: 20px 0 0 0; margin: 0; font-size: 20px; border-bottom: 2px solid #333333; }
+					#notifica h3 { padding: 20px 0 0 0; margin: 0; font-size: 17px; }
+					#notifica h4 { padding: 20px 0 0 0; margin: 0; font-size: 15px; }
+					#notifica h5 { padding: 15px 0 0 0; margin: 0; font-size: 14px; font-style: italic; }
+					#notifica ul { list-style-type: none; margin: 0 !important; padding: 1em 0 1em 2em !important; }
+					#notifica ul li {}
+					#notifica ul li span { font-weight: bold; }
+					#notifica div { padding: 0; margin: 0; }
+
+					#notifica div.page {
+					 	background: #fff url(&quot;http://www.fatturapa.gov.it/img/sdi.png&quot;) right bottom no-repeat !important;
+						
+						position: relative;
+	
+						margin: 20px 0
+						50px 0;
+						padding: 60px;
+	
+						background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
+						border: 1px solid #CCCCCC;
+						-webkitbox-shadow: 0 0 10px rgba(0, 0, 0,
+						0.3);
+						-mozbox-shadow: 0
+						0 10px rgba(0, 0, 0, 0.3);
+						box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+					}
+					
+					#notifica div.header { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica div.footer { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica-container .versione { font-size: .7em; float:right; color: #777777; }
+					
+					#notifica table { font-size: .9em; margin-top: 1em; border-collapse: collapse; border: 1px solid black; }
+					#notifica table caption { color: black; padding: .5em 0; font-weight: bold; }
+					#notifica table th { border: 1px solid black; background-color: #f0f0f0; padding: .2em .5em; }
+					#notifica table td { border: 1px solid black; padding: .2em .5em; }
+					#notifica table td:first-child { text-align: center; font-weight: bold; }
+				&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;notifica-container&quot;&gt;&lt;div id=&quot;notifica&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;versione&quot;&gt;
+									File con firma elettronica - 
+								
+								Versione 1.0&lt;br&gt; Flusso semplificato&lt;/div&gt;&lt;h1&gt;Notifica Esito&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;
+									Identificativo SdI:
+									&lt;span&gt;111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Nome File:
+									&lt;span&gt;IT01234567890_11111.xml.p7m&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Message Id:
+									&lt;span&gt;123456&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Note:
+									&lt;span&gt;Notifica di esito di esempio&lt;/span&gt;&lt;/li&gt;&lt;h2&gt;Esito Committente&lt;/h2&gt;&lt;li&gt;&lt;li&gt;
+										Identificativo SdI:
+										&lt;span&gt;111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;h3&gt;Riferimento Fattura&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;
+												Numero Fattura:
+												&lt;span&gt;1111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+												Anno Fattura:
+												&lt;span&gt;2013&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+												Posizione Fattura:
+												&lt;span&gt;2&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/li&gt;&lt;li&gt;
+									Esito:
+									&lt;span&gt;EC01&lt;/span&gt; (Accettazione)&lt;/li&gt;&lt;li&gt;
+									Descrizione:
+									&lt;span&gt;Notifica di esempio&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Message Id Committente:
+									&lt;span&gt;123456&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></div><div class="panel" id="p7" style="display:none"><iframe srcdoc="&lt;!DOCTYPE html
+ PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html xmlns:a=&quot;http://www.fatturapa.gov.it/sdi/messaggi/v1.0&quot; xmlns:ds=&quot;http://www.w3.org/2000/09/xmldsig#&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;style type=&quot;text/css&quot;&gt;
+					#notifica-container { width: 100%; position: relative; font-family: sans-serif; }
+
+					#notifica { margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 930px; padding: 0; }
+					#notifica h1 { padding: 20px 0 0 0; margin: 0; font-size: 30px; }
+					#notifica h2 { padding: 20px 0 0 0; margin: 0; font-size: 20px; border-bottom: 2px solid #333333; }
+					#notifica h3 { padding: 20px 0 0 0; margin: 0; font-size: 17px; }
+					#notifica h4 { padding: 20px 0 0 0; margin: 0; font-size: 15px; }
+					#notifica h5 { padding: 15px 0 0 0; margin: 0; font-size: 14px; font-style: italic; }
+					#notifica ul { list-style-type: none; margin: 0 !important; padding: 1em 0 1em 2em !important; }
+					#notifica ul li {}
+					#notifica ul li span { font-weight: bold; }
+					#notifica div { padding: 0; margin: 0; }
+
+					#notifica div.page {
+					 	background: #fff url(&quot;http://www.fatturapa.gov.it/img/sdi.png&quot;) right bottom no-repeat !important;
+						
+						position: relative;
+	
+						margin: 20px 0
+						50px 0;
+						padding: 60px;
+	
+						background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
+						border: 1px solid #CCCCCC;
+						-webkitbox-shadow: 0 0 10px rgba(0, 0, 0,
+						0.3);
+						-mozbox-shadow: 0
+						0 10px rgba(0, 0, 0, 0.3);
+						box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+					}
+					
+					#notifica div.header { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica div.footer { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica-container .versione { font-size: .7em; float:right; color: #777777; }
+					
+					#notifica table { font-size: .9em; margin-top: 1em; border-collapse: collapse; border: 1px solid black; }
+					#notifica table caption { color: black; padding: .5em 0; font-weight: bold; }
+					#notifica table th { border: 1px solid black; background-color: #f0f0f0; padding: .2em .5em; }
+					#notifica table td { border: 1px solid black; padding: .2em .5em; }
+					#notifica table td:first-child { text-align: center; font-weight: bold; }
+				&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;notifica-container&quot;&gt;&lt;div id=&quot;notifica&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;versione&quot;&gt;
+								Versione 1.0&lt;/div&gt;&lt;h1&gt;Notifica Esito Committente&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;
+									Identificativo SdI:
+									&lt;span&gt;111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;h3&gt;Riferimento Fattura&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;
+											Numero Fattura:
+											&lt;span&gt;1111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+											Anno Fattura:
+											&lt;span&gt;2013&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+											Posizione Fattura:
+											&lt;span&gt;2&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;
+									Esito:
+									&lt;span&gt;EC01&lt;/span&gt; (Accettazione)&lt;/li&gt;&lt;li&gt;
+									Descrizione:
+									&lt;span&gt;Esempio&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Message Id Committente:
+									&lt;span&gt;123456&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></div><div class="panel" id="p8" style="display:none"><iframe srcdoc="&lt;!DOCTYPE html
+ PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html xmlns:a=&quot;http://www.fatturapa.gov.it/sdi/messaggi/v1.0&quot; xmlns:ds=&quot;http://www.w3.org/2000/09/xmldsig#&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;style type=&quot;text/css&quot;&gt;
+					#notifica-container { width: 100%; position: relative; font-family: sans-serif; }
+
+					#notifica { margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 930px; padding: 0; }
+					#notifica h1 { padding: 20px 0 0 0; margin: 0; font-size: 30px; }
+					#notifica h2 { padding: 20px 0 0 0; margin: 0; font-size: 20px; border-bottom: 2px solid #333333; }
+					#notifica h3 { padding: 20px 0 0 0; margin: 0; font-size: 17px; }
+					#notifica h4 { padding: 20px 0 0 0; margin: 0; font-size: 15px; }
+					#notifica h5 { padding: 15px 0 0 0; margin: 0; font-size: 14px; font-style: italic; }
+					#notifica ul { list-style-type: none; margin: 0 !important; padding: 1em 0 1em 2em !important; }
+					#notifica ul li {}
+					#notifica ul li span { font-weight: bold; }
+					#notifica div { padding: 0; margin: 0; }
+
+					#notifica div.page {
+						background: #fff url(&quot;http://www.fatturapa.gov.it/img/sdi.png&quot;) right bottom no-repeat !important;
+						position: relative;
+	
+						margin: 20px 0
+						50px 0;
+						padding: 60px;
+	
+						background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
+						border: 1px solid #CCCCCC;
+						-webkitbox-shadow: 0 0 10px rgba(0, 0, 0,
+						0.3);
+						-mozbox-shadow: 0
+						0 10px rgba(0, 0, 0, 0.3);
+						box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+					}
+					
+					#notifica div.header { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica div.footer { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica-container .versione { font-size: 11px; float:right; color: #777777; }
+					
+					#notifica table { font-size: .9em; margin-top: 1em; border-collapse: collapse; border: 1px solid black; }
+					#notifica table caption { color: black; padding: .5em 0; font-weight: bold; }
+					#notifica table th { border: 1px solid black; background-color: #f0f0f0; padding: .2em .5em; }
+					#notifica table td { border: 1px solid black; padding: .2em .5em; }
+					#notifica table td:first-child { text-align: center; font-weight: bold; }
+				&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;notifica-container&quot;&gt;&lt;div id=&quot;notifica&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;versione&quot;&gt;
+									File con firma elettronica - 
+								
+								Versione 1.0&lt;/div&gt;&lt;h1&gt;Scarto Esito committente&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;
+									Identificativo SdI:
+									&lt;span&gt;111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Scarto:
+									&lt;span&gt;EN00&lt;/span&gt; (NOTIFICA NON CONFORME AL FORMATO)&lt;/li&gt;&lt;li&gt;
+									Message Id:
+									&lt;span&gt;123456&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+										Message-ID committente:
+										&lt;span&gt;123456&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+										Note:
+										&lt;span&gt;Esempio&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></div><div class="panel" id="p9" style="display:none"><iframe srcdoc="&lt;!DOCTYPE html
+ PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html xmlns:a=&quot;http://www.fatturapa.gov.it/sdi/messaggi/v1.0&quot; xmlns:ds=&quot;http://www.w3.org/2000/09/xmldsig#&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;style type=&quot;text/css&quot;&gt;
+					#notifica-container { width: 100%; position: relative; font-family: sans-serif; }
+
+					#notifica { margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 930px; padding: 0; }
+					#notifica h1 { padding: 20px 0 0 0; margin: 0; font-size: 30px; }
+					#notifica h2 { padding: 20px 0 0 0; margin: 0; font-size: 20px; border-bottom: 2px solid #333333; }
+					#notifica h3 { padding: 20px 0 0 0; margin: 0; font-size: 17px; }
+					#notifica h4 { padding: 20px 0 0 0; margin: 0; font-size: 15px; }
+					#notifica h5 { padding: 15px 0 0 0; margin: 0; font-size: 14px; font-style: italic; }
+					#notifica ul { list-style-type: none; margin: 0 !important; padding: 1em 0 1em 2em !important; }
+					#notifica ul li {}
+					#notifica ul li span { font-weight: bold; }
+					#notifica div { padding: 0; margin: 0; }
+
+					#notifica div.page {
+						background: #fff url(&quot;http://www.fatturapa.gov.it/img/sdi.png&quot;) right bottom no-repeat !important;
+						position: relative;
+	
+						margin: 20px 0
+						50px 0;
+						padding: 60px;
+	
+						background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
+						border: 1px solid #CCCCCC;
+						-webkitbox-shadow: 0 0 10px rgba(0, 0, 0,
+						0.3);
+						-mozbox-shadow: 0
+						0 10px rgba(0, 0, 0, 0.3);
+						box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+					}
+					
+					#notifica div.header { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica div.footer { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica-container .versione { font-size: 11px; float:right; color: #777777; }
+										
+					#notifica table { font-size: .9em; margin-top: 1em; border-collapse: collapse; border: 1px solid black; }
+					#notifica table caption { color: black; padding: .5em 0; font-weight: bold; }
+					#notifica table th { border: 1px solid black; background-color: #f0f0f0; padding: .2em .5em; }
+					#notifica table td { border: 1px solid black; padding: .2em .5em; }
+					#notifica table td:first-child { text-align: center; font-weight: bold; }
+				&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;notifica-container&quot;&gt;&lt;div id=&quot;notifica&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;versione&quot;&gt;
+									File con firma elettronica - 
+								
+								Versione 1.0&lt;br&gt; Flusso semplificato&lt;/div&gt;&lt;h1&gt;Notifica Decorrenza Termini&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;
+									Identificativo SdI:
+									&lt;span&gt;111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Nome File:
+									&lt;span&gt;IT01234567890_11111.xml.p7m&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+										Descrizione:
+										&lt;span&gt;Notifica di esempio&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Message Id:
+									&lt;span&gt;123456&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+										Note:
+										&lt;span&gt;Esempio&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></div><div class="panel" id="p10" style="display:none"><iframe srcdoc="&lt;!DOCTYPE html
+ PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html xmlns:a=&quot;http://www.fatturapa.gov.it/sdi/messaggi/v1.0&quot; xmlns:ds=&quot;http://www.w3.org/2000/09/xmldsig#&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;style type=&quot;text/css&quot;&gt;
+					#notifica-container { width: 100%; position: relative; font-family: sans-serif; }
+
+					#notifica { margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 930px; padding: 0; }
+					#notifica h1 { padding: 20px 0 0 0; margin: 0; font-size: 30px; }
+					#notifica h2 { padding: 20px 0 0 0; margin: 0; font-size: 20px; border-bottom: 2px solid #333333; }
+					#notifica h3 { padding: 20px 0 0 0; margin: 0; font-size: 17px; }
+					#notifica h4 { padding: 20px 0 0 0; margin: 0; font-size: 15px; }
+					#notifica h5 { padding: 15px 0 0 0; margin: 0; font-size: 14px; font-style: italic; }
+					#notifica ul { list-style-type: none; margin: 0 !important; padding: 1em 0 1em 2em !important; }
+					#notifica ul li {}
+					#notifica ul li span { font-weight: bold; }
+					#notifica div { padding: 0; margin: 0; }
+
+					#notifica div.page {
+						background: #fff url(&quot;http://www.fatturapa.gov.it/img/sdi.png&quot;) right bottom no-repeat !important;
+						position: relative;
+	
+						margin: 20px 0
+						50px 0;
+						padding: 60px;
+	
+						background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
+						border: 1px solid #CCCCCC;
+						-webkitbox-shadow: 0 0 10px rgba(0, 0, 0,
+						0.3);
+						-mozbox-shadow: 0
+						0 10px rgba(0, 0, 0, 0.3);
+						box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+					}
+					
+					#notifica div.header { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica div.footer { padding: 50px 0 0 0; margin: 0; font-size: 11px; text-align: center; color: #777777; }
+					#notifica-container .versione { font-size: 11px; float:right; color: #777777; }
+					
+					#notifica table { font-size: .9em; margin-top: 1em; border-collapse: collapse; border: 1px solid black; }
+					#notifica table caption { color: black; padding: .5em 0; font-weight: bold; }
+					#notifica table th { border: 1px solid black; background-color: #f0f0f0; padding: .2em .5em; }
+					#notifica table td { border: 1px solid black; padding: .2em .5em; }
+					#notifica table td:first-child { text-align: center; font-weight: bold; }
+				&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;notifica-container&quot;&gt;&lt;div id=&quot;notifica&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;versione&quot;&gt;
+									File con firma elettronica - 
+								
+								Versione 1.0&lt;/div&gt;&lt;h1&gt;Attestazione di avvenuta trasmissione della fattura con impossibilità di recapito&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;
+									Identificativo SdI:
+									&lt;span&gt;111&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Nome File:
+									&lt;span&gt;IT01234567890_11111.xml.p7m&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Data Ora Ricezione:
+									&lt;span&gt;2014-04-01T12:00:00&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Destinatario:
+									&lt;span&gt;
+    AAAAAA
+    Pubblica Amministrazione di prova
+  &lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Message Id:
+									&lt;span&gt;123456&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+										Note:
+										&lt;span&gt;Attestazione Trasmissione Fattura di prova&lt;/span&gt;&lt;/li&gt;&lt;li&gt;
+									Hash del File Originale:
+									&lt;span&gt;2c1f3a240a056d9537a8608fed310812ef7b1b7a410d0152f5c9c9e93486ae44&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></div><script>function show(n){for(var i=1;i<=10;i++){var e=document.getElementById('p'+i);if(e)e.style.display=(i==n?'block':'none');}
+var b=document.querySelectorAll('.bar button');for(var j=0;j<b.length;j++){b[j].className=(j==n-1?'on':'');}}show(1);</script></body></html>

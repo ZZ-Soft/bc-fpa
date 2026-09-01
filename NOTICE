@@ -1,0 +1,92 @@
+FIT — FatturaPA XML Viewer per Microsoft Dynamics 365 Business Central
+Copyright 2026 ZZ Soft
+
+Questo prodotto include software sviluppato da ZZ Soft, distribuito secondo i
+termini della Apache License, Version 2.0. Una copia della licenza si trova nel
+file LICENSE alla radice del repository.
+
+================================================================================
+COMPONENTI DI TERZE PARTI
+================================================================================
+
+Il repository ridistribuisce i componenti elencati di seguito. Non sono coperti
+dalla Apache License 2.0: restano soggetti ai termini dei rispettivi titolari.
+
+
+--------------------------------------------------------------------------------
+1. SaxonJS 2 — runtime browser
+--------------------------------------------------------------------------------
+
+    File:        src/assets/js/saxon-js2/SaxonJS2.rt.js
+    Titolare:    Saxonica Limited
+    Origine:     https://www.saxonica.com/download/javascript.xml
+    Modifiche:   nessuna, ridistribuito in forma binaria non modificata
+
+    SaxonJS 2 e' software proprietario di Saxonica Limited. E' incluso qui
+    perche' AL non dispone di un motore XSLT e un'estensione "target: Cloud" non
+    puo' raggiungere System.Xml.Xsl.XslCompiledTransform: la trasformazione deve
+    quindi avvenire lato client.
+
+    ATTENZIONE: le condizioni esatte di ridistribuzione vanno verificate presso
+    Saxonica prima di pubblicare il repository. Vedi CONTRIBUTING.md.
+
+
+--------------------------------------------------------------------------------
+2. Foglio di stile AssoSoftware per FatturaPA
+--------------------------------------------------------------------------------
+
+    File:        tools/FoglioStileAssoSoftware.xsl          (originale)
+                 tools/FoglioStileAssoSoftware-BCpatched.xsl (modificato)
+                 forma compilata SEF dentro src/assets/js/fe-sef.js
+    Titolare:    AssoSoftware — Associazione Nazionale Produttori di Software
+                 Gestionale e Fiscale
+    Modifiche:   SI, due patch necessarie alla compilazione con un processore
+                 XSLT 3.0 rigoroso, entrambe documentate in tools/build-sef.sh:
+
+                   - rimozione di @select da <xsl:call-template> (10 occorrenze),
+                     non ammesso dalla specifica; Saxon rifiuta di compilare
+                     con XTSE0090
+                   - incapsulamento del primo argomento di format-number() in
+                     number() (26 occorrenze); senza, in XSLT 3.0 il nodo
+                     atomizza a xs:untypedAtomic, il cast produce NaN e tutti
+                     gli importi risultano vuoti, senza alcun errore
+
+                 Nessuna delle due altera l'output reso.
+
+    ATTENZIONE: la ridistribuzione di una versione MODIFICATA ha di norma
+    condizioni piu' strette della sola ridistribuzione. Da verificare presso
+    AssoSoftware prima di pubblicare. Vedi CONTRIBUTING.md.
+
+
+--------------------------------------------------------------------------------
+3. Fogli di stile e schemi XSD del Sistema di Interscambio
+--------------------------------------------------------------------------------
+
+    File:        tools/sdi-xsl/*.xsl        9 fogli, uno per tipo di messaggio
+                 docs/SDI/*.xsl             copie degli stessi
+                 schemas/SDIRicevute.xsd
+                 schemas/MessaggiTypes_v1.1.xsd
+                 docs/sample/IT01234567890_11111_*.xml   campioni ufficiali
+    Titolare:    Agenzia delle Entrate — Sistema di Interscambio
+    Origine:     https://www.fatturapa.gov.it
+    Modifiche:   gli originali sono ridistribuiti invariati.
+
+                 Le copie con suffisso -BC in schemas/ sono derivate:
+
+                   - SDIRicevute-BC.xsd: rimossi i numeri di pagina 185, 186 e
+                     187 rimasti incollati dal PDF delle specifiche alle righe
+                     54, 112 e 170. Sono nodi di testo dentro un xsd:sequence,
+                     che non li ammette: lo schema originale non e' caricabile
+                     da nessun validatore. Rimosso inoltre schemaLocation
+                     dall'xs:import, cosi' che XML-DSig venga risolto dallo
+                     schema gia' in tabella anziche' con una chiamata HTTP a
+                     w3.org, che in SaaS non partirebbe.
+                   - MessaggiTypes_v1.1-BC.xsd: rimosso schemaLocation, stesso
+                     motivo.
+
+                 Le patch applicate ai fogli SdI in fase di build (versione di
+                 output da 4.0 a 5.0, selettore di radice riscritto su
+                 local-name()) sono descritte in tools/build-sef.sh.
+
+    I documenti pubblicati dall'Agenzia delle Entrate sono atti amministrativi
+    di pubblico dominio.

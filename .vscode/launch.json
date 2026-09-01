@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "BC Sandbox (SaaS)",
+      "request": "launch",
+      "type": "al",
+      "environmentType": "Sandbox",
+      "environmentName": "TODO-nome-sandbox",
+      "startupObjectId": 73000,
+      "startupObjectType": "Page",
+      "breakOnError": "All",
+      "launchBrowser": true,
+      "schemaUpdateMode": "Synchronize"
+    }
+  ]
+}

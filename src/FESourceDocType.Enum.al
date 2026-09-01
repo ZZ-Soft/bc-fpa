@@ -1,0 +1,20 @@
+namespace ZZSoft.SDIBase;
+
+enum 73006 "FE Source Doc. Type"
+{
+    Extensible = true;
+    Caption = 'Source Document Type';
+
+    value(0; " ")
+    {
+        Caption = ' ';
+    }
+    value(1; "Sales Invoice")
+    {
+        Caption = 'Sales Invoice';
+    }
+    value(2; "Sales Credit Memo")
+    {
+        Caption = 'Sales Credit Memo';
+    }
+}

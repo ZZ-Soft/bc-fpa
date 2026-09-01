@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><ns3:RicevutaScarto xmlns:ns3="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fattura/messaggi/v1.0" versione="1.0">
+    <IdentificativoSdI>13707785999</IdentificativoSdI>
+    <NomeFile>IT02155810225_HV1GJ.xml.p7m</NomeFile>
+    <Hash>a1b2c3d4e5f60718293a4b5c6d7e8f901a2b3c4d5e6f708192a3b4c5d6e7f801</Hash>
+    <DataOraRicezione>2025-01-03T09:12:00.000+01:00</DataOraRicezione>
+    <ListaErrori>
+        <Errore><Codice>00404</Codice><Descrizione>Fattura duplicata</Descrizione><Suggerimento>La fattura sara' scartata se e' gia' stata trasmessa una fattura con identici Anno, IdFiscaleIVA del CedentePrestatore e Numero fattura.</Suggerimento></Errore>
+        <Errore><Codice>00423</Codice><Descrizione>PrezzoTotale non calcolato secondo le regole definite nelle specifiche tecniche</Descrizione><Suggerimento>Verificare che PrezzoTotale sia coerente con Quantita, PrezzoUnitario e ScontoMaggiorazione.</Suggerimento></Errore>
+    </ListaErrori>
+    <MessageId>32971399999</MessageId>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Id="Signature1"><ds:SignatureValue>QUJD</ds:SignatureValue></ds:Signature></ns3:RicevutaScarto>

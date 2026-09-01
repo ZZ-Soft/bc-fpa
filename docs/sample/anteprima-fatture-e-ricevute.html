@@ -1,0 +1,1000 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><title>ZZ Soft &mdash; fatture e ricevute SdI</title><style>body{font-family:'Segoe UI',Tahoma,sans-serif;margin:0;background:#f3f2f1}
+.bar{padding:10px 14px;background:#fff;border-bottom:1px solid #e1dfdd;position:sticky;top:0;z-index:2}
+.bar p{margin:0 0 10px;color:#605e5c;font-size:13px}
+button{font:inherit;padding:6px 14px;margin-right:6px;border:1px solid #8a8886;background:#fff;border-radius:2px;cursor:pointer;text-align:left}
+button small{display:block;font-size:11px;color:#605e5c}
+button.on{background:#0078d4;color:#fff;border-color:#0078d4}button.on small{color:#deecf9}
+.rc{background:#fff;margin:10px 14px;padding:12px 14px;border:1px solid #e1dfdd;border-radius:2px}
+.rc h3{margin:0 0 8px;font-size:14px}
+.rc table{border-collapse:collapse;font-size:12.5px}
+.rc td{padding:3px 14px 3px 0;vertical-align:top}
+.rc td:first-child{color:#605e5c;width:190px}
+.rc td.hl{color:#323130;font-weight:600}
+.ok{color:#107c10}.warn{color:#a4262c}
+code{background:#f3f2f1;padding:1px 4px;border-radius:2px}
+iframe{width:calc(100% - 28px);height:70vh;margin:0 14px 14px;border:1px solid #e1dfdd;background:#fff;display:block}</style></head><body><div class="bar"><p>Due fatture ZZ Soft con le rispettive ricevute di consegna, come le vede l'estensione. La resa passa dal foglio AssoSoftware compilato in <code>fe-sef.js</code>; i campi della ricevuta sono quelli estratti da <code>ReadReceipt</code>.</p><button onclick="show(1)">Fattura n. 0001<small>2.850,19 &euro; &mdash; IT02155810225_HV1GH</small></button><button onclick="show(2)">Fattura n. 0002<small>2.115,17 &euro; &mdash; IT02155810225_HV1GI</small></button></div><div class="panel" id="p1" style="display:block"><div class="rc"><h3>Ricevuta SdI &mdash; IT02155810225_HV1GH_RC_003.xml</h3><table><tr><td>File Type</td><td><b>Receipt</b></td></tr><tr><td>Receipt Type</td><td><b class="ok">RC &mdash; Ricevuta di consegna</b></td></tr><tr><td>SdI Base Name</td><td><code>IT02155810225_HV1GH</code> &larr; stesso della fattura</td></tr><tr><td>Identificativo SdI</td><td>13707785852</td></tr><tr><td>Referenced File Name</td><td><code>IT02155810225_HV1GH.xml.p7m</code> <span class="warn">&larr; .p7m, il file su disco &egrave; .xml</span></td></tr><tr><td>Receipt Date/Time</td><td>02/01/2025 11:30:49</td></tr><tr><td>Message Id</td><td>32971356169</td></tr><tr><td>Error Count</td><td>0</td></tr><tr><td>Receipt Note</td><td>SUBM70N - Trasmesso su canale registrato dal cessionario/committente</td></tr><tr><td>Has Signature</td><td>S&igrave; (la ricevuta &egrave; firmata da SdI)</td></tr><tr><td class="hl">SdI Status sulla fattura</td><td><b class="ok">Delivered</b></td></tr></table></div><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html xmlns:a=&quot;http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2&quot; xmlns:b=&quot;http://www.fatturapa.gov.it/sdi/fatturapa/v1.1&quot; xmlns:c=&quot;http://www.fatturapa.gov.it/sdi/fatturapa/v1.0&quot; xmlns:d=&quot;http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.0&quot;&gt;
+   &lt;head&gt;
+      &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+      &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+      &lt;style type=&quot;text/css&quot;&gt;
+
+          #fattura-elettronica
+          {
+          font-family: &#x27;Segoe UI&#x27;, Tahoma, Geneva, Verdana, sans-serif;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1280px;
+          min-width: 800px;
+          padding: 0;  }
+
+          #fattura-elettronica
+          div.page {
+          }
+
+          .tbHeader
+          {
+          width: 800px;
+          border: 2px solid black;
+          }
+
+
+          tr td {vertical-align: top;}
+
+          .tdHead {
+          width: 50%;
+          height: 91px;
+          border: 1px solid black;
+          }
+
+          .tableHead
+          {
+          font-size:smaller;
+          width: 100%;
+          }
+
+          .headBorder
+          {
+          
+          }
+
+          .headerLabel
+          {
+          color:#282828;
+          font-weight:bold;
+
+
+          }
+
+          .headContent
+          {
+          margin-left:10px;
+          margin-bottom:0px
+          }
+
+          .mt5
+          {
+          margin-top:5px
+          }
+
+
+          tr.break { page-break-after: always; }
+
+          .ulAllegati
+          {
+          margin-top:0px;
+          }
+
+
+          .separa
+          {
+          height:20px;
+          }
+
+          table.tbTitolo
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:normal; 
+          }
+          table.tbTitolo th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          border-bottom: none;
+          background-color: LightCyan;
+          font-size:x-small;
+
+          }
+
+
+          table.tbFoglio
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:break-word;
+          }
+		  
+          table.tbFoglio th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          background-color: LightGrey;
+
+          
+          font-size:x-small;
+
+
+          }
+
+          table.tbFoglio tbody
+          {
+          border: solid 1px #000000;
+          }
+
+          table.tbFoglio th .perc
+          {
+          width:50px;
+          }
+
+          table.tbFoglio td {
+          font-size:small;
+
+          border-right: solid 1px #000000;
+          border-bottom: none;
+          border-left: solid 1px #000000;
+          }
+
+          table.tbFoglio tr {
+
+
+          }
+
+          .textRight
+          {
+          text-align:right;
+          }
+
+          .textCenter
+          {
+          text-align:center;
+          }
+
+          .textPerc
+          {
+          width:50px;
+          }
+
+          td.Ritenuta
+          {
+          width:50px;
+          text-align:center;
+          }
+
+          th.title, .title td {
+          width:48%
+          }
+
+          th.perc {
+          width:50px;
+          }
+
+          th.perc2 {
+          width:40px;
+          }
+
+          th.data {
+          width:80px;
+          }
+
+          th.import
+          {
+          width:100px;
+          }
+
+          td.import
+          {
+          text-align:right;
+          }
+
+          th.import2
+          {
+          width:80px;
+          }
+
+          td.import2
+          {
+          text-align:right;
+          }
+
+          th.ximport
+          {
+          width:100px;
+          }
+
+          td.ximport
+          {
+          text-align:center;
+          }
+
+          th.ximport2
+          {
+          width:80px;
+          }
+
+          td.ximport2
+          {
+          text-align:center;
+          }
+
+          td.data
+          {
+          text-align:center;
+          }
+
+          .tx-xsmall {
+          font-size:x-small;
+          }
+
+          .tx-small {
+          font-size:small;
+          }
+
+          .import
+          {
+          text-align:right;
+          }
+
+		  table.tbNoBorder
+          {
+			  border-collapse: collapse;			
+			  margin-bottom: 5px;			  
+			  font-size:small;
+			  text-align:center;
+			  width:800px;
+          }
+		  
+        &lt;/style&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;div id=&quot;fattura-container&quot;&gt;
+         &lt;div id=&quot;fattura-elettronica&quot; class=&quot;page&quot;&gt;
+            &lt;table id=&quot;tbHeader&quot; class=&quot;tbHeader&quot;&gt;
+               &lt;tr&gt;
+                  &lt;td class=&quot;tdHead&quot;&gt;
+                     &lt;table class=&quot;tableHead&quot;&gt;
+                        &lt;tr&gt;
+                           &lt;td&gt;
+                              &lt;div class=&quot;headBorder&quot;&gt;&lt;label class=&quot;headerLabel&quot;&gt;Cedente/prestatore (fornitore) &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                    Identificativo fiscale ai fini IVA:
+                                    &lt;span&gt;IT02155810225&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Codice fiscale:
+                                    &lt;span&gt;02155810225&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Denominazione:
+                                    &lt;span&gt;ZZ Soft di Stefano Carri &amp;amp; C. S.a.s.&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Regime fiscale:
+                                    &lt;span&gt;RF17&lt;/span&gt;
+                                        IVA per cassa - art. 32-bis, D.L. 83/2012
+                                      &lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Indirizzo:
+                                    &lt;span&gt;Viale Trento 31&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+
+                                      Comune:
+                                      &lt;span&gt;Rovereto&lt;/span&gt;
+
+                                      Provincia:
+                                      &lt;span&gt;TN&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+                                      Cap:
+                                      &lt;span&gt;38068&lt;/span&gt;
+
+                                      Nazione:
+                                      &lt;span&gt;IT&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                  Email:
+                                  &lt;span&gt;segreteria@zzsoft.it&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;&lt;br&gt;&lt;label class=&quot;headerLabel&quot;&gt;Terzo Intermediario  &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                Identificativo fiscale ai fini IVA:
+                                &lt;span&gt;IT08245660017&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                Denominazione:
+                                &lt;span&gt;Sistemi S.p.A.&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                              &lt;/div&gt;
+                           &lt;/td&gt;
+                        &lt;/tr&gt;
+                     &lt;/table&gt;
+                  &lt;/td&gt;
+                  &lt;td class=&quot;tdHead&quot;&gt;
+                     &lt;table class=&quot;tableHead&quot;&gt;
+                        &lt;tr&gt;
+                           &lt;td&gt;
+                              &lt;div class=&quot;headBorder&quot;&gt;&lt;label class=&quot;headerLabel&quot;&gt;Cessionario/committente (cliente) &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                    Identificativo fiscale ai fini IVA:
+                                    &lt;span&gt;IT01656100227&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Denominazione:
+                                    &lt;span&gt;Consorzio Trentino Autonoleggiatori&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Indirizzo:
+                                    &lt;span&gt;Via Klagenfurt 52&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+
+                                      Comune:
+                                      &lt;span&gt;TRENTO&lt;/span&gt;
+
+                                      Provincia:
+                                      &lt;span&gt;TN&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+                                      Cap:
+                                      &lt;span&gt;38122&lt;/span&gt;
+
+                                      Nazione:
+                                      &lt;span&gt;IT&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                              &lt;/div&gt;
+                           &lt;/td&gt;
+                        &lt;/tr&gt;
+                     &lt;/table&gt;
+                  &lt;/td&gt;
+               &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;height:10px&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;Tipologia documento&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Art. 73&lt;/th&gt;
+                     &lt;th&gt;Numero documento&lt;/th&gt;
+                     &lt;th class=&quot;data&quot;&gt;Data documento&lt;/th&gt;
+                     &lt;th&gt;Codice destinatario&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;TD01
+                        fattura
+                      &lt;/td&gt;
+                     &lt;td class=&quot;ritenuta&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;0001&lt;/td&gt;
+                     &lt;td class=&quot;data&quot;&gt;02-01-2025&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;SUBM70N&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th width=&quot;80px&quot;&gt;Cod. articolo&lt;/th&gt;
+                     &lt;th&gt;Descrizione&lt;/th&gt;
+                     &lt;th class=&quot;import2&quot;&gt;Quantità&lt;/th&gt;
+                     &lt;th class=&quot;import2&quot;&gt;Prezzo unitario&lt;/th&gt;
+                     &lt;th class=&quot;perc2&quot;&gt;UM&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Sconto o magg.&lt;/th&gt;
+                     &lt;th class=&quot;perc2&quot;&gt;%IVA&lt;/th&gt;
+                     &lt;th class=&quot;ximport&quot;&gt;Prezzo totale&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;Rimborso costi servizio infrastruttura Azure per il periodo 10/10/2024 - 09/11/2024 (E0200UAOWM)&lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;2.317,59&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;2.317,59&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;Rimborso costi servizio invio mail SendGrid per il periodo 01/10/2024 - 31/10/2024 (G065507140)&lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;18,63&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;18,63&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbTitolo&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;RIEPILOGHI IVA E TOTALI&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+            &lt;/table&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th colspan=&quot;3&quot;&gt;esigibilità iva / riferimenti normativi&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;%IVA&lt;/th&gt;
+                     &lt;th&gt;Spese accessorie&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Arr.&lt;/th&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;Totale imponibile&lt;/th&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;Totale imposta&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td colspan=&quot;3&quot;&gt;&lt;span&gt;D&lt;/span&gt;
+                                  (esigibilità differita)
+                                &lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;2.336,22&lt;/td&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;513,97&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;
+                      Importo bollo
+                    &lt;/th&gt;
+                     &lt;th colspan=&quot;3&quot;&gt;
+                      Sconto/Maggiorazione
+                    &lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Arr.&lt;/th&gt;
+                     &lt;th colspan=&quot;4&quot;&gt;
+                      Totale documento
+                    &lt;/th&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;3&quot; class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;4&quot; class=&quot;import&quot;&gt;2.850,19&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th style=&quot;width:200px&quot;&gt;Modalità pagamento&lt;/th&gt;
+                     &lt;th&gt;Dettagli&lt;/th&gt;
+                     &lt;th style=&quot;width:180px&quot;&gt;Scadenze&lt;/th&gt;
+                     &lt;th class=&quot;ximport&quot;&gt;Importo&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;span&gt;MP05&lt;/span&gt;
+                                Bonifico
+                              &lt;span&gt;&lt;/span&gt;&lt;/td&gt;
+                     &lt;td&gt;
+      IBAN
+      IT25Y0503401800000000005884&lt;br&gt;BANCO POPOLARE - Fil. di Trento&lt;br&gt;&lt;/td&gt;
+                     &lt;td&gt;Data termine 02-01-2025&lt;br&gt;
+                            Data scadenza 28-02-2025&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;2.850,19&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;height:10px&quot;&gt;&lt;/div&gt;
+         &lt;/div&gt;
+      &lt;/div&gt;
+   &lt;/body&gt;
+&lt;/html&gt;"></iframe></div><div class="panel" id="p2" style="display:none"><div class="rc"><h3>Ricevuta SdI &mdash; IT02155810225_HV1GI_RC_003.xml</h3><table><tr><td>File Type</td><td><b>Receipt</b></td></tr><tr><td>Receipt Type</td><td><b class="ok">RC &mdash; Ricevuta di consegna</b></td></tr><tr><td>SdI Base Name</td><td><code>IT02155810225_HV1GI</code> &larr; stesso della fattura</td></tr><tr><td>Identificativo SdI</td><td>13707785890</td></tr><tr><td>Referenced File Name</td><td><code>IT02155810225_HV1GI.xml.p7m</code> <span class="warn">&larr; .p7m, il file su disco &egrave; .xml</span></td></tr><tr><td>Receipt Date/Time</td><td>02/01/2025 11:30:49</td></tr><tr><td>Message Id</td><td>32971355036</td></tr><tr><td>Error Count</td><td>0</td></tr><tr><td>Receipt Note</td><td>SUBM70N - Trasmesso su canale registrato dal cessionario/committente</td></tr><tr><td>Has Signature</td><td>S&igrave; (la ricevuta &egrave; firmata da SdI)</td></tr><tr><td class="hl">SdI Status sulla fattura</td><td><b class="ok">Delivered</b></td></tr></table></div><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html xmlns:a=&quot;http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2&quot; xmlns:b=&quot;http://www.fatturapa.gov.it/sdi/fatturapa/v1.1&quot; xmlns:c=&quot;http://www.fatturapa.gov.it/sdi/fatturapa/v1.0&quot; xmlns:d=&quot;http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.0&quot;&gt;
+   &lt;head&gt;
+      &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+      &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+      &lt;style type=&quot;text/css&quot;&gt;
+
+          #fattura-elettronica
+          {
+          font-family: &#x27;Segoe UI&#x27;, Tahoma, Geneva, Verdana, sans-serif;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1280px;
+          min-width: 800px;
+          padding: 0;  }
+
+          #fattura-elettronica
+          div.page {
+          }
+
+          .tbHeader
+          {
+          width: 800px;
+          border: 2px solid black;
+          }
+
+
+          tr td {vertical-align: top;}
+
+          .tdHead {
+          width: 50%;
+          height: 91px;
+          border: 1px solid black;
+          }
+
+          .tableHead
+          {
+          font-size:smaller;
+          width: 100%;
+          }
+
+          .headBorder
+          {
+          
+          }
+
+          .headerLabel
+          {
+          color:#282828;
+          font-weight:bold;
+
+
+          }
+
+          .headContent
+          {
+          margin-left:10px;
+          margin-bottom:0px
+          }
+
+          .mt5
+          {
+          margin-top:5px
+          }
+
+
+          tr.break { page-break-after: always; }
+
+          .ulAllegati
+          {
+          margin-top:0px;
+          }
+
+
+          .separa
+          {
+          height:20px;
+          }
+
+          table.tbTitolo
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:normal; 
+          }
+          table.tbTitolo th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          border-bottom: none;
+          background-color: LightCyan;
+          font-size:x-small;
+
+          }
+
+
+          table.tbFoglio
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:break-word;
+          }
+		  
+          table.tbFoglio th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          background-color: LightGrey;
+
+          
+          font-size:x-small;
+
+
+          }
+
+          table.tbFoglio tbody
+          {
+          border: solid 1px #000000;
+          }
+
+          table.tbFoglio th .perc
+          {
+          width:50px;
+          }
+
+          table.tbFoglio td {
+          font-size:small;
+
+          border-right: solid 1px #000000;
+          border-bottom: none;
+          border-left: solid 1px #000000;
+          }
+
+          table.tbFoglio tr {
+
+
+          }
+
+          .textRight
+          {
+          text-align:right;
+          }
+
+          .textCenter
+          {
+          text-align:center;
+          }
+
+          .textPerc
+          {
+          width:50px;
+          }
+
+          td.Ritenuta
+          {
+          width:50px;
+          text-align:center;
+          }
+
+          th.title, .title td {
+          width:48%
+          }
+
+          th.perc {
+          width:50px;
+          }
+
+          th.perc2 {
+          width:40px;
+          }
+
+          th.data {
+          width:80px;
+          }
+
+          th.import
+          {
+          width:100px;
+          }
+
+          td.import
+          {
+          text-align:right;
+          }
+
+          th.import2
+          {
+          width:80px;
+          }
+
+          td.import2
+          {
+          text-align:right;
+          }
+
+          th.ximport
+          {
+          width:100px;
+          }
+
+          td.ximport
+          {
+          text-align:center;
+          }
+
+          th.ximport2
+          {
+          width:80px;
+          }
+
+          td.ximport2
+          {
+          text-align:center;
+          }
+
+          td.data
+          {
+          text-align:center;
+          }
+
+          .tx-xsmall {
+          font-size:x-small;
+          }
+
+          .tx-small {
+          font-size:small;
+          }
+
+          .import
+          {
+          text-align:right;
+          }
+
+		  table.tbNoBorder
+          {
+			  border-collapse: collapse;			
+			  margin-bottom: 5px;			  
+			  font-size:small;
+			  text-align:center;
+			  width:800px;
+          }
+		  
+        &lt;/style&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;div id=&quot;fattura-container&quot;&gt;
+         &lt;div id=&quot;fattura-elettronica&quot; class=&quot;page&quot;&gt;
+            &lt;table id=&quot;tbHeader&quot; class=&quot;tbHeader&quot;&gt;
+               &lt;tr&gt;
+                  &lt;td class=&quot;tdHead&quot;&gt;
+                     &lt;table class=&quot;tableHead&quot;&gt;
+                        &lt;tr&gt;
+                           &lt;td&gt;
+                              &lt;div class=&quot;headBorder&quot;&gt;&lt;label class=&quot;headerLabel&quot;&gt;Cedente/prestatore (fornitore) &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                    Identificativo fiscale ai fini IVA:
+                                    &lt;span&gt;IT02155810225&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Codice fiscale:
+                                    &lt;span&gt;02155810225&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Denominazione:
+                                    &lt;span&gt;ZZ Soft di Stefano Carri &amp;amp; C. S.a.s.&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Regime fiscale:
+                                    &lt;span&gt;RF17&lt;/span&gt;
+                                        IVA per cassa - art. 32-bis, D.L. 83/2012
+                                      &lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Indirizzo:
+                                    &lt;span&gt;Viale Trento 31&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+
+                                      Comune:
+                                      &lt;span&gt;Rovereto&lt;/span&gt;
+
+                                      Provincia:
+                                      &lt;span&gt;TN&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+                                      Cap:
+                                      &lt;span&gt;38068&lt;/span&gt;
+
+                                      Nazione:
+                                      &lt;span&gt;IT&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                  Email:
+                                  &lt;span&gt;segreteria@zzsoft.it&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;&lt;br&gt;&lt;label class=&quot;headerLabel&quot;&gt;Terzo Intermediario  &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                Identificativo fiscale ai fini IVA:
+                                &lt;span&gt;IT08245660017&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                Denominazione:
+                                &lt;span&gt;Sistemi S.p.A.&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                              &lt;/div&gt;
+                           &lt;/td&gt;
+                        &lt;/tr&gt;
+                     &lt;/table&gt;
+                  &lt;/td&gt;
+                  &lt;td class=&quot;tdHead&quot;&gt;
+                     &lt;table class=&quot;tableHead&quot;&gt;
+                        &lt;tr&gt;
+                           &lt;td&gt;
+                              &lt;div class=&quot;headBorder&quot;&gt;&lt;label class=&quot;headerLabel&quot;&gt;Cessionario/committente (cliente) &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                    Identificativo fiscale ai fini IVA:
+                                    &lt;span&gt;IT01656100227&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Denominazione:
+                                    &lt;span&gt;Consorzio Trentino Autonoleggiatori&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Indirizzo:
+                                    &lt;span&gt;Via Klagenfurt 52&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+
+                                      Comune:
+                                      &lt;span&gt;TRENTO&lt;/span&gt;
+
+                                      Provincia:
+                                      &lt;span&gt;TN&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+                                      Cap:
+                                      &lt;span&gt;38122&lt;/span&gt;
+
+                                      Nazione:
+                                      &lt;span&gt;IT&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                              &lt;/div&gt;
+                           &lt;/td&gt;
+                        &lt;/tr&gt;
+                     &lt;/table&gt;
+                  &lt;/td&gt;
+               &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;height:10px&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;Tipologia documento&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Art. 73&lt;/th&gt;
+                     &lt;th&gt;Numero documento&lt;/th&gt;
+                     &lt;th class=&quot;data&quot;&gt;Data documento&lt;/th&gt;
+                     &lt;th&gt;Codice destinatario&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;TD01
+                        fattura
+                      &lt;/td&gt;
+                     &lt;td class=&quot;ritenuta&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;0002&lt;/td&gt;
+                     &lt;td class=&quot;data&quot;&gt;02-01-2025&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;SUBM70N&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th width=&quot;80px&quot;&gt;Cod. articolo&lt;/th&gt;
+                     &lt;th&gt;Descrizione&lt;/th&gt;
+                     &lt;th class=&quot;import2&quot;&gt;Quantità&lt;/th&gt;
+                     &lt;th class=&quot;import2&quot;&gt;Prezzo unitario&lt;/th&gt;
+                     &lt;th class=&quot;perc2&quot;&gt;UM&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Sconto o magg.&lt;/th&gt;
+                     &lt;th class=&quot;perc2&quot;&gt;%IVA&lt;/th&gt;
+                     &lt;th class=&quot;ximport&quot;&gt;Prezzo totale&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;Manutenzioni sistemi ed infrastrutture cloud o locali per il 2024 - mese di ottobtre-novembre 2024&lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;570,00&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;570,00&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;ScuolaBus - Gestione Trasporto scolastico per PAT - mese di novembre 2024&lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;1.163,75&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;1.163,75&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbTitolo&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;RIEPILOGHI IVA E TOTALI&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+            &lt;/table&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th colspan=&quot;3&quot;&gt;esigibilità iva / riferimenti normativi&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;%IVA&lt;/th&gt;
+                     &lt;th&gt;Spese accessorie&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Arr.&lt;/th&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;Totale imponibile&lt;/th&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;Totale imposta&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td colspan=&quot;3&quot;&gt;&lt;span&gt;D&lt;/span&gt;
+                                  (esigibilità differita)
+                                &lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;1.733,75&lt;/td&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;381,43&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;
+                      Importo bollo
+                    &lt;/th&gt;
+                     &lt;th colspan=&quot;3&quot;&gt;
+                      Sconto/Maggiorazione
+                    &lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Arr.&lt;/th&gt;
+                     &lt;th colspan=&quot;4&quot;&gt;
+                      Totale documento
+                    &lt;/th&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;3&quot; class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;4&quot; class=&quot;import&quot;&gt;2.115,17&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th style=&quot;width:200px&quot;&gt;Modalità pagamento&lt;/th&gt;
+                     &lt;th&gt;Dettagli&lt;/th&gt;
+                     &lt;th style=&quot;width:180px&quot;&gt;Scadenze&lt;/th&gt;
+                     &lt;th class=&quot;ximport&quot;&gt;Importo&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;span&gt;MP05&lt;/span&gt;
+                                Bonifico
+                              &lt;span&gt;&lt;/span&gt;&lt;/td&gt;
+                     &lt;td&gt;
+      IBAN
+      IT25Y0503401800000000005884&lt;br&gt;BANCO POPOLARE - Fil. di Trento&lt;br&gt;&lt;/td&gt;
+                     &lt;td&gt;Data termine 02-01-2025&lt;br&gt;
+                            Data scadenza 28-02-2025&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;2.115,18&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;height:10px&quot;&gt;&lt;/div&gt;
+         &lt;/div&gt;
+      &lt;/div&gt;
+   &lt;/body&gt;
+&lt;/html&gt;"></iframe></div><script>function show(n){for(var i=1;i<=2;i++){document.getElementById('p'+i).style.display=(i==n?'block':'none');}
+var b=document.querySelectorAll('.bar button');for(var j=0;j<b.length;j++){b[j].className=(j==n-1?'on':'');}}show(1);</script></body></html>

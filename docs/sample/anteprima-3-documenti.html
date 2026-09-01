@@ -1,0 +1,1861 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Esplosione IT03237470236_ZZZZZ.xml</title><style>body{font-family:'Segoe UI',Tahoma,sans-serif;margin:0;background:#f3f2f1}
+.bar{padding:10px 14px;background:#fff;border-bottom:1px solid #e1dfdd;position:sticky;top:0;z-index:2}
+.bar p{margin:0 0 10px;color:#605e5c;font-size:13px}
+button{font:inherit;padding:6px 14px;margin-right:6px;border:1px solid #8a8886;background:#fff;border-radius:2px;cursor:pointer;text-align:left}
+button small{display:block;font-size:11px;color:#605e5c}
+button.on{background:#0078d4;color:#fff;border-color:#0078d4}
+button.on small{color:#deecf9}
+iframe{width:100%;height:calc(100vh - 92px);border:0;background:#fff;display:block}</style></head><body><div class="bar"><p><strong>IT03237470236_ZZZZZ.xml</strong> &mdash; 1 FatturaElettronicaHeader, 3 FatturaElettronicaBody &rarr; 1 record "FE Xml File" + 3 record "FE Invoice Document". Ogni scheda &egrave; l'XML ridotto (header + un solo body, firma rimossa) passato al control add-in.</p><button onclick="show(1)">Documento 1<small>82600460040 - 22/01/2026 - 59,08</small></button><button onclick="show(2)">Documento 2<small>82600764942 - 18/02/2026 - 64,05</small></button><button onclick="show(3)">Documento 3<small>82601569120 - 19/03/2026 - 59,37</small></button></div><iframe id="f1" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html xmlns:a=&quot;http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2&quot; xmlns:b=&quot;http://www.fatturapa.gov.it/sdi/fatturapa/v1.1&quot; xmlns:c=&quot;http://www.fatturapa.gov.it/sdi/fatturapa/v1.0&quot; xmlns:d=&quot;http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.0&quot;&gt;
+   &lt;head&gt;
+      &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+      &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+      &lt;style type=&quot;text/css&quot;&gt;
+
+          #fattura-elettronica
+          {
+          font-family: &#x27;Segoe UI&#x27;, Tahoma, Geneva, Verdana, sans-serif;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1280px;
+          min-width: 800px;
+          padding: 0;  }
+
+          #fattura-elettronica
+          div.page {
+          }
+
+          .tbHeader
+          {
+          width: 800px;
+          border: 2px solid black;
+          }
+
+
+          tr td {vertical-align: top;}
+
+          .tdHead {
+          width: 50%;
+          height: 91px;
+          border: 1px solid black;
+          }
+
+          .tableHead
+          {
+          font-size:smaller;
+          width: 100%;
+          }
+
+          .headBorder
+          {
+          
+          }
+
+          .headerLabel
+          {
+          color:#282828;
+          font-weight:bold;
+
+
+          }
+
+          .headContent
+          {
+          margin-left:10px;
+          margin-bottom:0px
+          }
+
+          .mt5
+          {
+          margin-top:5px
+          }
+
+
+          tr.break { page-break-after: always; }
+
+          .ulAllegati
+          {
+          margin-top:0px;
+          }
+
+
+          .separa
+          {
+          height:20px;
+          }
+
+          table.tbTitolo
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:normal; 
+          }
+          table.tbTitolo th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          border-bottom: none;
+          background-color: LightCyan;
+          font-size:x-small;
+
+          }
+
+
+          table.tbFoglio
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:break-word;
+          }
+		  
+          table.tbFoglio th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          background-color: LightGrey;
+
+          
+          font-size:x-small;
+
+
+          }
+
+          table.tbFoglio tbody
+          {
+          border: solid 1px #000000;
+          }
+
+          table.tbFoglio th .perc
+          {
+          width:50px;
+          }
+
+          table.tbFoglio td {
+          font-size:small;
+
+          border-right: solid 1px #000000;
+          border-bottom: none;
+          border-left: solid 1px #000000;
+          }
+
+          table.tbFoglio tr {
+
+
+          }
+
+          .textRight
+          {
+          text-align:right;
+          }
+
+          .textCenter
+          {
+          text-align:center;
+          }
+
+          .textPerc
+          {
+          width:50px;
+          }
+
+          td.Ritenuta
+          {
+          width:50px;
+          text-align:center;
+          }
+
+          th.title, .title td {
+          width:48%
+          }
+
+          th.perc {
+          width:50px;
+          }
+
+          th.perc2 {
+          width:40px;
+          }
+
+          th.data {
+          width:80px;
+          }
+
+          th.import
+          {
+          width:100px;
+          }
+
+          td.import
+          {
+          text-align:right;
+          }
+
+          th.import2
+          {
+          width:80px;
+          }
+
+          td.import2
+          {
+          text-align:right;
+          }
+
+          th.ximport
+          {
+          width:100px;
+          }
+
+          td.ximport
+          {
+          text-align:center;
+          }
+
+          th.ximport2
+          {
+          width:80px;
+          }
+
+          td.ximport2
+          {
+          text-align:center;
+          }
+
+          td.data
+          {
+          text-align:center;
+          }
+
+          .tx-xsmall {
+          font-size:x-small;
+          }
+
+          .tx-small {
+          font-size:small;
+          }
+
+          .import
+          {
+          text-align:right;
+          }
+
+		  table.tbNoBorder
+          {
+			  border-collapse: collapse;			
+			  margin-bottom: 5px;			  
+			  font-size:small;
+			  text-align:center;
+			  width:800px;
+          }
+		  
+        &lt;/style&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;div id=&quot;fattura-container&quot;&gt;
+         &lt;div id=&quot;fattura-elettronica&quot; class=&quot;page&quot;&gt;
+            &lt;table id=&quot;tbHeader&quot; class=&quot;tbHeader&quot;&gt;
+               &lt;tr&gt;
+                  &lt;td class=&quot;tdHead&quot;&gt;
+                     &lt;table class=&quot;tableHead&quot;&gt;
+                        &lt;tr&gt;
+                           &lt;td&gt;
+                              &lt;div class=&quot;headBorder&quot;&gt;&lt;label class=&quot;headerLabel&quot;&gt;Cedente/prestatore (fornitore) &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                    Identificativo fiscale ai fini IVA:
+                                    &lt;span&gt;IT01812630224&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Codice fiscale:
+                                    &lt;span&gt;01812630224&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Denominazione:
+                                    &lt;span&gt;Dolomiti Energia S.p.A.&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Regime fiscale:
+                                    &lt;span&gt;RF01&lt;/span&gt;
+                                        ordinario
+                                      &lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Indirizzo:
+                                    &lt;span&gt;Via Fersina 23&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+
+                                      Comune:
+                                      &lt;span&gt;Trento&lt;/span&gt;
+
+                                      Provincia:
+                                      &lt;span&gt;TN&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+                                      Cap:
+                                      &lt;span&gt;38123&lt;/span&gt;
+
+                                      Nazione:
+                                      &lt;span&gt;IT&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                  Telefono:
+                                  &lt;span&gt;800 364 364&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                  Email:
+                                  &lt;span&gt;clienti.impresa@dolomitienergia.it&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;&lt;br&gt;&lt;label class=&quot;headerLabel&quot;&gt;Terzo Intermediario  &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                Identificativo fiscale ai fini IVA:
+                                &lt;span&gt;IT03237470236&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                Denominazione:
+                                &lt;span&gt;ARCHIVA SRL&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                              &lt;/div&gt;
+                           &lt;/td&gt;
+                        &lt;/tr&gt;
+                     &lt;/table&gt;
+                  &lt;/td&gt;
+                  &lt;td class=&quot;tdHead&quot;&gt;
+                     &lt;table class=&quot;tableHead&quot;&gt;
+                        &lt;tr&gt;
+                           &lt;td&gt;
+                              &lt;div class=&quot;headBorder&quot;&gt;&lt;label class=&quot;headerLabel&quot;&gt;Cessionario/committente (cliente) &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                    Identificativo fiscale ai fini IVA:
+                                    &lt;span&gt;IT02155810225&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Codice fiscale:
+                                    &lt;span&gt;02155810225&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Denominazione:
+                                    &lt;span&gt;ZZSOFT SAS &lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Indirizzo:
+                                    &lt;span&gt;VIALE TRENTO 31 &lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+
+                                      Comune:
+                                      &lt;span&gt;ROVERETO&lt;/span&gt;
+
+                                      Provincia:
+                                      &lt;span&gt;TN&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+                                      Cap:
+                                      &lt;span&gt;38068&lt;/span&gt;
+
+                                      Nazione:
+                                      &lt;span&gt;IT&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                              &lt;/div&gt;
+                           &lt;/td&gt;
+                        &lt;/tr&gt;
+                     &lt;/table&gt;
+                  &lt;/td&gt;
+               &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;height:10px&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;Tipologia documento&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Art. 73&lt;/th&gt;
+                     &lt;th&gt;Numero documento&lt;/th&gt;
+                     &lt;th class=&quot;data&quot;&gt;Data documento&lt;/th&gt;
+                     &lt;th&gt;Codice destinatario&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;TD01
+                        fattura
+                      &lt;/td&gt;
+                     &lt;td class=&quot;ritenuta&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;82600460040&lt;/td&gt;
+                     &lt;td class=&quot;data&quot;&gt;22-01-2026&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;Causale&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;energia elettrica periodo 01/12/2025 31/12/2025 conto contrattuale 60066827 ZZSOFT SAS -  mercato libero - offerta: PUN-TA SMALL PREMIUM_R&lt;br&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th width=&quot;80px&quot;&gt;Cod. articolo&lt;/th&gt;
+                     &lt;th&gt;Descrizione&lt;/th&gt;
+                     &lt;th class=&quot;import2&quot;&gt;Quantità&lt;/th&gt;
+                     &lt;th class=&quot;import2&quot;&gt;Prezzo unitario&lt;/th&gt;
+                     &lt;th class=&quot;perc2&quot;&gt;UM&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Sconto o magg.&lt;/th&gt;
+                     &lt;th class=&quot;perc2&quot;&gt;%IVA&lt;/th&gt;
+                     &lt;th class=&quot;ximport&quot;&gt;Prezzo totale&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Contratto 102324106&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;------------------------&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota per consumi - spesa per la vendita di  energia&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-12-2025 a 31-12-2025&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;13,75&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;13,75&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota per consumi - spesa per la rete e gli oneri generali di sistema&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-12-2025 a 31-12-2025&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;4,81&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;4,81&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota fissa - spesa per la vendita di  energia&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-12-2025 a 31-12-2025&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;12,51&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;12,51&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota fissa - spesa per la rete e gli oneri generali di sistema&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-12-2025 a 31-12-2025&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;3,68&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;3,68&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota potenza - spesa per la rete e gli oneri generali di sistema&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-12-2025 a 31-12-2025&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;12,64&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;12,64&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;Periodo di consumo a saldo - accise - accisa -  kWh&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-12-2025 a 31-12-2025&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;83,00&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;0,0125&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;kWh&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;1,04&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbTitolo&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;RIEPILOGHI IVA E TOTALI&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+            &lt;/table&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th colspan=&quot;3&quot;&gt;esigibilità iva / riferimenti normativi&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;%IVA&lt;/th&gt;
+                     &lt;th&gt;Spese accessorie&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Arr.&lt;/th&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;Totale imponibile&lt;/th&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;Totale imposta&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td colspan=&quot;3&quot;&gt;&lt;span&gt;I&lt;/span&gt;
+                                  (esigibilità immediata)
+                                &lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;48,43&lt;/td&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;10,65&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;
+                      Importo bollo
+                    &lt;/th&gt;
+                     &lt;th colspan=&quot;3&quot;&gt;
+                      Sconto/Maggiorazione
+                    &lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Arr.&lt;/th&gt;
+                     &lt;th colspan=&quot;4&quot;&gt;
+                      Totale documento
+                    &lt;/th&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;3&quot; class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;4&quot; class=&quot;import&quot;&gt;59,08&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th style=&quot;width:200px&quot;&gt;Modalità pagamento&lt;/th&gt;
+                     &lt;th&gt;Dettagli&lt;/th&gt;
+                     &lt;th style=&quot;width:180px&quot;&gt;Scadenze&lt;/th&gt;
+                     &lt;th class=&quot;ximport&quot;&gt;Importo&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;span&gt;MP19&lt;/span&gt;
+                                SEPA Direct Debit
+                              &lt;span&gt;&lt;/span&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                            Data scadenza 11-02-2026&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;59,08&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;height:10px&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;tx-small&quot;&gt;Allegati:&lt;/div&gt;
+            &lt;ul class=&quot;ulAllegati&quot;&gt;
+               &lt;li&gt;
+                  &lt;div class=&quot;tx-small&quot;&gt;82600460040.pdf &lt;/div&gt;
+               &lt;/li&gt;
+            &lt;/ul&gt;
+         &lt;/div&gt;
+      &lt;/div&gt;
+   &lt;/body&gt;
+&lt;/html&gt;" style="display:block"></iframe><iframe id="f2" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html xmlns:a=&quot;http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2&quot; xmlns:b=&quot;http://www.fatturapa.gov.it/sdi/fatturapa/v1.1&quot; xmlns:c=&quot;http://www.fatturapa.gov.it/sdi/fatturapa/v1.0&quot; xmlns:d=&quot;http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.0&quot;&gt;
+   &lt;head&gt;
+      &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+      &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+      &lt;style type=&quot;text/css&quot;&gt;
+
+          #fattura-elettronica
+          {
+          font-family: &#x27;Segoe UI&#x27;, Tahoma, Geneva, Verdana, sans-serif;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1280px;
+          min-width: 800px;
+          padding: 0;  }
+
+          #fattura-elettronica
+          div.page {
+          }
+
+          .tbHeader
+          {
+          width: 800px;
+          border: 2px solid black;
+          }
+
+
+          tr td {vertical-align: top;}
+
+          .tdHead {
+          width: 50%;
+          height: 91px;
+          border: 1px solid black;
+          }
+
+          .tableHead
+          {
+          font-size:smaller;
+          width: 100%;
+          }
+
+          .headBorder
+          {
+          
+          }
+
+          .headerLabel
+          {
+          color:#282828;
+          font-weight:bold;
+
+
+          }
+
+          .headContent
+          {
+          margin-left:10px;
+          margin-bottom:0px
+          }
+
+          .mt5
+          {
+          margin-top:5px
+          }
+
+
+          tr.break { page-break-after: always; }
+
+          .ulAllegati
+          {
+          margin-top:0px;
+          }
+
+
+          .separa
+          {
+          height:20px;
+          }
+
+          table.tbTitolo
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:normal; 
+          }
+          table.tbTitolo th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          border-bottom: none;
+          background-color: LightCyan;
+          font-size:x-small;
+
+          }
+
+
+          table.tbFoglio
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:break-word;
+          }
+		  
+          table.tbFoglio th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          background-color: LightGrey;
+
+          
+          font-size:x-small;
+
+
+          }
+
+          table.tbFoglio tbody
+          {
+          border: solid 1px #000000;
+          }
+
+          table.tbFoglio th .perc
+          {
+          width:50px;
+          }
+
+          table.tbFoglio td {
+          font-size:small;
+
+          border-right: solid 1px #000000;
+          border-bottom: none;
+          border-left: solid 1px #000000;
+          }
+
+          table.tbFoglio tr {
+
+
+          }
+
+          .textRight
+          {
+          text-align:right;
+          }
+
+          .textCenter
+          {
+          text-align:center;
+          }
+
+          .textPerc
+          {
+          width:50px;
+          }
+
+          td.Ritenuta
+          {
+          width:50px;
+          text-align:center;
+          }
+
+          th.title, .title td {
+          width:48%
+          }
+
+          th.perc {
+          width:50px;
+          }
+
+          th.perc2 {
+          width:40px;
+          }
+
+          th.data {
+          width:80px;
+          }
+
+          th.import
+          {
+          width:100px;
+          }
+
+          td.import
+          {
+          text-align:right;
+          }
+
+          th.import2
+          {
+          width:80px;
+          }
+
+          td.import2
+          {
+          text-align:right;
+          }
+
+          th.ximport
+          {
+          width:100px;
+          }
+
+          td.ximport
+          {
+          text-align:center;
+          }
+
+          th.ximport2
+          {
+          width:80px;
+          }
+
+          td.ximport2
+          {
+          text-align:center;
+          }
+
+          td.data
+          {
+          text-align:center;
+          }
+
+          .tx-xsmall {
+          font-size:x-small;
+          }
+
+          .tx-small {
+          font-size:small;
+          }
+
+          .import
+          {
+          text-align:right;
+          }
+
+		  table.tbNoBorder
+          {
+			  border-collapse: collapse;			
+			  margin-bottom: 5px;			  
+			  font-size:small;
+			  text-align:center;
+			  width:800px;
+          }
+		  
+        &lt;/style&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;div id=&quot;fattura-container&quot;&gt;
+         &lt;div id=&quot;fattura-elettronica&quot; class=&quot;page&quot;&gt;
+            &lt;table id=&quot;tbHeader&quot; class=&quot;tbHeader&quot;&gt;
+               &lt;tr&gt;
+                  &lt;td class=&quot;tdHead&quot;&gt;
+                     &lt;table class=&quot;tableHead&quot;&gt;
+                        &lt;tr&gt;
+                           &lt;td&gt;
+                              &lt;div class=&quot;headBorder&quot;&gt;&lt;label class=&quot;headerLabel&quot;&gt;Cedente/prestatore (fornitore) &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                    Identificativo fiscale ai fini IVA:
+                                    &lt;span&gt;IT01812630224&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Codice fiscale:
+                                    &lt;span&gt;01812630224&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Denominazione:
+                                    &lt;span&gt;Dolomiti Energia S.p.A.&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Regime fiscale:
+                                    &lt;span&gt;RF01&lt;/span&gt;
+                                        ordinario
+                                      &lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Indirizzo:
+                                    &lt;span&gt;Via Fersina 23&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+
+                                      Comune:
+                                      &lt;span&gt;Trento&lt;/span&gt;
+
+                                      Provincia:
+                                      &lt;span&gt;TN&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+                                      Cap:
+                                      &lt;span&gt;38123&lt;/span&gt;
+
+                                      Nazione:
+                                      &lt;span&gt;IT&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                  Telefono:
+                                  &lt;span&gt;800 364 364&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                  Email:
+                                  &lt;span&gt;clienti.impresa@dolomitienergia.it&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;&lt;br&gt;&lt;label class=&quot;headerLabel&quot;&gt;Terzo Intermediario  &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                Identificativo fiscale ai fini IVA:
+                                &lt;span&gt;IT03237470236&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                Denominazione:
+                                &lt;span&gt;ARCHIVA SRL&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                              &lt;/div&gt;
+                           &lt;/td&gt;
+                        &lt;/tr&gt;
+                     &lt;/table&gt;
+                  &lt;/td&gt;
+                  &lt;td class=&quot;tdHead&quot;&gt;
+                     &lt;table class=&quot;tableHead&quot;&gt;
+                        &lt;tr&gt;
+                           &lt;td&gt;
+                              &lt;div class=&quot;headBorder&quot;&gt;&lt;label class=&quot;headerLabel&quot;&gt;Cessionario/committente (cliente) &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                    Identificativo fiscale ai fini IVA:
+                                    &lt;span&gt;IT02155810225&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Codice fiscale:
+                                    &lt;span&gt;02155810225&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Denominazione:
+                                    &lt;span&gt;ZZSOFT SAS &lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Indirizzo:
+                                    &lt;span&gt;VIALE TRENTO 31 &lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+
+                                      Comune:
+                                      &lt;span&gt;ROVERETO&lt;/span&gt;
+
+                                      Provincia:
+                                      &lt;span&gt;TN&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+                                      Cap:
+                                      &lt;span&gt;38068&lt;/span&gt;
+
+                                      Nazione:
+                                      &lt;span&gt;IT&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                              &lt;/div&gt;
+                           &lt;/td&gt;
+                        &lt;/tr&gt;
+                     &lt;/table&gt;
+                  &lt;/td&gt;
+               &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;height:10px&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;Tipologia documento&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Art. 73&lt;/th&gt;
+                     &lt;th&gt;Numero documento&lt;/th&gt;
+                     &lt;th class=&quot;data&quot;&gt;Data documento&lt;/th&gt;
+                     &lt;th&gt;Codice destinatario&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;TD01
+                        fattura
+                      &lt;/td&gt;
+                     &lt;td class=&quot;ritenuta&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;82600764942&lt;/td&gt;
+                     &lt;td class=&quot;data&quot;&gt;18-02-2026&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;Causale&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;energia elettrica periodo 01/01/2026 31/01/2026 conto contrattuale 60066827 ZZSOFT SAS -  mercato libero - offerta: PUN-TA SMALL PREMIUM_R&lt;br&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th width=&quot;80px&quot;&gt;Cod. articolo&lt;/th&gt;
+                     &lt;th&gt;Descrizione&lt;/th&gt;
+                     &lt;th class=&quot;import2&quot;&gt;Quantità&lt;/th&gt;
+                     &lt;th class=&quot;import2&quot;&gt;Prezzo unitario&lt;/th&gt;
+                     &lt;th class=&quot;perc2&quot;&gt;UM&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Sconto o magg.&lt;/th&gt;
+                     &lt;th class=&quot;perc2&quot;&gt;%IVA&lt;/th&gt;
+                     &lt;th class=&quot;ximport&quot;&gt;Prezzo totale&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Contratto 102324106&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;------------------------&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota per consumi - spesa per la vendita di  energia&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-01-2026 a 31-01-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;17,88&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;17,88&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota per consumi - spesa per la rete e gli oneri generali di sistema&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-01-2026 a 31-01-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;5,46&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;5,46&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota fissa - spesa per la vendita di  energia&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-01-2026 a 31-01-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;12,51&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;12,51&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota fissa - spesa per la rete e gli oneri generali di sistema&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-01-2026 a 31-01-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;3,65&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;3,65&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota potenza - spesa per la rete e gli oneri generali di sistema&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-01-2026 a 31-01-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;11,84&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;11,84&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;Periodo di consumo a saldo - accise - accisa -  kWh&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-01-2026 a 31-01-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;93,00&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;0,0125&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;kWh&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;1,16&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbTitolo&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;RIEPILOGHI IVA E TOTALI&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+            &lt;/table&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th colspan=&quot;3&quot;&gt;esigibilità iva / riferimenti normativi&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;%IVA&lt;/th&gt;
+                     &lt;th&gt;Spese accessorie&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Arr.&lt;/th&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;Totale imponibile&lt;/th&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;Totale imposta&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td colspan=&quot;3&quot;&gt;&lt;span&gt;I&lt;/span&gt;
+                                  (esigibilità immediata)
+                                &lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;52,50&lt;/td&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;11,55&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;
+                      Importo bollo
+                    &lt;/th&gt;
+                     &lt;th colspan=&quot;3&quot;&gt;
+                      Sconto/Maggiorazione
+                    &lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Arr.&lt;/th&gt;
+                     &lt;th colspan=&quot;4&quot;&gt;
+                      Totale documento
+                    &lt;/th&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;3&quot; class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;4&quot; class=&quot;import&quot;&gt;64,05&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th style=&quot;width:200px&quot;&gt;Modalità pagamento&lt;/th&gt;
+                     &lt;th&gt;Dettagli&lt;/th&gt;
+                     &lt;th style=&quot;width:180px&quot;&gt;Scadenze&lt;/th&gt;
+                     &lt;th class=&quot;ximport&quot;&gt;Importo&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;span&gt;MP19&lt;/span&gt;
+                                SEPA Direct Debit
+                              &lt;span&gt;&lt;/span&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                            Data scadenza 10-03-2026&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;64,05&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;height:10px&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;tx-small&quot;&gt;Allegati:&lt;/div&gt;
+            &lt;ul class=&quot;ulAllegati&quot;&gt;
+               &lt;li&gt;
+                  &lt;div class=&quot;tx-small&quot;&gt;82600764942.pdf &lt;/div&gt;
+               &lt;/li&gt;
+            &lt;/ul&gt;
+         &lt;/div&gt;
+      &lt;/div&gt;
+   &lt;/body&gt;
+&lt;/html&gt;" style="display:none"></iframe><iframe id="f3" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html xmlns:a=&quot;http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2&quot; xmlns:b=&quot;http://www.fatturapa.gov.it/sdi/fatturapa/v1.1&quot; xmlns:c=&quot;http://www.fatturapa.gov.it/sdi/fatturapa/v1.0&quot; xmlns:d=&quot;http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.0&quot;&gt;
+   &lt;head&gt;
+      &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+      &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+      &lt;style type=&quot;text/css&quot;&gt;
+
+          #fattura-elettronica
+          {
+          font-family: &#x27;Segoe UI&#x27;, Tahoma, Geneva, Verdana, sans-serif;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1280px;
+          min-width: 800px;
+          padding: 0;  }
+
+          #fattura-elettronica
+          div.page {
+          }
+
+          .tbHeader
+          {
+          width: 800px;
+          border: 2px solid black;
+          }
+
+
+          tr td {vertical-align: top;}
+
+          .tdHead {
+          width: 50%;
+          height: 91px;
+          border: 1px solid black;
+          }
+
+          .tableHead
+          {
+          font-size:smaller;
+          width: 100%;
+          }
+
+          .headBorder
+          {
+          
+          }
+
+          .headerLabel
+          {
+          color:#282828;
+          font-weight:bold;
+
+
+          }
+
+          .headContent
+          {
+          margin-left:10px;
+          margin-bottom:0px
+          }
+
+          .mt5
+          {
+          margin-top:5px
+          }
+
+
+          tr.break { page-break-after: always; }
+
+          .ulAllegati
+          {
+          margin-top:0px;
+          }
+
+
+          .separa
+          {
+          height:20px;
+          }
+
+          table.tbTitolo
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:normal; 
+          }
+          table.tbTitolo th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          border-bottom: none;
+          background-color: LightCyan;
+          font-size:x-small;
+
+          }
+
+
+          table.tbFoglio
+          {
+          width: 800px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          word-wrap:break-word;
+          }
+		  
+          table.tbFoglio th {
+          padding-left: 5px;
+          padding-right: 5px;
+          border: solid 1px #000000;
+          background-color: LightGrey;
+
+          
+          font-size:x-small;
+
+
+          }
+
+          table.tbFoglio tbody
+          {
+          border: solid 1px #000000;
+          }
+
+          table.tbFoglio th .perc
+          {
+          width:50px;
+          }
+
+          table.tbFoglio td {
+          font-size:small;
+
+          border-right: solid 1px #000000;
+          border-bottom: none;
+          border-left: solid 1px #000000;
+          }
+
+          table.tbFoglio tr {
+
+
+          }
+
+          .textRight
+          {
+          text-align:right;
+          }
+
+          .textCenter
+          {
+          text-align:center;
+          }
+
+          .textPerc
+          {
+          width:50px;
+          }
+
+          td.Ritenuta
+          {
+          width:50px;
+          text-align:center;
+          }
+
+          th.title, .title td {
+          width:48%
+          }
+
+          th.perc {
+          width:50px;
+          }
+
+          th.perc2 {
+          width:40px;
+          }
+
+          th.data {
+          width:80px;
+          }
+
+          th.import
+          {
+          width:100px;
+          }
+
+          td.import
+          {
+          text-align:right;
+          }
+
+          th.import2
+          {
+          width:80px;
+          }
+
+          td.import2
+          {
+          text-align:right;
+          }
+
+          th.ximport
+          {
+          width:100px;
+          }
+
+          td.ximport
+          {
+          text-align:center;
+          }
+
+          th.ximport2
+          {
+          width:80px;
+          }
+
+          td.ximport2
+          {
+          text-align:center;
+          }
+
+          td.data
+          {
+          text-align:center;
+          }
+
+          .tx-xsmall {
+          font-size:x-small;
+          }
+
+          .tx-small {
+          font-size:small;
+          }
+
+          .import
+          {
+          text-align:right;
+          }
+
+		  table.tbNoBorder
+          {
+			  border-collapse: collapse;			
+			  margin-bottom: 5px;			  
+			  font-size:small;
+			  text-align:center;
+			  width:800px;
+          }
+		  
+        &lt;/style&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;div id=&quot;fattura-container&quot;&gt;
+         &lt;div id=&quot;fattura-elettronica&quot; class=&quot;page&quot;&gt;
+            &lt;table id=&quot;tbHeader&quot; class=&quot;tbHeader&quot;&gt;
+               &lt;tr&gt;
+                  &lt;td class=&quot;tdHead&quot;&gt;
+                     &lt;table class=&quot;tableHead&quot;&gt;
+                        &lt;tr&gt;
+                           &lt;td&gt;
+                              &lt;div class=&quot;headBorder&quot;&gt;&lt;label class=&quot;headerLabel&quot;&gt;Cedente/prestatore (fornitore) &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                    Identificativo fiscale ai fini IVA:
+                                    &lt;span&gt;IT01812630224&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Codice fiscale:
+                                    &lt;span&gt;01812630224&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Denominazione:
+                                    &lt;span&gt;Dolomiti Energia S.p.A.&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Regime fiscale:
+                                    &lt;span&gt;RF01&lt;/span&gt;
+                                        ordinario
+                                      &lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Indirizzo:
+                                    &lt;span&gt;Via Fersina 23&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+
+                                      Comune:
+                                      &lt;span&gt;Trento&lt;/span&gt;
+
+                                      Provincia:
+                                      &lt;span&gt;TN&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+                                      Cap:
+                                      &lt;span&gt;38123&lt;/span&gt;
+
+                                      Nazione:
+                                      &lt;span&gt;IT&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                  Telefono:
+                                  &lt;span&gt;800 364 364&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                  Email:
+                                  &lt;span&gt;clienti.impresa@dolomitienergia.it&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;&lt;br&gt;&lt;label class=&quot;headerLabel&quot;&gt;Terzo Intermediario  &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                Identificativo fiscale ai fini IVA:
+                                &lt;span&gt;IT03237470236&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                Denominazione:
+                                &lt;span&gt;ARCHIVA SRL&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                              &lt;/div&gt;
+                           &lt;/td&gt;
+                        &lt;/tr&gt;
+                     &lt;/table&gt;
+                  &lt;/td&gt;
+                  &lt;td class=&quot;tdHead&quot;&gt;
+                     &lt;table class=&quot;tableHead&quot;&gt;
+                        &lt;tr&gt;
+                           &lt;td&gt;
+                              &lt;div class=&quot;headBorder&quot;&gt;&lt;label class=&quot;headerLabel&quot;&gt;Cessionario/committente (cliente) &lt;/label&gt;&lt;div class=&quot;headContent mt5&quot;&gt;
+
+                                    Identificativo fiscale ai fini IVA:
+                                    &lt;span&gt;IT02155810225&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Codice fiscale:
+                                    &lt;span&gt;02155810225&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Denominazione:
+                                    &lt;span&gt;ZZSOFT SAS &lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;
+
+                                    Indirizzo:
+                                    &lt;span&gt;VIALE TRENTO 31 &lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+
+                                      Comune:
+                                      &lt;span&gt;ROVERETO&lt;/span&gt;
+
+                                      Provincia:
+                                      &lt;span&gt;TN&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;span&gt;
+                                      Cap:
+                                      &lt;span&gt;38068&lt;/span&gt;
+
+                                      Nazione:
+                                      &lt;span&gt;IT&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                                 &lt;div class=&quot;headContent&quot;&gt;&lt;/div&gt;
+                              &lt;/div&gt;
+                           &lt;/td&gt;
+                        &lt;/tr&gt;
+                     &lt;/table&gt;
+                  &lt;/td&gt;
+               &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;height:10px&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;Tipologia documento&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Art. 73&lt;/th&gt;
+                     &lt;th&gt;Numero documento&lt;/th&gt;
+                     &lt;th class=&quot;data&quot;&gt;Data documento&lt;/th&gt;
+                     &lt;th&gt;Codice destinatario&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;TD01
+                        fattura
+                      &lt;/td&gt;
+                     &lt;td class=&quot;ritenuta&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;82601569120&lt;/td&gt;
+                     &lt;td class=&quot;data&quot;&gt;19-03-2026&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;Causale&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;energia elettrica periodo 01/02/2026 28/02/2026 conto contrattuale 60066827 ZZSOFT SAS -  mercato libero - offerta: PUN-TA SMALL PREMIUM_R&lt;br&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th width=&quot;80px&quot;&gt;Cod. articolo&lt;/th&gt;
+                     &lt;th&gt;Descrizione&lt;/th&gt;
+                     &lt;th class=&quot;import2&quot;&gt;Quantità&lt;/th&gt;
+                     &lt;th class=&quot;import2&quot;&gt;Prezzo unitario&lt;/th&gt;
+                     &lt;th class=&quot;perc2&quot;&gt;UM&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Sconto o magg.&lt;/th&gt;
+                     &lt;th class=&quot;perc2&quot;&gt;%IVA&lt;/th&gt;
+                     &lt;th class=&quot;ximport&quot;&gt;Prezzo totale&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Contratto 102324106&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;------------------------&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota per consumi - spesa per la vendita di  energia&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-02-2026 a 28-02-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;14,52&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;14,52&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota per consumi - spesa per la rete e gli oneri generali di sistema&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-02-2026 a 28-02-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;5,06&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;5,06&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota fissa - spesa per la vendita di  energia&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-02-2026 a 28-02-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;12,51&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;12,51&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota fissa - spesa per la rete e gli oneri generali di sistema&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-02-2026 a 28-02-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;3,65&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;3,65&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;quota potenza - spesa per la rete e gli oneri generali di sistema&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-02-2026 a 28-02-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;11,84&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;11,84&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;Periodo di consumo a saldo - accise - accisa -  kWh&lt;div class=&quot;tx-xsmall&quot;&gt;Periodo da 01-02-2026 a 28-02-2026&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Tipo dato: POD&lt;/div&gt;
+                        &lt;div class=&quot;tx-xsmall&quot;&gt;Rif. testo: IT133E00373357&lt;/div&gt;
+                     &lt;/td&gt;
+                     &lt;td class=&quot;import2&quot;&gt;86,00&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;0,0125&lt;/td&gt;
+                     &lt;td class=&quot;textCenter&quot;&gt;kWh&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td&gt;
+                        &lt;div class=&quot;import&quot;&gt;1,08&lt;/div&gt;
+                     &lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbTitolo&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th&gt;RIEPILOGHI IVA E TOTALI&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+            &lt;/table&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th colspan=&quot;3&quot;&gt;esigibilità iva / riferimenti normativi&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;%IVA&lt;/th&gt;
+                     &lt;th&gt;Spese accessorie&lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Arr.&lt;/th&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;Totale imponibile&lt;/th&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;Totale imposta&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td colspan=&quot;3&quot;&gt;&lt;span&gt;I&lt;/span&gt;
+                                  (esigibilità immediata)
+                                &lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;22,00&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;48,66&lt;/td&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;10,71&lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;th colspan=&quot;2&quot;&gt;
+                      Importo bollo
+                    &lt;/th&gt;
+                     &lt;th colspan=&quot;3&quot;&gt;
+                      Sconto/Maggiorazione
+                    &lt;/th&gt;
+                     &lt;th class=&quot;perc&quot;&gt;Arr.&lt;/th&gt;
+                     &lt;th colspan=&quot;4&quot;&gt;
+                      Totale documento
+                    &lt;/th&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
+                     &lt;td colspan=&quot;2&quot; class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;3&quot; class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;&lt;/td&gt;
+                     &lt;td colspan=&quot;4&quot; class=&quot;import&quot;&gt;59,37&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div class=&quot;separa&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;tbFoglio&quot;&gt;
+               &lt;thead&gt;
+                  &lt;tr&gt;
+                     &lt;th style=&quot;width:200px&quot;&gt;Modalità pagamento&lt;/th&gt;
+                     &lt;th&gt;Dettagli&lt;/th&gt;
+                     &lt;th style=&quot;width:180px&quot;&gt;Scadenze&lt;/th&gt;
+                     &lt;th class=&quot;ximport&quot;&gt;Importo&lt;/th&gt;
+                  &lt;/tr&gt;
+               &lt;/thead&gt;
+               &lt;tbody&gt;
+                  &lt;tr&gt;
+                     &lt;td&gt;&lt;span&gt;MP19&lt;/span&gt;
+                                SEPA Direct Debit
+                              &lt;span&gt;&lt;/span&gt;&lt;/td&gt;
+                     &lt;td&gt;&lt;/td&gt;
+                     &lt;td&gt;
+                            Data scadenza 08-04-2026&lt;/td&gt;
+                     &lt;td class=&quot;import&quot;&gt;59,37&lt;/td&gt;
+                  &lt;/tr&gt;
+               &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;height:10px&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;tx-small&quot;&gt;Allegati:&lt;/div&gt;
+            &lt;ul class=&quot;ulAllegati&quot;&gt;
+               &lt;li&gt;
+                  &lt;div class=&quot;tx-small&quot;&gt;82601569120.pdf &lt;/div&gt;
+               &lt;/li&gt;
+            &lt;/ul&gt;
+         &lt;/div&gt;
+      &lt;/div&gt;
+   &lt;/body&gt;
+&lt;/html&gt;" style="display:none"></iframe><script>function show(n){for(var i=1;i<=3;i++){document.getElementById('f'+i).style.display=(i==n?'block':'none');}
+var bs=document.querySelectorAll('.bar button');for(var j=0;j<bs.length;j++){bs[j].className=(j==n-1?'on':'');}}
+show(1);</script></body></html>

@@ -1,0 +1,33 @@
+{
+  "id": "b7c4e219-3f8a-4d6e-9a17-5c2f08e4d731",
+  "name": "FatturaPA XML Viewer",
+  "publisher": "ZZ Soft",
+  "version": "1.1.0.0",
+  "brief": "Visualizza XML FatturaPA con foglio di stile AssoSoftware in Business Central online",
+  "description": "Importa un file XML FatturaPA, lo valida contro gli XSD ufficiali e lo visualizza applicando il foglio di stile AssoSoftware. Interamente SaaS-compatible: nessun assembly .NET, trasformazione XSLT eseguita client-side con SaxonJS.",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "28.0.0.0",
+  "application": "28.0.0.0",
+  "idRanges": [
+    {
+      "from": 73000,
+      "to": 73099
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "17.0",
+  "target": "Cloud",
+  "features": [
+    "NoImplicitWith"
+  ]
+}

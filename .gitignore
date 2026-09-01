@@ -1,0 +1,20 @@
+# --- AL ---
+.alpackages/
+.snapshots/
+*.app
+rad.json
+.vscode/rad.json
+
+# --- build ---
+tools/.build/
+
+# --- editor / OS ---
+.vs/
+~$*
+*~
+Thumbs.db
+.DS_Store
+
+# Nota: src/assets/js resta TRACCIATA di proposito.
+# fe-sef.js e SaxonJS2.rt.js sono risorse dell'estensione: senza di loro
+# il progetto non compila, quindi un clone pulito deve trovarle gia' li'.
