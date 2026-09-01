@@ -5,7 +5,7 @@
 Una sola tabella per tutti i file di fattura elettronica italiana:
 
 - **acquisti e ricevute** caricati come XML (upload multiplo, drag&drop);
-- **vendite** generate dall'export standard della localizzazione italiana e archiviate in
+- **vendite** generate dall'estensione stessa dal documento registrato e archiviate in
   automatico, con il nome secondo la regola SdI.
 
 Ogni fattura viene esplosa in un documento per `FatturaElettronicaBody`, le ricevute si
@@ -130,6 +130,24 @@ di una ricevuta arrivata prima. `EC` e `NE` portano entrambe l'`Esito` del commi
 leggono allo stesso modo. `SE` è volutamente ignorata ai fini dello stato: dice che il messaggio
 di esito del committente era malformato, quindi lascia la fattura dov'era.
 
+L'ordine di precedenza effettivo è più fine dei tre stadi — vince il primo che matcha:
+
+```
+Rejected → Refused by Customer → Accepted by Customer → Terms Expired
+  → Transmission Attested → Not Delivered → Delivered → Metadata Notified → Draft
+```
+
+`MT` (file dei metadati) porta a **Metadata Notified**: da sola non dice che la fattura è stata
+consegnata, quindi cede il passo a qualunque altra ricevuta.
+
+**Due stati non vengono dalle ricevute.** `Draft` e `Sent` dicono dove sta il file da noi, non
+cosa ne pensa SdI, e non sono toccati dal ricalcolo:
+
+| Stato | Come ci si arriva |
+|---|---|
+| `Draft` | appena generato dall'export: è l'unico stato in cui il file può ancora essere cancellato o rigenerato |
+| `Sent` | `MarkAsSent` — punto di non ritorno: da qui il file non è più cancellabile né sovrascrivibile, perché SdI ne ha una copia che non possiamo ritirare |
+
 ### Visualizzazione di una ricevuta
 
 Il foglio AssoSoftware fa match solo su `FatturaElettronica`. Ma SdI pubblica **un foglio di
@@ -228,24 +246,39 @@ quindi il caso comune non paga né parsing né serializzazione.
 | 3 | 82601569120 | 2026-03-19 | 48,66 | 10,71 | **59,37** | 6 |
 
 Il file intero rende 72 importi; ogni estrazione ne rende 24, con il solo numero documento
-corretto. `sample/anteprima-3-documenti.html` mostra le tre rese affiancate.
+corretto. `docs/sample/anteprima-3-documenti.html` mostra le tre rese affiancate.
 
 ---
 
 ## Fatture di vendita
 
-L'XML **non viene costruito qui**. Lo produce l'export standard della localizzazione italiana,
-chiamato attraverso `Record "Electronic Document Format".SendElectronically` — lo stesso percorso
-dell'azione *Send*. Passare da lì invece che dagli oggetti della localizzazione rende
-l'estensione indipendente dai loro ID e da quale versione di FatturaPA è installata: qualunque
-formato sia registrato per il documento è quello che viene generato.
+L'XML è **costruito da questa estensione**, dal documento registrato, con l'API `XmlDocument`
+di AL: codeunit `FE Xml File Manager` (73008).
 
-Questa estensione decide due cose soltanto: **come si chiama il file e dove finisce**.
+Non è sempre stato così. Prima si passava da `Record "Electronic Document Format".SendElectronically`,
+l'export standard della localizzazione italiana. Quella strada è stata abbandonata per due
+motivi, entrambi senza scampo in SaaS:
+
+- **Gli errori non tornano indietro.** `SendElectronically` instrada attraverso un
+  *Record Export Buffer* e un log errori: un documento che non passa i controlli torna come
+  **blob vuoto, senza alcuna motivazione allegata**. L'utente si ritrova un file vuoto e nessuna
+  indicazione di quale campo manchi.
+- **I controlli non sono richiamabili.** `Fattura Doc. Helper`, il collector che li esegue, è
+  marcato `[Scope('OnPrem')]`: da un target Cloud non è raggiungibile. Non era quindi possibile
+  né rieseguirli a monte né riportarne l'esito.
+
+Costruendo l'XML qui, ogni scarto ha un messaggio che **nomina il campo mancante**.
 
 ```
-Posted Sales Invoice ──► SendElectronically ──► TempBlob ──► FE Xml File
-   azione "Generate and File XML"   (localizzazione IT)      + esplosione documenti
+Posted Sales Invoice ──► FE Xml File Manager ──► TempBlob ──► FE Xml File
+   azione "Generate and File XML"    (XmlDocument)            + esplosione documenti
 ```
+
+`FE Sales Export` (73007) continua a decidere soltanto **come si chiama il file e dove finisce**.
+
+> Residuo da ripulire: `FE Sales Export Setup` ha ancora il campo `Electronic Format`, con
+> `TableRelation` a `"Electronic Document Format"` e tooltip che dicono che l'XML lo produce
+> l'export standard. Non è più vero: quel campo oggi non determina più niente.
 
 ### Il nome del file
 
@@ -292,6 +325,44 @@ quello letto dall'XML. Se preferite che coincidano, *From Document* fa esattamen
 Nessuna delle due opzioni riscrive il contenuto generato da Business Central.
 
 ---
+
+### Il prefisso che decide se SdI accetta il file
+
+In FatturaPA **solo la radice è qualificata**; tutti i discendenti sono senza namespace. La
+radice va quindi dichiarata con un **prefisso** (`p:`), mai come `xmlns` di default. La
+differenza è invisibile nel tag di radice e fatale sotto:
+
+```xml
+<p:FatturaElettronica xmlns:p="...">   il figlio resta SENZA namespace     ← corretto
+  <FatturaElettronicaHeader>
+
+<FatturaElettronica xmlns="...">       il figlio viene TRASCINATO dentro   ← scartato
+  <FatturaElettronicaHeader>
+```
+
+`XmlDocument` di AL è `System.Xml.Linq`, che decide il prefisso in fase di serializzazione dalle
+dichiarazioni di namespace in scope: creare la radice nel namespace FatturaPA **e** dichiararvi
+il prefisso `p` è ciò che produce `p:`. I figli si creano senza namespace e restano non
+qualificati.
+
+### DatiRiepilogo: un raggruppamento, non una somma
+
+FatturaPA vuole **un solo `DatiRiepilogo` per combinazione** di aliquota, natura ed esigibilità
+IVA, con imponibile e imposta già sommati: SdI rifiuta la stessa combinazione due volte. Le
+righe però arrivano nell'ordine del documento, quindi vengono accumulate in
+`FE VAT Summary Buffer` (73005) e scritte dopo. La tabella è `TableType = Temporary`: non tocca
+mai il database, esiste solo per dare al raggruppamento una chiave che il runtime mantiene.
+
+### Anteprima senza conseguenze
+
+`FE Xml Test` (73009) costruisce l'XML di un documento registrato e lo offre in download
+**senza scrivere niente**: nessun record in `FE Xml File`, nessuna esplosione in documenti e
+soprattutto **nessun progressivo consumato**. `NumberSequence` distribuisce i valori fuori
+transazione e non li riprende: cento prove lascerebbero cento buchi nella numerazione delle
+fatture realmente inviate. Il dry run usa un progressivo fisso, `TEST0`.
+
+Serve a vedere l'XML e a scoprire quale campo manca **finché la fattura è ancora correggibile**,
+invece che dopo che ha già preso un nome e un numero.
 
 ## Il vincolo che determina l'architettura
 
@@ -351,67 +422,118 @@ l'output è **identico carattere per carattere** a `xsltproc`, cioè a ciò che 
 ## Struttura
 
 ```
-app.json                             publisher: ZZ Soft, idRanges 73000-73099
+app.json                              publisher: ZZ Soft, idRanges 73000-73099
+LICENSE  NOTICE  CONTRIBUTING.md      Apache-2.0 + attribuzioni di terze parti
+
 src/
-  FEXmlFile.Table.al             73000   la cartella: 1 record per file
-  FEInvoiceDocument.Table.al     73001   1 record per FatturaElettronicaBody
-  FEXsdSchema.Table.al           73002   XSD caricati
-  FEValidationStatus.Enum.al     73000
-  FEFileType.Enum.al             73001   Invoice / Receipt / Unknown
-  FEReceiptType.Enum.al          73002   RC / NS / MC / MT / Other
-  FESdiStatus.Enum.al            73003   esito della fattura a SdI
-  FEXmlReader.Codeunit.al        73000   import multiplo + classificazione + esplosione
-  FEXsdValidator.Codeunit.al     73001   validazione via Codeunit "Xml Validation"
-  FEBodyExtractor.Codeunit.al    73002   XML ridotto a un singolo body
-  FEChunkHelper.Codeunit.al      73003   spezzettamento per il control add-in
-  FEFileNameParser.Codeunit.al   73004   nome file -> tipo, base name, codice ricevuta
-  FESdiStatusMgt.Codeunit.al     73005   ricevute -> esito sulla fattura
-  FEProgressivoMgt.Codeunit.al   73006   nome file SdI per le vendite
-  FESalesExport.Codeunit.al      73007   export standard IT -> FE Xml File
-  FESalesExportSetup.Table.al    73004   formato elettronico + modalita progressivo
-  FEFileOrigin.Enum.al           73004   Upload / Sales Export
-  FEProgressivoSource.Enum.al    73005   Sequential / Random / From Document
-  FESourceDocType.Enum.al        73006   Sales Invoice / Sales Credit Memo
+  --- tabelle -------------------------------------------------------------
+  FEXmlFile.Table.al              73000  la cartella: 1 record per file
+  FEXmlFileDocument.Table.al      73001  1 record per FatturaElettronicaBody
+  FEXsdSchema.Table.al            73002  XSD caricati
+  FEReceiptError.Table.al         73003  1 riga per <Errore> di uno scarto
+  FESalesExportSetup.Table.al     73004  setup export vendite
+  FEVatSummaryBuffer.Table.al     73005  DatiRiepilogo (TableType = Temporary)
+  FESdiCue.Table.al               73006  contatori del role center (FlowField)
+
+  --- enum ----------------------------------------------------------------
+  FEValidationStatus.Enum.al      73000
+  FEFileType.Enum.al              73001  Invoice / Receipt / Unknown
+  FEReceiptType.Enum.al           73002  RC / NS / MC / MT / Other
+  FESdiStatus.Enum.al             73003  esito della fattura a SdI, 10 valori
+  FEFileOrigin.Enum.al            73004  Upload / Sales Export
+  FEProgressivoSource.Enum.al     73005  Sequential / Random / From Document
+  FESourceDocType.Enum.al         73006  Sales Invoice / Sales Credit Memo
+
+  --- codeunit ------------------------------------------------------------
+  FEXmlReader.Codeunit.al         73000  import multiplo + classificazione + esplosione
+  FEXsdValidator.Codeunit.al      73001  validazione via Codeunit "Xml Validation"
+  FEBodyExtractor.Codeunit.al     73002  XML ridotto a un singolo body
+  FEChunkHelper.Codeunit.al       73003  spezzettamento per il control add-in
+  FEFileNameParser.Codeunit.al    73004  nome file -> tipo, base name, codice ricevuta
+  FESdiStatusMgt.Codeunit.al      73005  ricevute -> esito sulla fattura
+  FEProgressivoMgt.Codeunit.al    73006  nome file SdI per le vendite
+  FESalesExport.Codeunit.al       73007  archiviazione dell'uscita in FE Xml File
+  FEXmlFileManager.code.al        73008  COSTRUZIONE dell'XML FatturaPA (XmlDocument)
+  FEXmlTest.Codeunit.al           73009  dry run: XML in download, niente scritture
+  ZZSFEUpgrade.code.al            73048  Upgrade: esegue 73099
+  ZZSFEInstaller.code.al          73049  Install (trigger oggi vuoti)
+  SalesHeaderEventSubscriber.code.al  73088  blocca la registrazione senza
+                                             Payment Method / Payment Terms
+  ZZSFEBase.code.al               73099  popola i codici MP** e le nature IVA
+
+  --- pagine --------------------------------------------------------------
+  FEXmlFiles.Page.al              73000  lista file  (fileuploadaction)
+  FEXmlFileCard.Page.al           73001  card file + sottopagina documenti
+  FEXmlFileViewer.Page.al         73002  anteprima del file intero
+  FEXmlFileDocuments.Page.al      73003  lista documenti (fileuploadaction)
+  FEXmlFileDocSubform.Page.al     73004  sottopagina documenti
+  FEXmlFileDocViewer.Page.al      73005  anteprima di UN documento
+  FEXsdSchemas.Page.al            73006  XSD (fileuploadaction)
+  FEReceiptSubform.Page.al        73007  ricevute di una fattura
+  FEReceiptErrors.Page.al         73008  errori di uno scarto
+  FESalesExportSetup.Page.al      73009  setup export vendite
+  FESdiRoleCenter.Page.al         73020  role center FatturaPA / SdI
+  FESdiActivities.Page.al         73021  riquadro dei tile del role center
+
+  --- estensioni di pagina ------------------------------------------------
+  FEPostedSalesInvoice.PageExt.al    73010
+  FEPostedSalesInvoices.PageExt.al   73011  export multiplo dalla lista
+  FEPostedSalesCrMemo.PageExt.al     73012
+  PostedSaleUpdateExt.pageext.al     73097  Payment Method Code su
+                                            "Posted Sales Invoice - Update"
+
+  --- altro ---------------------------------------------------------------
+  FEViewerPermissions.PermissionSet.al   73000
+  FESdiProfile.Profile.al                rende il role center selezionabile
   FEStylesheetViewer.ControlAddIn.al
-  FEXmlFiles.Page.al             73000   lista file  (fileuploadaction)
-  FEXmlFileCard.Page.al          73001   card file + sottopagina documenti
-  FEXmlFileViewer.Page.al        73002   anteprima del file intero
-  FEInvoiceDocuments.Page.al     73003   lista documenti (fileuploadaction)
-  FEInvoiceDocSubform.Page.al    73004   sottopagina documenti
-  FEInvoiceViewer.Page.al        73005   anteprima di UN documento
-  FEXsdSchemas.Page.al           73006   XSD (fileuploadaction)
-  FEReceiptSubform.Page.al       73007   ricevute di una fattura
-  FEReceiptErrors.Page.al        73008   errori di uno scarto
-  FESalesExportSetup.Page.al     73009   setup export vendite
-  FEPostedSalesInvoice.PageExt.al   73010
-  FEPostedSalesInvoices.PageExt.al  73011  export multiplo dalla lista
-  FEPostedSalesCrMemo.PageExt.al    73012
-  FEViewerPermissions.PermissionSet.al  73000
+
   assets/
     js/
-      SaxonJS2.rt.js                 ⚠️ da scaricare (vedi sotto)
-      fe-sef.js                      generato — foglio di stile compilato
+      saxon-js2/SaxonJS2.rt.js         runtime SaxonJS 2 (Saxonica, vedi NOTICE)
+      fe-sef.js                        generato - i 10 fogli compilati in SEF
       fe-viewer.js, fe-startup.js
     css/
       fe-viewer.css
+
 tools/
-  build-sef.sh
-  FoglioStileAssoSoftware-BCpatched.xsl   già patchato, pronto
+  build-sef.sh                         patcha e compila i fogli in fe-sef.js
+  FoglioStileAssoSoftware.xsl          originale AssoSoftware
+  FoglioStileAssoSoftware-BCpatched.xsl  già patchato, pronto
+  sdi-xsl/                             i 9 fogli di stile ufficiali SdI
+
 schemas/
-  SDIRicevute.xsd                    schema ricevute (canale ivaservizi), come fornito
-  SDIRicevute-BC.xsd                 stesso schema, caricabile (vedi sotto)
-  MessaggiTypes_v1.1.xsd             schema messaggi (canale fatturapa), come fornito
-  MessaggiTypes_v1.1-BC.xsd          stesso schema, senza schemaLocation
-sample/
-  rendered-invoice.html              fattura singola
-  anteprima-3-documenti.html         le 3 fatture del lotto, una per scheda
-  anteprima-fatture-e-ricevute.html  2 fatture ZZ Soft + le loro ricevute di consegna
-  esempio-RicevutaScarto.xml         scarto con 2 errori, valido a schema
-  anteprima-ricevute-sdi.html        tutti e 9 i tipi resi + una ricevuta reale
-  IT01234567890_11111_*.xml          i campioni ufficiali SdI, uno per tipo
-tools/sdi-xsl/                       i 9 fogli di stile ufficiali SdI
+  SDIRicevute.xsd                      ricevute (canale ivaservizi), come fornito
+  SDIRicevute-BC.xsd                   stesso schema, caricabile (vedi Setup)
+  MessaggiTypes_v1.1.xsd               messaggi (canale fatturapa), come fornito
+  MessaggiTypes_v1.1-BC.xsd            stesso schema, senza schemaLocation
+
+docs/
+  sample/
+    rendered-invoice.html              fattura singola
+    anteprima-3-documenti.html         le 3 fatture del lotto, una per scheda
+    anteprima-fatture-e-ricevute.html  2 fatture ZZ Soft + le loro ricevute
+    anteprima-ricevute-sdi.html        tutti e 9 i tipi resi + una ricevuta reale
+    esempio-RicevutaScarto.xml         scarto con 2 errori, valido a schema
+    IT01234567890_11111_*.xml          i campioni ufficiali SdI, uno per tipo
+  SDI/                                 copia degli stessi campioni, fogli e schema
 ```
 
+> `docs/SDI/` duplica byte per byte quanto già presente in `docs/sample/`,
+> `tools/sdi-xsl/` e `schemas/`. È ridondante e può essere rimossa.
+
+### Convenzioni non ancora uniformi
+
+Gli oggetti aggiunti dopo il primo impianto non seguono le convenzioni degli altri, e la cosa
+si vede a colpo d'occhio nell'elenco qui sopra:
+
+- **suffisso file**: `.code.al` e `.pageext.al` invece di `.Codeunit.al` e `.PageExt.al`
+- **prefisso oggetto**: `FE Base`, `ZZS FE App Installer`, `Sale Header Event Subscriber`,
+  `Posted Sales Invoice - UpdExt` invece del prefisso `FE`
+- **namespace**: `ZZSFEBase.code.al`, `SalesHeaderEventSubscriber.code.al` e
+  `PostedSaleUpdateExt.pageext.al` non dichiarano `namespace ZZSoft.SDIBase`
+
+Vanno uniformati prima di aprire il repository ai contributi, perché è l'elenco qui sopra che
+un contributore prende a modello.
 ### Percorsi degli asset
 
 Il `controladdin` risolve `Scripts` / `StartupScript` / `StyleSheets` **a partire dalla cartella
@@ -464,8 +586,8 @@ Spostando il controladdin altrove vanno riallineati anche quei cinque path.
    insieme**, fatture e ricevute mescolate. A fine batch compare un riepilogo che le distingue;
    la card si apre solo se il file era uno.
 
-5. Per le **vendite**: **FatturaPA Sales Export Setup** → scegliere l'*Electronic Format*
-   registrato dalla localizzazione per FatturaPA. La pagina mostra il trasmittente ricavato da
+5. Per le **vendite**: **FatturaPA Sales Export Setup** → scegliere la modalità del
+   *progressivo* (Sequential, Random o From Document). La pagina mostra il trasmittente ricavato da
    Company Information e un esempio del nome file, così si vede subito se qualcosa non torna.
    Poi, su una fattura registrata, **FatturaPA → Generate and File XML**. Dalla lista si può
    selezionare più documenti insieme.
@@ -475,6 +597,9 @@ Spostando il controladdin altrove vanno riallineati anche quei cinque path.
 
 ## Navigazione
 
+- **Role center FatturaPA / SdI** → reso selezionabile da *My Settings* dal profilo `FE SDI`.
+  I tile contano su `FE SDI Cue`, i cui campi sono tutti FlowField su `FE Xml File`: il numero
+  sul tile e la lista in cui il tile entra non possono quindi divergere.
 - **FatturaPA XML Files** → un record per file, con `No. of Documents` e `Total Amount` calcolati.
   *Import XML* è una `fileuploadaction` con `AllowMultipleFiles = true`: selezione multipla e
   drag&drop. I file già presenti fanno scattare **una sola** domanda per tutto il batch, e un
@@ -503,13 +628,14 @@ In FatturaPA **solo la radice è qualificata** (`p:FatturaElettronica`, URI
   quelli FatturaPA. Per validare anche le ricevute vanno caricati gli XSD dei messaggi SdI
   (`MessaggiTypes_v1.0.xsd` e affini) — il caricamento multiplo li instrada da solo per
   `targetNamespace`.
-- **`SendElectronically` non è verificato in compilazione**: senza i simboli della localizzazione
-  italiana non ho potuto controllare la firma esatta né quale codice formato usiate. È l'unico
-  punto dell'estensione che potrebbe richiedere un aggiustamento al primo build.
+- **`Electronic Format` è un campo morto**: `FE Sales Export Setup` lo espone ancora, con
+  `TableRelation` verso `"Electronic Document Format"` e tooltip che attribuiscono la
+  generazione dell'XML all'export standard. Da quando il documento lo costruisce
+  `FE Xml File Manager`, quel campo non determina più nulla: va rimosso insieme ai suoi tooltip.
 - **Tipi di ricevuta verificati**: tutti e nove rendono correttamente i campioni ufficiali SdI;
   `RC` è verificato anche su file reali vostri. Di uno scarto vero non ho ancora visto un
   esemplare: il percorso `ListaErrori` è provato sul campione ufficiale e su
-  `sample/esempio-RicevutaScarto.xml`, costruito e valido a schema.
+  `docs/sample/esempio-RicevutaScarto.xml`, costruito e valido a schema.
 - **Dimensione**: l'XML viaggia al client a blocchi di 60.000 caratteri (`FE Chunk Helper`).
   Il lotto da 1,2 MB sono 21 blocchi per il file intero, 7-8 per singolo documento.
 - La stampa usa il dialogo del browser sull'`iframe`, non un report RDLC.

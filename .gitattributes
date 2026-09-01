@@ -1,0 +1,29 @@
+# Normalizza i fine riga: nel repository sempre LF, in working copy quello
+# nativo della piattaforma. Senza questo, contributori su Windows e su
+# Linux/macOS producono diff che toccano ogni riga del file.
+* text=auto eol=lf
+
+# --- sorgenti ---
+*.al        text
+*.json      text
+*.md        text
+*.xml       text
+*.xsd       text
+*.xsl       text
+*.js        text
+*.css       text
+*.html      text
+
+# Gli script devono restare LF anche su Windows, o bash non li esegue.
+*.sh        text eol=lf
+
+# --- file generati e di terze parti ---
+# Esclusi dai diff e dalle statistiche di linguaggio: senza questo il
+# repository risulta "JavaScript" per via di fe-sef.js e del runtime SaxonJS,
+# che insieme pesano piu' di tutto il codice AL.
+src/assets/js/fe-sef.js              -diff linguist-generated=true
+src/assets/js/saxon-js2/*.js         -diff linguist-vendored=true
+tools/FoglioStileAssoSoftware*.xsl   -diff linguist-vendored=true
+tools/sdi-xsl/*.xsl                       linguist-vendored=true
+schemas/*.xsd                             linguist-vendored=true
+docs/**                                   linguist-documentation=true
