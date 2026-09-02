@@ -1,6 +1,6 @@
-# Contribuire a FIT
+# Contribuire a FPA
 
-FIT e' un progetto opensource per la gestione della fattura elettronica italiana
+FPA e' un progetto opensource per la gestione della fattura elettronica italiana
 in Microsoft Dynamics 365 Business Central. Contributi benvenuti.
 
 ## Licenza dei contributi

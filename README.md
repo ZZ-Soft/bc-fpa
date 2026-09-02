@@ -1,4 +1,4 @@
-# FatturaPA XML Viewer — Business Central online (SaaS)
+# Fattura Elettronica Italiana — Business Central online (SaaS)
 
 **Publisher:** ZZ Soft · **ID range:** 73000–73099
 
