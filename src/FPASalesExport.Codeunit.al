@@ -1,14 +1,14 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using Microsoft.Sales.History;
 using System.Utilities;
 
-codeunit 73007 "FE Sales Export"
+codeunit 73007 "FPA Sales Export"
 {
-    // Files an outgoing invoice into "FE Xml File", so sales sits next to purchases and
+    // Files an outgoing invoice into "FPA Xml File", so sales sits next to purchases and
     // receipts in one place.
     //
-    // The XML is NOT built here either: codeunit "FE Xml File Manager" builds it from the
+    // The XML is NOT built here either: codeunit "FPA Xml File Manager" builds it from the
     // posted document, and this codeunit only decides what the file is called and where it is
     // filed.
     //
@@ -45,24 +45,24 @@ codeunit 73007 "FE Sales Export"
     /// <summary>
     /// Generates and files the electronic invoice for a posted sales invoice.
     /// </summary>
-    procedure ExportPostedSalesInvoice(SalesInvoiceHeader: Record "Sales Invoice Header"; var XmlFile: Record "FE Xml File"): Boolean
+    procedure ExportPostedSalesInvoice(SalesInvoiceHeader: Record "Sales Invoice Header"; var XmlFile: Record "FPA Xml File"): Boolean
     begin
-        exit(ExportDocument(Enum::"FE Source Doc. Type"::"Sales Invoice", SalesInvoiceHeader."No.", XmlFile));
+        exit(ExportDocument(Enum::"FPA Source Doc. Type"::"Sales Invoice", SalesInvoiceHeader."No.", XmlFile));
     end;
 
     /// <summary>
     /// Same for a posted sales credit memo.
     /// </summary>
-    procedure ExportPostedSalesCrMemo(SalesCrMemoHeader: Record "Sales Cr.Memo Header"; var XmlFile: Record "FE Xml File"): Boolean
+    procedure ExportPostedSalesCrMemo(SalesCrMemoHeader: Record "Sales Cr.Memo Header"; var XmlFile: Record "FPA Xml File"): Boolean
     begin
-        exit(ExportDocument(Enum::"FE Source Doc. Type"::"Sales Credit Memo", SalesCrMemoHeader."No.", XmlFile));
+        exit(ExportDocument(Enum::"FPA Source Doc. Type"::"Sales Credit Memo", SalesCrMemoHeader."No.", XmlFile));
     end;
 
-    local procedure ExportDocument(SourceDocType: Enum "FE Source Doc. Type"; DocumentNo: Code[20]; var XmlFile: Record "FE Xml File"): Boolean
+    local procedure ExportDocument(SourceDocType: Enum "FPA Source Doc. Type"; DocumentNo: Code[20]; var XmlFile: Record "FPA Xml File"): Boolean
     var
-        XmlFileManager: Codeunit "FE Xml File Manager";
-        ProgressivoMgt: Codeunit "FE Progressivo Mgt.";
-        XmlReader: Codeunit "FE Xml Reader";
+        XmlFileManager: Codeunit "FPA Xml File Manager";
+        ProgressivoMgt: Codeunit "FPA Progressivo Mgt.";
+        XmlReader: Codeunit "FPA Xml Reader";
         TempBlob: Codeunit "Temp Blob";
         InStr: InStream;
         FileName: Code[250];
@@ -106,10 +106,10 @@ codeunit 73007 "FE Sales Export"
     /// <summary>
     /// Runs the export from a page and reports the outcome.
     /// </summary>
-    procedure ExportAndShow(DocumentVariant: Variant; SourceDocType: Enum "FE Source Doc. Type"; DocumentNo: Code[20])
+    procedure ExportAndShow(DocumentVariant: Variant; SourceDocType: Enum "FPA Source Doc. Type"; DocumentNo: Code[20])
     var
-        XmlFile: Record "FE Xml File";
-        SalesExportSetup: Record "FE Sales Export Setup";
+        XmlFile: Record "FPA Xml File";
+        SalesExportSetup: Record "FPA Sales Export Setup";
         Exported: Boolean;
     begin
         case SourceDocType of
@@ -124,7 +124,7 @@ codeunit 73007 "FE Sales Export"
 
         SalesExportSetup.GetSetup();
         if SalesExportSetup."Open Card After Export" then
-            Page.Run(Page::"FE Xml File Card", XmlFile)
+            Page.Run(Page::"FPA Xml File Card", XmlFile)
         else
             Message(ExportedMsg, DocumentNo, XmlFile."Original File Name");
     end;
@@ -143,9 +143,9 @@ codeunit 73007 "FE Sales Export"
     /// A second export of the same document is legitimate - a resend needs a new file name -
     /// but it is worth confirming, because it is more often a double click.
     /// </summary>
-    local procedure ConfirmReExport(SourceDocType: Enum "FE Source Doc. Type"; DocumentNo: Code[20]): Boolean
+    local procedure ConfirmReExport(SourceDocType: Enum "FPA Source Doc. Type"; DocumentNo: Code[20]): Boolean
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
     begin
         XmlFile.SetRange(Origin, XmlFile.Origin::"Sales Export");
         XmlFile.SetRange("Source Doc. Type", SourceDocType);

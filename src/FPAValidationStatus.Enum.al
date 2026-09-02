@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-enum 73000 "FE Validation Status"
+enum 73000 "FPA Validation Status"
 {
     Extensible = true;
     Caption = 'FatturaPA Validation Status';

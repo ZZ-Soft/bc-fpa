@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-controladdin "FE Stylesheet Viewer"
+controladdin "FPA Stylesheet Viewer"
 {
     // Renders a FatturaPA XML through the AssoSoftware XSLT stylesheet, entirely client side.
     //

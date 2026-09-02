@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-table 73003 "FE Receipt Error"
+table 73003 "FPA Receipt Error"
 {
     // One row per <Errore> inside the <ListaErrori> of a RicevutaScarto.
     //
@@ -18,7 +18,7 @@ table 73003 "FE Receipt Error"
         {
             Caption = 'File Name';
             NotBlank = true;
-            TableRelation = "FE Xml File"."File Name";
+            TableRelation = "FPA Xml File"."File Name";
             ValidateTableRelation = false;
         }
         field(2; "Line No."; Integer)

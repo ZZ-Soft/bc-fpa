@@ -1,19 +1,19 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using Microsoft.Sales.History;
 
-pageextension 73012 "FE Posted Sales Cr. Memo" extends "Posted Sales Credit Memo"
+pageextension 73012 "FPA Posted Sales Cr. Memo" extends "Posted Sales Credit Memo"
 {
     actions
     {
         addlast(Processing)
         {
-            group(FatturaPA)
+            group(FPAFatturaPA)
             {
                 Caption = 'FatturaPA';
                 Image = ElectronicDoc;
 
-                action(FEExportCrMemo)
+                action(FPAExportCrMemo)
                 {
                     ApplicationArea = All;
                     Caption = 'Generate and File XML';
@@ -22,12 +22,12 @@ pageextension 73012 "FE Posted Sales Cr. Memo" extends "Posted Sales Credit Memo
 
                     trigger OnAction()
                     var
-                        FESalesExport: Codeunit "FE Sales Export";
+                        FPASalesExport: Codeunit "FPA Sales Export";
                     begin
-                        FESalesExport.ExportAndShow(Rec, Enum::"FE Source Doc. Type"::"Sales Credit Memo", Rec."No.");
+                        FPASalesExport.ExportAndShow(Rec, Enum::"FPA Source Doc. Type"::"Sales Credit Memo", Rec."No.");
                     end;
                 }
-                action(FEShowXmlFile)
+                action(FPAShowXmlFile)
                 {
                     ApplicationArea = All;
                     Caption = 'FatturaPA File';
@@ -36,21 +36,21 @@ pageextension 73012 "FE Posted Sales Cr. Memo" extends "Posted Sales Credit Memo
 
                     trigger OnAction()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         XmlFile.SetRange(Origin, XmlFile.Origin::"Sales Export");
                         XmlFile.SetRange("Source Doc. Type", XmlFile."Source Doc. Type"::"Sales Credit Memo");
                         XmlFile.SetRange("Source Document No.", Rec."No.");
-                        Page.Run(Page::"FE Xml Files", XmlFile);
+                        Page.Run(Page::"FPA Xml Files", XmlFile);
                     end;
                 }
             }
-            group(FatturaPATest)
+            group(FPAFatturaPATest)
             {
                 Caption = 'FatturaPA Test';
                 Image = TestFile;
 
-                action(FETestXmlCrM)
+                action(FPATestXmlCrM)
                 {
                     ApplicationArea = All;
                     Caption = 'Generate XML (Test)';
@@ -59,12 +59,12 @@ pageextension 73012 "FE Posted Sales Cr. Memo" extends "Posted Sales Credit Memo
 
                     trigger OnAction()
                     var
-                        XmlTest: Codeunit "FE Xml Test";
+                        XmlTest: Codeunit "FPA Xml Test";
                     begin
                         XmlTest.PreviewSalesCrMemo(Rec."No.");
                     end;
                 }
-                action(FETestValidateCrM)
+                action(FPATestValidateCrM)
                 {
                     ApplicationArea = All;
                     Caption = 'Generate and Validate XML (Test)';
@@ -73,7 +73,7 @@ pageextension 73012 "FE Posted Sales Cr. Memo" extends "Posted Sales Credit Memo
 
                     trigger OnAction()
                     var
-                        XmlTest: Codeunit "FE Xml Test";
+                        XmlTest: Codeunit "FPA Xml Test";
                     begin
                         XmlTest.ValidateSalesCrMemo(Rec."No.");
                     end;
@@ -83,8 +83,8 @@ pageextension 73012 "FE Posted Sales Cr. Memo" extends "Posted Sales Credit Memo
 
         addlast(Category_Category6)
         {
-            actionref(FEExportCrMemo_Promoted; FEExportCrMemo) { }
-            actionref(FETestXmlCrM_Promoted; FETestXmlCrM) { }
+            actionref(FPAExportCrMemo_Promoted; FPAExportCrMemo) { }
+            actionref(FPATestXmlCrM_Promoted; FPATestXmlCrM) { }
         }
     }
 }

@@ -1,9 +1,9 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using Microsoft.EServices.EDocument;
 
 
-codeunit 73048 "ZZS FE App Upgrade"
+codeunit 73048 "FPA App Upgrade"
 {
     Subtype = Upgrade;
 

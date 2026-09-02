@@ -1,17 +1,17 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-page 73021 "FE SDI Activities"
+page 73021 "FPA SDI Activities"
 {
     // The tile part of the FatturaPA / SdI role centre.
     //
-    // Every tile drills into "FE Xml Files" with the SAME filters the tile counted with, set
+    // Every tile drills into "FPA Xml Files" with the SAME filters the tile counted with, set
     // in code rather than through DrillDownPageId - which would open the list unfiltered and
     // leave the user to work out which of 4,000 rows the number referred to.
 
     Caption = 'FatturaPA';
     PageType = CardPart;
     ApplicationArea = All;
-    SourceTable = "FE SDI Cue";
+    SourceTable = "FPA SDI Cue";
     RefreshOnActivate = true;
     InsertAllowed = false;
     DeleteAllowed = false;
@@ -32,7 +32,7 @@ page 73021 "FE SDI Activities"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         XmlFile.SetRange(Origin, XmlFile.Origin::"Sales Export");
                         XmlFile.SetRange("SdI Status", XmlFile."SdI Status"::" ");
@@ -48,7 +48,7 @@ page 73021 "FE SDI Activities"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         XmlFile.SetRange(Origin, XmlFile.Origin::"Sales Export");
                         XmlFile.SetRange("SdI Status", XmlFile."SdI Status"::Sent);
@@ -63,7 +63,7 @@ page 73021 "FE SDI Activities"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         ShowInvoicesWithStatus(XmlFile."SdI Status"::Delivered);
                     end;
@@ -83,7 +83,7 @@ page 73021 "FE SDI Activities"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         ShowInvoicesWithStatus(XmlFile."SdI Status"::Rejected);
                     end;
@@ -97,7 +97,7 @@ page 73021 "FE SDI Activities"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         XmlFile.SetRange("File Type", XmlFile."File Type"::Invoice);
                         XmlFile.SetFilter(
@@ -114,7 +114,7 @@ page 73021 "FE SDI Activities"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         ShowInvoicesWithStatus(XmlFile."SdI Status"::"Refused by Customer");
                     end;
@@ -128,7 +128,7 @@ page 73021 "FE SDI Activities"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         XmlFile.SetFilter(
                           "Validation Status", '%1|%2',
@@ -144,7 +144,7 @@ page 73021 "FE SDI Activities"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         XmlFile.SetRange("File Type", XmlFile."File Type"::Receipt);
                         XmlFile.SetRange("Referenced File Name", '');
@@ -164,7 +164,7 @@ page 73021 "FE SDI Activities"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         XmlFile.SetRange(Origin, XmlFile.Origin::Upload);
                         XmlFile.SetRange("File Type", XmlFile."File Type"::Invoice);
@@ -178,7 +178,7 @@ page 73021 "FE SDI Activities"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         XmlFile.SetRange("File Type", XmlFile."File Type"::Receipt);
                         ShowFiles(XmlFile);
@@ -192,42 +192,44 @@ page 73021 "FE SDI Activities"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         XmlFile.SetRange("File Type", XmlFile."File Type"::Invoice);
                         XmlFile.SetRange("Validation Status", XmlFile."Validation Status"::" ");
                         ShowFiles(XmlFile);
                     end;
                 }
-
-                actions
-                {
-                    action(ImportXml)
-                    {
-                        ApplicationArea = All;
-                        Caption = 'Import XML Files';
-                        Image = Import;
-                        ToolTip = 'Opens the file list, where invoices and receipts can be uploaded.';
-                        RunObject = Page "FE Xml Files";
-                    }
-                }
             }
         }
     }
 
+    actions
+    {
+        area(Processing)
+        {
+            action(ImportXml)
+            {
+                ApplicationArea = All;
+                Caption = 'Import XML Files';
+                Image = Import;
+                ToolTip = 'Opens the file list, where invoices and receipts can be uploaded.';
+                RunObject = Page "FPA Xml Files";
+            }
+        }
+    }
     trigger OnOpenPage()
     begin
         Rec.GetCue();
     end;
 
-    local procedure ShowFiles(var XmlFile: Record "FE Xml File")
+    local procedure ShowFiles(var XmlFile: Record "FPA Xml File")
     begin
-        Page.Run(Page::"FE Xml Files", XmlFile);
+        Page.Run(Page::"FPA Xml Files", XmlFile);
     end;
 
-    local procedure ShowInvoicesWithStatus(Status: Enum "FE SdI Status")
+    local procedure ShowInvoicesWithStatus(Status: Enum "FPA SDI Status")
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
     begin
         XmlFile.SetRange("File Type", XmlFile."File Type"::Invoice);
         XmlFile.SetRange("SdI Status", Status);

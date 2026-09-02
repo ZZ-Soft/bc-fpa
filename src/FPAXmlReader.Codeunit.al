@@ -1,15 +1,15 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using System.Utilities;
 
-codeunit 73000 "FE Xml Reader"
+codeunit 73000 "FPA Xml Reader"
 {
     // Imports an SdI XML file. What happens next depends on what the file IS, which is
-    // decided by its name (see codeunit "FE File Name Parser"):
+    // decided by its name (see codeunit "FPA File Name Parser"):
     //
-    //   IT..._HV1GH.xml         invoice  -> 1 "FE Xml File" + N "FE Xml File Document"
+    //   IT..._HV1GH.xml         invoice  -> 1 "FPA Xml File" + N "FPA Xml File Document"
     //                                       (one per FatturaElettronicaBody)
-    //   IT..._HV1GH_RC_003.xml  receipt  -> 1 "FE Xml File" only, linked to the invoice
+    //   IT..._HV1GH_RC_003.xml  receipt  -> 1 "FPA Xml File" only, linked to the invoice
     //                                       through "SdI Base Name", no documents
     //
     // Parsing uses only the AL XmlDocument API - no .NET interop, so it runs unchanged on
@@ -54,9 +54,9 @@ codeunit 73000 "FE Xml Reader"
     /// One bad file must not abort the batch, so Explode runs inside a TryFunction: on
     /// failure the reason is written on that file record and the loop moves on.
     /// </summary>
-    procedure ImportFiles(Files: List of [FileUpload]; var LastXmlFile: Record "FE Xml File"): Text
+    procedure ImportFiles(Files: List of [FileUpload]; var LastXmlFile: Record "FPA Xml File"): Text
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
         CurrentFile: FileUpload;
         InStr: InStream;
         FileKey: Code[250];
@@ -117,7 +117,7 @@ codeunit 73000 "FE Xml Reader"
     /// </summary>
     local procedure ConfirmReplaceExisting(Files: List of [FileUpload]): Boolean
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
         CurrentFile: FileUpload;
     begin
         foreach CurrentFile in Files do
@@ -130,7 +130,7 @@ codeunit 73000 "FE Xml Reader"
     /// Programmatic entry point: stores a stream and explodes it, no dialogs.
     /// Reusable from a job queue, an API page or a test.
     /// </summary>
-    procedure ImportFromStream(var InStr: InStream; FileName: Text; ReplaceExisting: Boolean; var XmlFile: Record "FE Xml File"): Boolean
+    procedure ImportFromStream(var InStr: InStream; FileName: Text; ReplaceExisting: Boolean; var XmlFile: Record "FPA Xml File"): Boolean
     var
         FileKey: Code[250];
     begin
@@ -149,14 +149,14 @@ codeunit 73000 "FE Xml Reader"
 
     local procedure MakeFileKey(FileName: Text): Code[250]
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
     begin
         // Code fields are upper-cased by the platform anyway; doing it here keeps the
         // Get() lookups above predictable. Original casing lives in "Original File Name".
         exit(CopyStr(UpperCase(FileName), 1, MaxStrLen(XmlFile."File Name")));
     end;
 
-    local procedure StoreFile(var InStr: InStream; FileName: Text; FileKey: Code[250]; var XmlFile: Record "FE Xml File")
+    local procedure StoreFile(var InStr: InStream; FileName: Text; FileKey: Code[250]; var XmlFile: Record "FPA Xml File")
     var
         OutStr: OutStream;
     begin
@@ -171,14 +171,14 @@ codeunit 73000 "FE Xml Reader"
     end;
 
     [TryFunction]
-    local procedure TryExplode(var XmlFile: Record "FE Xml File")
+    local procedure TryExplode(var XmlFile: Record "FPA Xml File")
     begin
         Explode(XmlFile);
     end;
 
     local procedure RecordFailure(FileKey: Code[250]; ErrorText: Text)
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
     begin
         // A failed TryFunction rolls back everything it wrote, so the record has to be
         // re-read before the reason can be stored on it.
@@ -210,21 +210,21 @@ codeunit 73000 "FE Xml Reader"
     /// Re-reads the stored XML. Classifies the file, then either explodes its bodies
     /// (invoice) or reads its SdI fields (receipt). Safe to run again on an existing file.
     /// </summary>
-    procedure Explode(var XmlFile: Record "FE Xml File")
+    procedure Explode(var XmlFile: Record "FPA Xml File")
     var
-        FileNameParser: Codeunit "FE File Name Parser";
-        SdiStatusMgt: Codeunit "FE SdI Status Mgt.";
+        FileNameParser: Codeunit "FPA File Name Parser";
+        SdiStatusMgt: Codeunit "FPA SdI Status Mgt.";
         TempBlob: Codeunit "Temp Blob";
         XmlDoc: XmlDocument;
         InStr: InStream;
-        FileType: Enum "FE File Type";
+        FileType: Enum "FPA File Type";
         SdiBaseName: Code[250];
         ReceiptCode: Code[10];
         ReceiptProgressive: Code[10];
     begin
         // Read through a Temp Blob, never straight off the record's BLOB field: the whole
         // procedure ends in a Modify, and a stream bound to that field would still be open
-        // when it runs. See "FE Xml File".GetXmlTempBlob.
+        // when it runs. See "FPA Xml File".GetXmlTempBlob.
         if not XmlFile.GetXmlTempBlob(TempBlob) then
             exit;
 
@@ -276,8 +276,8 @@ codeunit 73000 "FE Xml Reader"
 
     local procedure DeleteChildren(FileName: Code[250])
     var
-        XmlFileDocument: Record "FE Xml File Document";
-        ReceiptError: Record "FE Receipt Error";
+        XmlFileDocument: Record "FPA Xml File Document";
+        ReceiptError: Record "FPA Receipt Error";
     begin
         XmlFileDocument.Init();
         XmlFileDocument.SetRange("File Name", FileName);
@@ -296,7 +296,7 @@ codeunit 73000 "FE Xml Reader"
     /// Receipts are signed too - SdI signs them with its own certificate - so this cannot
     /// live in the invoice-only path.
     /// </summary>
-    local procedure ReadRootFacts(var XmlFile: Record "FE Xml File"; XmlDoc: XmlDocument)
+    local procedure ReadRootFacts(var XmlFile: Record "FPA Xml File"; XmlDoc: XmlDocument)
     var
         Root: XmlElement;
         VersioneAttribute: XmlAttribute;
@@ -321,9 +321,9 @@ codeunit 73000 "FE Xml Reader"
     ///     overwritten - an unrecognised one becomes "Other" with the raw code kept, rather
     ///     than being silently relabelled from the root element.
     /// </summary>
-    local procedure ClassifyFromXml(XmlDoc: XmlDocument; FileName: Text; var FileType: Enum "FE File Type"; var SdiBaseName: Code[250]; var ReceiptCode: Code[10]; var ReceiptProgressive: Code[10])
+    local procedure ClassifyFromXml(XmlDoc: XmlDocument; FileName: Text; var FileType: Enum "FPA File Type"; var SdiBaseName: Code[250]; var ReceiptCode: Code[10]; var ReceiptProgressive: Code[10])
     var
-        FileNameParser: Codeunit "FE File Name Parser";
+        FileNameParser: Codeunit "FPA File Name Parser";
         Root: XmlElement;
         RootName: Text;
         CodeFromRoot: Code[10];
@@ -356,7 +356,7 @@ codeunit 73000 "FE Xml Reader"
     /// <summary>
     /// Invoice path: one header onto the file record, one document per body.
     /// </summary>
-    local procedure ExplodeInvoice(var XmlFile: Record "FE Xml File"; XmlDoc: XmlDocument)
+    local procedure ExplodeInvoice(var XmlFile: Record "FPA Xml File"; XmlDoc: XmlDocument)
     var
         NsMgr: XmlNamespaceManager;
         Root: XmlElement;
@@ -398,7 +398,7 @@ codeunit 73000 "FE Xml Reader"
     /// descendant search: a delivery receipt has a Destinatario/Descrizione nested inside it
     /// that a // search happily returns instead of the one meant here.
     /// </summary>
-    local procedure ReadReceipt(var XmlFile: Record "FE Xml File"; XmlDoc: XmlDocument)
+    local procedure ReadReceipt(var XmlFile: Record "FPA Xml File"; XmlDoc: XmlDocument)
     var
         Errors: XmlNodeList;
         ReceiptDateTime: Text;
@@ -458,11 +458,11 @@ codeunit 73000 "FE Xml Reader"
     end;
 
     /// <summary>
-    /// Writes the ListaErrori of a rejection into "FE Receipt Error", one row per Errore.
+    /// Writes the ListaErrori of a rejection into "FPA Receipt Error", one row per Errore.
     /// </summary>
-    local procedure StoreErrors(var XmlFile: Record "FE Xml File"; var Errors: XmlNodeList)
+    local procedure StoreErrors(var XmlFile: Record "FPA Xml File"; var Errors: XmlNodeList)
     var
-        ReceiptError: Record "FE Receipt Error";
+        ReceiptError: Record "FPA Receipt Error";
         ErrorNode: XmlNode;
         Index: Integer;
     begin
@@ -592,7 +592,7 @@ codeunit 73000 "FE Xml Reader"
 
     // ------------------------------------------------------------------ file header
 
-    local procedure ReadFileHeader(var XmlFile: Record "FE Xml File"; XmlDoc: XmlDocument; NsMgr: XmlNamespaceManager; Root: XmlElement; RootPath: Text)
+    local procedure ReadFileHeader(var XmlFile: Record "FPA Xml File"; XmlDoc: XmlDocument; NsMgr: XmlNamespaceManager; Root: XmlElement; RootPath: Text)
     var
         HeaderPath: Text;
     begin
@@ -620,9 +620,9 @@ codeunit 73000 "FE Xml Reader"
 
     // ------------------------------------------------------------------ one body
 
-    local procedure InsertDocument(var XmlFile: Record "FE Xml File"; BodyNo: Integer; BodyElement: XmlElement)
+    local procedure InsertDocument(var XmlFile: Record "FPA Xml File"; BodyNo: Integer; BodyElement: XmlElement)
     var
-        XmlFileDocument: Record "FE Xml File Document";
+        XmlFileDocument: Record "FPA Xml File Document";
     begin
         XmlFileDocument.Init();
         XmlFileDocument."File Name" := XmlFile."File Name";
@@ -651,12 +651,12 @@ codeunit 73000 "FE Xml Reader"
     end;
 
     [TryFunction]
-    local procedure TryInsertDocument(var XmlFileDocument: Record "FE Xml File Document")
+    local procedure TryInsertDocument(var XmlFileDocument: Record "FPA Xml File Document")
     begin
         XmlFileDocument.Insert(true);
     end;
 
-    local procedure SummariseRiepilogo(BodyElement: XmlElement; var XmlFileDocument: Record "FE Xml File Document")
+    local procedure SummariseRiepilogo(BodyElement: XmlElement; var XmlFileDocument: Record "FPA Xml File Document")
     var
         DatiBeniServizi: XmlElement;
         Riepilogo: XmlNodeList;
@@ -678,7 +678,7 @@ codeunit 73000 "FE Xml Reader"
         XmlFileDocument."No. of VAT Rates" := Riepilogo.Count();
     end;
 
-    local procedure SummarisePagamento(BodyElement: XmlElement; var XmlFileDocument: Record "FE Xml File Document")
+    local procedure SummarisePagamento(BodyElement: XmlElement; var XmlFileDocument: Record "FPA Xml File Document")
     var
         DatiPagamento: XmlElement;
         Dettagli: XmlNodeList;

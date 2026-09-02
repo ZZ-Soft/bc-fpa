@@ -1,12 +1,12 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-page 73009 "FE Sales Export Setup"
+page 73009 "FPA Sales Export Setup"
 {
     Caption = 'FatturaPA Sales Export Setup';
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = "FE Sales Export Setup";
+    SourceTable = "FPA Sales Export Setup";
     InsertAllowed = false;
     DeleteAllowed = false;
 
@@ -68,10 +68,10 @@ page 73009 "FE Sales Export Setup"
             action(ViewWholeFile)
             {
                 ApplicationArea = All;
-                Caption = 'Update FE Base Data';
+                Caption = 'Update FPA Base Data';
                 Image = View;
-                ToolTip = 'Updates the FE Base data with the latest information.';
-                RunObject = codeunit "FE Base";
+                ToolTip = 'Updates the FPA Base data with the latest information.';
+                RunObject = codeunit "FPA Base";
                 RunPageOnRec = false;
             }
         }
@@ -92,7 +92,7 @@ page 73009 "FE Sales Export Setup"
 
     local procedure RefreshPreview()
     var
-        ProgressivoMgt: Codeunit "FE Progressivo Mgt.";
+        ProgressivoMgt: Codeunit "FPA Progressivo Mgt.";
         SampleTok: Label '%1_%2.xml', Locked = true;
         Placeholder: Text;
     begin
@@ -115,7 +115,7 @@ page 73009 "FE Sales Export Setup"
     end;
 
     [TryFunction]
-    local procedure TryGetTransmitterId(var ProgressivoMgt: Codeunit "FE Progressivo Mgt."; var Result: Text)
+    local procedure TryGetTransmitterId(var ProgressivoMgt: Codeunit "FPA Progressivo Mgt."; var Result: Text)
     begin
         Result := ProgressivoMgt.GetTransmitterId();
     end;

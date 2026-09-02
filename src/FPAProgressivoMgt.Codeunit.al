@@ -1,9 +1,9 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using Microsoft.Foundation.Address;
 using Microsoft.Foundation.Company;
 
-codeunit 73006 "FE Progressivo Mgt."
+codeunit 73006 "FPA Progressivo Mgt."
 {
     // Builds the SdI file name for an outgoing invoice:
     //
@@ -36,13 +36,13 @@ codeunit 73006 "FE Progressivo Mgt."
     end;
 
     /// <summary>
-    /// Returns a file name that is not yet present in "FE Xml File".
+    /// Returns a file name that is not yet present in "FPA Xml File".
     /// DocumentProgressivo is the ProgressivoInvio read out of the generated XML; it is only
     /// used when the setup asks for it.
     /// </summary>
-    procedure NextFileName(ProgressivoSource: Enum "FE Progressivo Source"; DocumentProgressivo: Code[10]) FileName: Code[250]
+    procedure NextFileName(ProgressivoSource: Enum "FPA Progressivo Source"; DocumentProgressivo: Code[10]) FileName: Code[250]
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
         TransmitterId: Text;
         Progressivo: Text;
         Attempt: Integer;
@@ -71,8 +71,8 @@ codeunit 73006 "FE Progressivo Mgt."
     /// </summary>
     procedure NextProgressivo(): Code[10]
     var
-        SalesExportSetup: Record "FE Sales Export Setup";
-        XmlFile: Record "FE Xml File";
+        SalesExportSetup: Record "FPA Sales Export Setup";
+        XmlFile: Record "FPA Xml File";
         Progressivo: Code[10];
         Attempt: Integer;
     begin
@@ -145,7 +145,7 @@ codeunit 73006 "FE Progressivo Mgt."
             Error(VatTooShortErr);
     end;
 
-    local procedure BuildProgressivo(ProgressivoSource: Enum "FE Progressivo Source"; DocumentProgressivo: Code[10]; Attempt: Integer): Text
+    local procedure BuildProgressivo(ProgressivoSource: Enum "FPA Progressivo Source"; DocumentProgressivo: Code[10]; Attempt: Integer): Text
     begin
         // On a retry the document's own progressive cannot help - it would collide again -
         // so any source falls back to the counter, which never repeats.
@@ -179,7 +179,7 @@ codeunit 73006 "FE Progressivo Mgt."
     /// </summary>
     local procedure NextSequential(): Text
     var
-        SalesExportSetup: Record "FE Sales Export Setup";
+        SalesExportSetup: Record "FPA Sales Export Setup";
         NextValue: BigInteger;
     begin
         SalesExportSetup.GetSetup();

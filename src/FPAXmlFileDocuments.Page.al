@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-page 73003 "FE Xml File Documents"
+page 73003 "FPA Xml File Documents"
 {
     // Flat list of every document across every imported file: one row per
     // FatturaElettronicaBody. Supplier, customer and validation status come from the parent
@@ -10,8 +10,8 @@ page 73003 "FE Xml File Documents"
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
-    SourceTable = "FE Xml File Document";
-    CardPageId = "FE Xml File Doc Viewer";
+    SourceTable = "FPA Xml File Document";
+    CardPageId = "FPA Xml File Doc Viewer";
     Editable = false;
     SourceTableView = sorting(Data) order(descending);
     InsertAllowed = false;
@@ -48,10 +48,10 @@ page 73003 "FE Xml File Documents"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         if Rec.GetXmlFile(XmlFile) then
-                            Page.Run(Page::"FE Xml File Card", XmlFile);
+                            Page.Run(Page::"FPA Xml File Card", XmlFile);
                     end;
                 }
                 field("Body No."; Rec."Body No.")
@@ -77,7 +77,7 @@ page 73003 "FE Xml File Documents"
 
                 trigger OnAction()
                 begin
-                    Page.Run(Page::"FE Xml File Doc Viewer", Rec);
+                    Page.Run(Page::"FPA Xml File Doc Viewer", Rec);
                 end;
             }
             action(ShowFile)
@@ -89,10 +89,10 @@ page 73003 "FE Xml File Documents"
 
                 trigger OnAction()
                 var
-                    XmlFile: Record "FE Xml File";
+                    XmlFile: Record "FPA Xml File";
                 begin
                     if Rec.GetXmlFile(XmlFile) then
-                        Page.Run(Page::"FE Xml File Card", XmlFile);
+                        Page.Run(Page::"FPA Xml File Card", XmlFile);
                 end;
             }
             fileuploadaction(ImportXml)
@@ -106,8 +106,8 @@ page 73003 "FE Xml File Documents"
 
                 trigger OnAction(Files: List of [FileUpload])
                 var
-                    XmlFile: Record "FE Xml File";
-                    XmlReader: Codeunit "FE Xml Reader";
+                    XmlFile: Record "FPA Xml File";
+                    XmlReader: Codeunit "FPA Xml Reader";
                     Summary: Text;
                 begin
                     Summary := XmlReader.ImportFiles(Files, XmlFile);
@@ -117,7 +117,7 @@ page 73003 "FE Xml File Documents"
                     // Open the card only for a single-file import: after a batch the list
                     // itself is the useful view.
                     if (Files.Count() = 1) and (XmlFile."File Name" <> '') then
-                        Page.Run(Page::"FE Xml File Card", XmlFile);
+                        Page.Run(Page::"FPA Xml File Card", XmlFile);
                 end;
             }
             action(Files)
@@ -125,7 +125,7 @@ page 73003 "FE Xml File Documents"
                 ApplicationArea = All;
                 Caption = 'XML Files';
                 Image = Navigate;
-                RunObject = page "FE Xml Files";
+                RunObject = page "FPA Xml Files";
                 ToolTip = 'Shows the imported XML files.';
             }
         }

@@ -1,10 +1,10 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using Microsoft.Sales.History;
 using System.Security.AccessControl;
 using System.Utilities;
 
-table 73000 "FE Xml File"
+table 73000 "FPA Xml File"
 {
     // "Cartella intermedia": one record per physical XML file.
     //
@@ -12,15 +12,15 @@ table 73000 "FE Xml File"
     // <FatturaElettronicaBody> (fattura ordinaria: max 1 per lotto unless LOTTO, but the
     // schema allows N). Everything that lives in the header - trasmissione, cedente,
     // cessionario - therefore belongs here, once. Each body becomes a row in
-    // "FE Xml File Document", linked back through "File Name".
+    // "FPA Xml File Document", linked back through "File Name".
     //
     // The SdI file name is unique by construction (IdPaese + IdCodice + '_' + ProgressivoInvio),
     // so it is used directly as the primary key.
 
     Caption = 'FatturaPA XML File';
     DataClassification = CustomerContent;
-    LookupPageId = "FE Xml Files";
-    DrillDownPageId = "FE Xml Files";
+    LookupPageId = "FPA Xml Files";
+    DrillDownPageId = "FPA Xml Files";
 
     fields
     {
@@ -140,7 +140,7 @@ table 73000 "FE Xml File"
             Caption = 'No. of Documents';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File Document" where("File Name" = field("File Name")));
+            CalcFormula = count("FPA Xml File Document" where("File Name" = field("File Name")));
             ToolTip = 'Number of FatturaElettronicaBody elements found in this file.';
         }
         field(41; "Total Amount"; Decimal)
@@ -148,11 +148,11 @@ table 73000 "FE Xml File"
             Caption = 'Total Amount';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = sum("FE Xml File Document"."Importo Totale Documento" where("File Name" = field("File Name")));
+            CalcFormula = sum("FPA Xml File Document"."Importo Totale Documento" where("File Name" = field("File Name")));
             AutoFormatType = 1;
         }
 
-        field(50; "Validation Status"; Enum "FE Validation Status")
+        field(50; "Validation Status"; Enum "FPA Validation Status")
         {
             Caption = 'Validation Status';
             Editable = false;
@@ -183,7 +183,7 @@ table 73000 "FE Xml File"
         }
 
         // ---- SdI file classification, derived from the file name ----
-        field(80; "File Type"; Enum "FE File Type")
+        field(80; "File Type"; Enum "FPA File Type")
         {
             Caption = 'File Type';
             Editable = false;
@@ -195,7 +195,7 @@ table 73000 "FE Xml File"
             Editable = false;
             ToolTip = 'The IdPaese+IdCodice_ProgressivoInvio prefix, without extension. Shared by an invoice and all of its receipts - this is what links them.';
         }
-        field(82; "Receipt Type"; Enum "FE Receipt Type")
+        field(82; "Receipt Type"; Enum "FPA Receipt Type")
         {
             Caption = 'Receipt Type';
             Editable = false;
@@ -293,19 +293,19 @@ table 73000 "FE Xml File"
             Editable = false;
             ToolTip = 'The NomeFile the receipt refers to. Often ends in .p7m even when the copy you hold is a plain .xml - which is exactly why the link runs on SdI Base Name and not on this.';
         }
-        field(90; "SdI Status"; Enum "FE SdI Status")
+        field(90; "SdI Status"; Enum "FPA SDI Status")
         {
             Caption = 'SdI Status';
             Editable = false;
             ToolTip = 'Outcome of this invoice at SdI, derived from its receipts. Precedence: rejection, then failed delivery, then delivery, then metadata.';
         }
         // ---- provenance: uploaded, or produced by the standard sales export ----
-        field(100; Origin; Enum "FE File Origin")
+        field(100; Origin; Enum "FPA File Origin")
         {
             Caption = 'Origin';
             Editable = false;
         }
-        field(101; "Source Doc. Type"; Enum "FE Source Doc. Type")
+        field(101; "Source Doc. Type"; Enum "FPA Source Doc. Type")
         {
             Caption = 'Source Document Type';
             Editable = false;
@@ -321,7 +321,7 @@ table 73000 "FE Xml File"
             Caption = 'No. of Receipts';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where("SdI Base Name" = field("SdI Base Name"), "File Type" = const(Receipt)));
+            CalcFormula = count("FPA Xml File" where("SdI Base Name" = field("SdI Base Name"), "File Type" = const(Receipt)));
         }
     }
 
@@ -363,8 +363,8 @@ table 73000 "FE Xml File"
 
     trigger OnDelete()
     var
-        XmlFileDocument: Record "FE Xml File Document";
-        ReceiptError: Record "FE Receipt Error";
+        XmlFileDocument: Record "FPA Xml File Document";
+        ReceiptError: Record "FPA Receipt Error";
     begin
         TestCanBeChanged();
 
@@ -448,8 +448,8 @@ table 73000 "FE Xml File"
     /// </summary>
     local procedure RefreshSdiStatusAfterDelete()
     var
-        XmlFile: Record "FE Xml File";
-        SdiStatusMgt: Codeunit "FE SdI Status Mgt.";
+        XmlFile: Record "FPA Xml File";
+        SdiStatusMgt: Codeunit "FPA SdI Status Mgt.";
         BaseName: Code[250];
     begin
         BaseName := Rec."SdI Base Name";
@@ -466,11 +466,11 @@ table 73000 "FE Xml File"
     /// </summary>
     procedure ShowReceipts()
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
     begin
         XmlFile.SetRange("SdI Base Name", Rec."SdI Base Name");
         XmlFile.SetRange("File Type", XmlFile."File Type"::Receipt);
-        Page.Run(Page::"FE Xml Files", XmlFile);
+        Page.Run(Page::"FPA Xml Files", XmlFile);
     end;
 
     /// <summary>
@@ -478,7 +478,7 @@ table 73000 "FE Xml File"
     /// </summary>
     procedure ShowRelatedInvoice()
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
         NoInvoiceMsg: Label 'The invoice %1 has not been imported yet.', Comment = '%1 = SdI base name';
     begin
         XmlFile.SetRange("SdI Base Name", Rec."SdI Base Name");
@@ -487,7 +487,7 @@ table 73000 "FE Xml File"
             Message(NoInvoiceMsg, Rec."SdI Base Name");
             exit;
         end;
-        Page.Run(Page::"FE Xml File Card", XmlFile);
+        Page.Run(Page::"FPA Xml File Card", XmlFile);
     end;
 
     procedure ShowSourceDocument()
@@ -511,7 +511,7 @@ table 73000 "FE Xml File"
     /// </summary>
     procedure StylesheetKey(): Text
     var
-        FileNameParser: Codeunit "FE File Name Parser";
+        FileNameParser: Codeunit "FPA File Name Parser";
         InvoiceKeyTok: Label 'FATTURA', Locked = true;
     begin
         case Rec."File Type" of
@@ -535,10 +535,10 @@ table 73000 "FE Xml File"
 
     procedure ShowDocuments()
     var
-        XmlFileDocument: Record "FE Xml File Document";
+        XmlFileDocument: Record "FPA Xml File Document";
     begin
         XmlFileDocument.SetRange("File Name", Rec."File Name");
-        Page.Run(Page::"FE Xml File Documents", XmlFileDocument);
+        Page.Run(Page::"FPA Xml File Documents", XmlFileDocument);
     end;
 
     // ------------------------------------------------------------------ draft / sent

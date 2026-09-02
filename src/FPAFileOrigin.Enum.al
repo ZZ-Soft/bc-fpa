@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-enum 73004 "FE File Origin"
+enum 73004 "FPA File Origin"
 {
     Extensible = true;
     Caption = 'File Origin';

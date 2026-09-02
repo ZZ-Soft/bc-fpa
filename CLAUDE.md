@@ -6,12 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Estensione AL per Business Central online (`target: Cloud`, runtime 17.0, platform/application
 28.0): importa, valida e **visualizza** XML FatturaPA e ricevute SdI, e genera l'XML di vendita
-dai documenti registrati. Publisher `ZZ Soft`, prefisso oggetti `FPA`, namespace `ZZSoft.SDIBase`,
+dai documenti registrati. Publisher `ZZ Soft`, prefisso oggetti `FPA`, namespace `ZZSoft.FPA`,
 range ID **73000-73099**.
 
-`README.md` e' la documentazione di progetto completa (modello dati, flusso SdI, patch XSLT,
-setup, limiti noti). Leggilo prima di toccare il viewer o il reader: contiene il *perche'* di
-scelte che dal codice non si deducono.
+`docs/DOCUMENTAZIONE.md` e' la documentazione di progetto completa (modello dati, flusso SdI,
+patch XSLT, setup, limiti noti). Leggila prima di toccare il viewer o il reader: contiene il
+*perche'* di scelte che dal codice non si deducono.
 
 ## Build ed esecuzione
 
@@ -125,14 +125,11 @@ fattura appaia: su `docs/sample/` controlla che
 ## Convenzioni
 
 - Nomi file: `<Oggetto>.<Tipo>.al` (es. `FPAXmlFile.Table.al`), prefisso oggetto `FPA`,
-  `namespace ZZSoft.SDIBase;` in testa a ogni file.
+  `namespace ZZSoft.FPA;` in testa a ogni file.
 - L'affisso `FPA` e' dichiarato in `AppSourceCop.json` (`mandatoryAffixes`): AppSourceCop lo
   pretende come **errore** AS0011, non come warning, su oggetti, campi e controlli/azioni
   aggiunti a oggetti standard. Un oggetto nuovo senza `FPA` non compila.
-- **Tre file non dichiarano ancora il `namespace`** e vanno uniformati, non presi a modello:
-  `FPABase.Codeunit.al`, `FPASalesHeaderSubscriber.Codeunit.al`,
-  `FPAPostedSalesInvUpdate.PageExt.al`.
-- Lingua: **commenti e Label in inglese**, README/CONTRIBUTING e messaggi di commit in italiano.
+- Lingua: **commenti e Label in inglese**, documentazione e messaggi di commit in italiano.
   I commenti nei file spiegano il *perche'*, non il *cosa*: mantieni quel registro.
 - ID liberi nel range: pagine da 73013 (oltre a 73020/73021 gia' usate), codeunit da 73010
   (73048/73049/73088/73099 usate), pageextension da 73013 (73097 usata). Verifica prima di
@@ -143,6 +140,7 @@ fattura appaia: su `docs/sample/` controlla che
 
 ## Debiti noti gia' tracciati
 
-Non riscoprirli, sono in README/CONTRIBUTING: `Electronic Format` su `FPA Sales Export Setup` e'
-un campo morto da rimuovere; `docs/SDI/` duplica byte per byte `docs/sample/`, `tools/sdi-xsl/` e
-`schemas/`; i `.p7m` non sono gestiti; accanto al `.gitignore` c'e' un `.gitingore` (refuso).
+Non riscoprirli, sono in `docs/DOCUMENTAZIONE.md`/`CONTRIBUTING.md`: `Electronic Format` su
+`FPA Sales Export Setup` e' un campo morto da rimuovere; `docs/SDI/` duplica byte per byte
+`docs/sample/`, `tools/sdi-xsl/` e `schemas/`; i `.p7m` non sono gestiti; accanto al
+`.gitignore` c'e' un `.gitingore` (refuso).

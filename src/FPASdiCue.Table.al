@@ -1,11 +1,11 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-table 73006 "FE SDI Cue"
+table 73006 "FPA SDI Cue"
 {
     // Feeds the tiles on the FatturaPA / SdI role centre.
     //
     // One row, no data of its own: every field is a FlowField that counts rows in
-    // "FE Xml File". Keeping the counting in the table rather than in the page means the tiles
+    // "FPA Xml File". Keeping the counting in the table rather than in the page means the tiles
     // and the lists they drill into can never disagree about what a number means.
 
     Caption = 'FatturaPA Activities';
@@ -23,41 +23,41 @@ table 73006 "FE SDI Cue"
         {
             Caption = 'Drafts';
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where(Origin = const("Sales Export"), "SdI Status" = const(" ")));
+            CalcFormula = count("FPA Xml File" where(Origin = const("Sales Export"), "SdI Status" = const(" ")));
             ToolTip = 'Files generated from a sales document and not yet sent to SdI. These are the only ones that can still be deleted or replaced.';
         }
         field(11; "Sent Waiting"; Integer)
         {
             Caption = 'Sent, Awaiting Receipt';
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where(Origin = const("Sales Export"), "SdI Status" = const(Sent)));
+            CalcFormula = count("FPA Xml File" where(Origin = const("Sales Export"), "SdI Status" = const(Sent)));
             ToolTip = 'Sent to SdI, with no receipt back yet.';
         }
         field(12; Delivered; Integer)
         {
             Caption = 'Delivered';
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where("File Type" = const(Invoice), "SdI Status" = const(Delivered)));
+            CalcFormula = count("FPA Xml File" where("File Type" = const(Invoice), "SdI Status" = const(Delivered)));
         }
         field(13; Rejected; Integer)
         {
             Caption = 'Rejected';
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where("File Type" = const(Invoice), "SdI Status" = const(Rejected)));
+            CalcFormula = count("FPA Xml File" where("File Type" = const(Invoice), "SdI Status" = const(Rejected)));
             ToolTip = 'SdI threw the file out. As far as the tax authority is concerned the invoice never existed - it has to be corrected and sent again.';
         }
         field(14; "Not Delivered"; Integer)
         {
             Caption = 'Not Delivered';
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where("File Type" = const(Invoice), "SdI Status" = filter("Not Delivered" | "Transmission Attested")));
+            CalcFormula = count("FPA Xml File" where("File Type" = const(Invoice), "SdI Status" = filter("Not Delivered" | "Transmission Attested")));
             ToolTip = 'SdI accepted the file but could not deliver it. The invoice is valid; the customer has to be told to collect it.';
         }
         field(15; "Refused by Customer"; Integer)
         {
             Caption = 'Refused by Customer';
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where("File Type" = const(Invoice), "SdI Status" = const("Refused by Customer")));
+            CalcFormula = count("FPA Xml File" where("File Type" = const(Invoice), "SdI Status" = const("Refused by Customer")));
         }
 
         // ---- incoming: what was uploaded ----
@@ -65,19 +65,19 @@ table 73006 "FE SDI Cue"
         {
             Caption = 'Uploaded Invoices';
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where(Origin = const(Upload), "File Type" = const(Invoice)));
+            CalcFormula = count("FPA Xml File" where(Origin = const(Upload), "File Type" = const(Invoice)));
         }
         field(21; Receipts; Integer)
         {
             Caption = 'Receipts';
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where("File Type" = const(Receipt)));
+            CalcFormula = count("FPA Xml File" where("File Type" = const(Receipt)));
         }
         field(22; "Unmatched Receipts"; Integer)
         {
             Caption = 'Unmatched Receipts';
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where("File Type" = const(Receipt), "Referenced File Name" = const('')));
+            CalcFormula = count("FPA Xml File" where("File Type" = const(Receipt), "Referenced File Name" = const('')));
             ToolTip = 'Receipts whose invoice has not been imported, so there is nothing for them to update.';
         }
 
@@ -86,13 +86,13 @@ table 73006 "FE SDI Cue"
         {
             Caption = 'Not Validated';
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where("File Type" = const(Invoice), "Validation Status" = const(" ")));
+            CalcFormula = count("FPA Xml File" where("File Type" = const(Invoice), "Validation Status" = const(" ")));
         }
         field(31; "Failed Validation"; Integer)
         {
             Caption = 'Failed Validation';
             FieldClass = FlowField;
-            CalcFormula = count("FE Xml File" where("Validation Status" = filter(Invalid | "Not Well Formed")));
+            CalcFormula = count("FPA Xml File" where("Validation Status" = filter(Invalid | "Not Well Formed")));
         }
     }
 

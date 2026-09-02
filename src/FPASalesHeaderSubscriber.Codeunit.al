@@ -1,4 +1,8 @@
-codeunit 73088 "Sale Header Event Subscriber"
+namespace ZZSoft.FPA;
+
+using Microsoft.Sales.Document;
+
+codeunit 73088 "FPA Sales Header Subscriber"
 {
     [EventSubscriber(ObjectType::Table, Database::"Sales Header", OnBeforeSendToPosting, '', false, false)]
     local procedure OnBeforeSendToPosting(var SalesHeader: Record "Sales Header"; var IsSuccess: Boolean; var IsHandled: Boolean; PostingCodeunitID: Integer)

@@ -1,11 +1,11 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-page 73002 "FE Xml File Viewer"
+page 73002 "FPA Xml File Viewer"
 {
     // Renders the file as-is.
     //
     // An invoice goes through the AssoSoftware stylesheet: every FatturaElettronicaBody it
-    // contains, stacked, exactly as the original XML would look. Use "FE Xml File Doc Viewer" for
+    // contains, stacked, exactly as the original XML would look. Use "FPA Xml File Doc Viewer" for
     // a single document.
     //
     // A receipt goes through its own official SdI stylesheet - one per message type, all
@@ -16,7 +16,7 @@ page 73002 "FE Xml File Viewer"
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = None;
-    SourceTable = "FE Xml File";
+    SourceTable = "FPA Xml File";
     InsertAllowed = false;
     DeleteAllowed = false;
     ModifyAllowed = false;
@@ -37,7 +37,7 @@ page 73002 "FE Xml File Viewer"
                 field("Cedente Denominazione"; Rec."Cedente Denominazione") { ApplicationArea = All; Visible = IsInvoice; }
             }
 
-            usercontrol(ViewerControl; "FE Stylesheet Viewer")
+            usercontrol(ViewerControl; "FPA Stylesheet Viewer")
             {
                 ApplicationArea = All;
 
@@ -55,7 +55,7 @@ page 73002 "FE Xml File Viewer"
                 trigger RenderFailed(ErrorMessage: Text)
                 begin
                     Rendered := false;
-                    Session.LogMessage('FE0002', ErrorMessage, Verbosity::Warning,
+                    Session.LogMessage('FPA0002', ErrorMessage, Verbosity::Warning,
                         DataClassification::SystemMetadata, TelemetryScope::ExtensionPublisher, 'Category', 'FatturaPAViewer');
                 end;
             }
@@ -134,7 +134,7 @@ page 73002 "FE Xml File Viewer"
 
     local procedure RenderFile()
     var
-        ChunkHelper: Codeunit "FE Chunk Helper";
+        ChunkHelper: Codeunit "FPA Chunk Helper";
         FileXml: BigText;
         Chunks: List of [Text];
         Chunk: Text;

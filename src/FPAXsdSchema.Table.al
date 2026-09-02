@@ -1,13 +1,13 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using System.Utilities;
 
-table 73002 "FE Xsd Schema"
+table 73002 "FPA Xsd Schema"
 {
     Caption = 'FatturaPA XSD Schema';
     DataClassification = CustomerContent;
-    LookupPageId = "FE Xsd Schemas";
-    DrillDownPageId = "FE Xsd Schemas";
+    LookupPageId = "FPA Xsd Schemas";
+    DrillDownPageId = "FPA Xsd Schemas";
 
     fields
     {
@@ -111,7 +111,7 @@ table 73002 "FE Xsd Schema"
     /// </summary>
     procedure LoadFromStream(var InStr: InStream; FileName: Text): Boolean
     var
-        XsdSchema: Record "FE Xsd Schema";
+        XsdSchema: Record "FPA Xsd Schema";
         TempBlob: Codeunit "Temp Blob";
         BufferOutStr: OutStream;
         BufferInStr: InStream;
@@ -156,7 +156,7 @@ table 73002 "FE Xsd Schema"
         exit(true);
     end;
 
-    local procedure CreateRowForNamespace(TargetNamespace: Text) NewSchema: Record "FE Xsd Schema"
+    local procedure CreateRowForNamespace(TargetNamespace: Text) NewSchema: Record "FPA Xsd Schema"
     var
         NewCode: Code[20];
         NewDescription: Text[100];
@@ -202,7 +202,7 @@ table 73002 "FE Xsd Schema"
 
     local procedure NextLoadOrder(): Integer
     var
-        XsdSchema: Record "FE Xsd Schema";
+        XsdSchema: Record "FPA Xsd Schema";
     begin
         XsdSchema.SetCurrentKey("Load Order");
         if XsdSchema.FindLast() then
@@ -212,7 +212,7 @@ table 73002 "FE Xsd Schema"
 
     local procedure InsertDefault(SchemaCode: Code[20]; SchemaDescription: Text[100]; TargetNamespace: Text[250]; LoadOrder: Integer)
     var
-        XsdSchema: Record "FE Xsd Schema";
+        XsdSchema: Record "FPA Xsd Schema";
     begin
         if XsdSchema.Get(SchemaCode) then
             exit;

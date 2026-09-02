@@ -1,12 +1,12 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-page 73008 "FE Receipt Errors"
+page 73008 "FPA Receipt Errors"
 {
     Caption = 'Errors';
     PageType = ListPart;
     ApplicationArea = All;
     UsageCategory = None;
-    SourceTable = "FE Receipt Error";
+    SourceTable = "FPA Receipt Error";
     Editable = false;
     LinksAllowed = false;
 

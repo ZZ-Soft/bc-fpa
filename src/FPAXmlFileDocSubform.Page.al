@@ -1,12 +1,12 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-page 73004 "FE Xml File Doc Subform"
+page 73004 "FPA Xml File Doc Subform"
 {
     Caption = 'Documents';
     PageType = ListPart;
     ApplicationArea = All;
     UsageCategory = None;
-    SourceTable = "FE Xml File Document";
+    SourceTable = "FPA Xml File Document";
     Editable = false;
     AutoSplitKey = false;
     LinksAllowed = false;
@@ -48,7 +48,7 @@ page 73004 "FE Xml File Doc Subform"
 
                 trigger OnAction()
                 begin
-                    Page.Run(Page::"FE Xml File Doc Viewer", Rec);
+                    Page.Run(Page::"FPA Xml File Doc Viewer", Rec);
                 end;
             }
         }

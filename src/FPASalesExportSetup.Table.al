@@ -1,10 +1,10 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using Microsoft.Foundation.Reporting;
 
-table 73004 "FE Sales Export Setup"
+table 73004 "FPA Sales Export Setup"
 {
-    // Singleton setup for turning a posted sales document into a file in "FE Xml File".
+    // Singleton setup for turning a posted sales document into a file in "FPA Xml File".
 
     Caption = 'FatturaPA Sales Export Setup';
     DataClassification = CustomerContent;
@@ -22,7 +22,7 @@ table 73004 "FE Sales Export Setup"
             ValidateTableRelation = false;
             ToolTip = 'The Electronic Document Format used to produce the XML - the FatturaPA entry the Italian localization registers. Leave the standard export to build the document; this extension only files the result.';
         }
-        field(20; "Progressivo Source"; Enum "FE Progressivo Source")
+        field(20; "Progressivo Source"; Enum "FPA Progressivo Source")
         {
             Caption = 'Progressive Source';
             ToolTip = 'Sequential is a counter in base 36, unique by construction. Random draws 5 characters and retries on collision. From Document reuses the ProgressivoInvio the standard export wrote into the XML, so the file name and the document agree.';

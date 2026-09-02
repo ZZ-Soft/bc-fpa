@@ -1,4 +1,4 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using Microsoft.Bank.BankAccount;
 using Microsoft.Finance.GeneralLedger.Setup;
@@ -11,7 +11,7 @@ using Microsoft.Sales.History;
 using Microsoft.Sales.Receivables;
 using System.Utilities;
 
-codeunit 73008 "FE Xml File Manager"
+codeunit 73008 "FPA Xml File Manager"
 {
     // Builds a FatturaPA XML from scratch with the AL XmlDocument API.
     //
@@ -187,7 +187,7 @@ codeunit 73008 "FE Xml File Manager"
     procedure AddDatiTrasmissione(var Header: XmlElement; ProgressivoInvio: Code[10]; CodiceDestinatario: Code[7]; PecDestinatario: Text) DatiTrasmissione: XmlElement
     var
         CompanyInformation: Record "Company Information";
-        ProgressivoMgt: Codeunit "FE Progressivo Mgt.";
+        ProgressivoMgt: Codeunit "FPA Progressivo Mgt.";
         IdTrasmittente: XmlElement;
         IdPaese: Code[10];
         IdCodice: Text;
@@ -288,7 +288,7 @@ codeunit 73008 "FE Xml File Manager"
         SalesInvoiceHeader: Record "Sales Invoice Header";
         SalesInvoiceLine: Record "Sales Invoice Line";
         Customer: Record Customer;
-        VatSummary: Record "FE VAT Summary Buffer" temporary;
+        VatSummary: Record "FPA VAT Summary Buffer" temporary;
         Body: XmlElement;
         DatiGenerali: XmlElement;
         DatiBeniServizi: XmlElement;
@@ -353,7 +353,7 @@ codeunit 73008 "FE Xml File Manager"
 
         AddDatiPagamento(
           Body, SalesInvoiceHeader."Payment Terms Code", SalesInvoiceHeader."Payment Method Code",
-          Enum::"FE Source Doc. Type"::"Sales Invoice", SalesInvoiceHeader."No.",
+          Enum::"FPA Source Doc. Type"::"Sales Invoice", SalesInvoiceHeader."No.",
           SalesInvoiceHeader."Bill-to Customer No.", SalesInvoiceHeader."Due Date",
           PayableAmount(TotalInclVat, TotalNet, SplitPayment), SalesInvoiceHeader."Bank Account");
     end;
@@ -367,7 +367,7 @@ codeunit 73008 "FE Xml File Manager"
         SalesCrMemoHeader: Record "Sales Cr.Memo Header";
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
         Customer: Record Customer;
-        VatSummary: Record "FE VAT Summary Buffer" temporary;
+        VatSummary: Record "FPA VAT Summary Buffer" temporary;
         Body: XmlElement;
         DatiGenerali: XmlElement;
         DatiBeniServizi: XmlElement;
@@ -427,7 +427,7 @@ codeunit 73008 "FE Xml File Manager"
 
         AddDatiPagamento(
           Body, SalesCrMemoHeader."Payment Terms Code", SalesCrMemoHeader."Payment Method Code",
-          Enum::"FE Source Doc. Type"::"Sales Credit Memo", SalesCrMemoHeader."No.",
+          Enum::"FPA Source Doc. Type"::"Sales Credit Memo", SalesCrMemoHeader."No.",
           SalesCrMemoHeader."Bill-to Customer No.", SalesCrMemoHeader."Due Date",
           PayableAmount(TotalInclVat, TotalNet, SplitPayment), SalesCrMemoHeader."Bank Account");
     end;
@@ -438,7 +438,7 @@ codeunit 73008 "FE Xml File Manager"
     /// </summary>
     local procedure StartDocumentFor(var Customer: Record Customer) ProgressivoInvio: Code[10]
     var
-        ProgressivoMgt: Codeunit "FE Progressivo Mgt.";
+        ProgressivoMgt: Codeunit "FPA Progressivo Mgt.";
         Header: XmlElement;
     begin
         // FPA12 for a public administration, FPR12 for everyone else. It decides both the
@@ -602,7 +602,7 @@ codeunit 73008 "FE Xml File Manager"
         end;
     end;
 
-    local procedure AccumulateRiepilogo(var VatSummary: Record "FE VAT Summary Buffer" temporary; LineNo: Integer; VatPct: Decimal; Base: Decimal; Tax: Decimal; VatBusGroup: Code[20]; VatProdGroup: Code[20]; VatIdentifier: Code[20]; SplitPayment: Boolean)
+    local procedure AccumulateRiepilogo(var VatSummary: Record "FPA VAT Summary Buffer" temporary; LineNo: Integer; VatPct: Decimal; Base: Decimal; Tax: Decimal; VatBusGroup: Code[20]; VatProdGroup: Code[20]; VatIdentifier: Code[20]; SplitPayment: Boolean)
     var
         VATIdentifierRec: Record "VAT Identifier";
         NaturaCode: Code[4];
@@ -619,7 +619,7 @@ codeunit 73008 "FE Xml File Manager"
           VatPct, NaturaCode, EsigibilitaIVA(VatBusGroup, VatProdGroup, SplitPayment), Base, Tax, RiferimentoNormativo, LineNo);
     end;
 
-    local procedure AddDatiRiepilogo(var DatiBeniServizi: XmlElement; var VatSummary: Record "FE VAT Summary Buffer" temporary)
+    local procedure AddDatiRiepilogo(var DatiBeniServizi: XmlElement; var VatSummary: Record "FPA VAT Summary Buffer" temporary)
     var
         DatiRiepilogo: XmlElement;
         AliquotaIVA: Text;
@@ -656,7 +656,7 @@ codeunit 73008 "FE Xml File Manager"
     /// the legal ground for charging no VAT at all - which is what the recipient's accountant
     /// needs - and overwriting it would be losing the more important of the two.
     /// </summary>
-    local procedure RiferimentoNormativo(var VatSummary: Record "FE VAT Summary Buffer" temporary; AliquotaIVA: Text): Text
+    local procedure RiferimentoNormativo(var VatSummary: Record "FPA VAT Summary Buffer" temporary; AliquotaIVA: Text): Text
     begin
         if (VatSummary."Esigibilita IVA" = SplitPaymentTok) and (VatSummary."VAT %" <> 0) then
             exit(StrSubstNo(SplitPaymentNormativoTok, AliquotaIVA));
@@ -674,7 +674,7 @@ codeunit 73008 "FE Xml File Manager"
     /// The whole block is optional, and ModalitaPagamento is mandatory inside it, so a payment
     /// method with no FatturaPA code means the block is left out rather than written invalid.
     /// </summary>
-    local procedure AddDatiPagamento(var Body: XmlElement; PaymentTermsCode: Code[10]; PaymentMethodCode: Code[10]; SourceDocType: Enum "FE Source Doc. Type"; DocumentNo: Code[20]; CustomerNo: Code[20]; DueDate: Date; TotalAmount: Decimal; BankAccountNo: Code[20])
+    local procedure AddDatiPagamento(var Body: XmlElement; PaymentTermsCode: Code[10]; PaymentMethodCode: Code[10]; SourceDocType: Enum "FPA Source Doc. Type"; DocumentNo: Code[20]; CustomerNo: Code[20]; DueDate: Date; TotalAmount: Decimal; BankAccountNo: Code[20])
     var
         CustLedgerEntry: Record "Cust. Ledger Entry";
         PaymentMethod: Record "Payment Method";
@@ -733,7 +733,7 @@ codeunit 73008 "FE Xml File Manager"
         AddText(DettaglioPagamento, 'IBAN', Iban);
     end;
 
-    local procedure FindPaymentEntries(var CustLedgerEntry: Record "Cust. Ledger Entry"; SourceDocType: Enum "FE Source Doc. Type"; DocumentNo: Code[20]; CustomerNo: Code[20])
+    local procedure FindPaymentEntries(var CustLedgerEntry: Record "Cust. Ledger Entry"; SourceDocType: Enum "FPA Source Doc. Type"; DocumentNo: Code[20]; CustomerNo: Code[20])
     begin
         // No SetCurrentKey: the due dates do not have to come out in order, and asking for a
         // key that does not start with the field would fail at runtime.
@@ -888,7 +888,7 @@ codeunit 73008 "FE Xml File Manager"
     procedure AddCedentePrestatore(var Header: XmlElement) CedentePrestatore: XmlElement
     var
         CompanyInformation: Record "Company Information";
-        ProgressivoMgt: Codeunit "FE Progressivo Mgt.";
+        ProgressivoMgt: Codeunit "FPA Progressivo Mgt.";
         DatiAnagrafici: XmlElement;
         IdFiscaleIVA: XmlElement;
         Anagrafica: XmlElement;
@@ -1364,7 +1364,7 @@ codeunit 73008 "FE Xml File Manager"
     // ------------------------------------------------------------------ output
 
     /// <summary>
-    /// Serialises the document into a Temp Blob, ready for "FE Xml File" or a download.
+    /// Serialises the document into a Temp Blob, ready for "FPA Xml File" or a download.
     /// </summary>
     procedure ToTempBlob(var TempBlob: Codeunit "Temp Blob")
     var

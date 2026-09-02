@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-enum 73005 "FE Progressivo Source"
+enum 73005 "FPA Progressivo Source"
 {
     // How the 5-character progressive in the file name is produced.
     //

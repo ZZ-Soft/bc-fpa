@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-enum 73001 "FE File Type"
+enum 73001 "FPA File Type"
 {
     Extensible = true;
     Caption = 'FatturaPA File Type';

@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-enum 73006 "FE Source Doc. Type"
+enum 73006 "FPA Source Doc. Type"
 {
     Extensible = true;
     Caption = 'Source Document Type';

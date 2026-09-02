@@ -1,8 +1,8 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using System.Utilities;
 
-codeunit 73002 "FE Body Extractor"
+codeunit 73002 "FPA Body Extractor"
 {
     // Builds a reduced FatturaPA XML containing the file header plus ONE FatturaElettronicaBody.
     //
@@ -26,7 +26,7 @@ codeunit 73002 "FE Body Extractor"
     /// <summary>
     /// Writes into Result the XML of the file limited to the requested body.
     /// </summary>
-    procedure ExtractBody(var XmlFile: Record "FE Xml File"; BodyNo: Integer; var Result: BigText)
+    procedure ExtractBody(var XmlFile: Record "FPA Xml File"; BodyNo: Integer; var Result: BigText)
     var
         XmlDoc: XmlDocument;
         Root: XmlElement;
@@ -101,7 +101,7 @@ codeunit 73002 "FE Body Extractor"
     /// <summary>
     /// Number of FatturaElettronicaBody elements in the file.
     /// </summary>
-    procedure CountBodies(var XmlFile: Record "FE Xml File"): Integer
+    procedure CountBodies(var XmlFile: Record "FPA Xml File"): Integer
     var
         XmlDoc: XmlDocument;
         Root: XmlElement;

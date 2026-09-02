@@ -1,4 +1,4 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using Microsoft.Bank.BankAccount;
 using Microsoft.EServices.EDocument;
@@ -8,7 +8,7 @@ using Microsoft.Foundation.Company;
 using Microsoft.Foundation.PaymentTerms;
 using Microsoft.Sales.History;
 
-page 73020 "FE SDI Role Center"
+page 73020 "FPA SDI Role Center"
 {
     // One place for the whole electronic invoicing cycle: the files, the documents inside
     // them, the posted sales documents they come from, and the setup they depend on.
@@ -29,7 +29,7 @@ page 73020 "FE SDI Role Center"
         {
             group(Cues)
             {
-                part(Activities; "FE SDI Activities")
+                part(Activities; "FPA SDI Activities")
                 {
                     ApplicationArea = All;
                 }
@@ -47,14 +47,14 @@ page 73020 "FE SDI Role Center"
                 ApplicationArea = All;
                 Caption = 'FatturaPA Files';
                 ToolTip = 'Every XML file: invoices sent, invoices received, and the SdI receipts.';
-                RunObject = Page "FE Xml Files";
+                RunObject = Page "FPA Xml Files";
             }
             action(Documents)
             {
                 ApplicationArea = All;
                 Caption = 'FatturaPA Documents';
                 ToolTip = 'One row per FatturaElettronicaBody, across every file.';
-                RunObject = Page "FE Xml File Documents";
+                RunObject = Page "FPA Xml File Documents";
             }
             action(PostedSalesInvoicesEmbed)
             {
@@ -78,14 +78,14 @@ page 73020 "FE SDI Role Center"
                     ApplicationArea = All;
                     Caption = 'XML Files';
                     Image = XMLFile;
-                    RunObject = Page "FE Xml Files";
+                    RunObject = Page "FPA Xml Files";
                 }
                 action(DocumentsSection)
                 {
                     ApplicationArea = All;
                     Caption = 'Documents';
                     Image = Documents;
-                    RunObject = Page "FE Xml File Documents";
+                    RunObject = Page "FPA Xml File Documents";
                 }
                 action(ReceiptErrors)
                 {
@@ -93,7 +93,7 @@ page 73020 "FE SDI Role Center"
                     Caption = 'Receipt Errors';
                     Image = ErrorLog;
                     ToolTip = 'The error lines SdI returned on rejection receipts.';
-                    RunObject = Page "FE Receipt Errors";
+                    RunObject = Page "FPA Receipt Errors";
                 }
             }
 
@@ -129,7 +129,7 @@ page 73020 "FE SDI Role Center"
                     Caption = 'Sales Export Setup';
                     Image = SetupList;
                     ToolTip = 'How outgoing files are named and numbered.';
-                    RunObject = Page "FE Sales Export Setup";
+                    RunObject = Page "FPA Sales Export Setup";
                 }
                 action(XsdSchemas)
                 {
@@ -137,7 +137,7 @@ page 73020 "FE SDI Role Center"
                     Caption = 'XSD Schemas';
                     Image = XMLFile;
                     ToolTip = 'The official schemas the validation runs against. Load both, in the right order.';
-                    RunObject = Page "FE Xsd Schemas";
+                    RunObject = Page "FPA Xsd Schemas";
                 }
             }
 

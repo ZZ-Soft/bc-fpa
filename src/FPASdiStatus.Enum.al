@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-enum 73003 "FE SDI Status"
+enum 73003 "FPA SDI Status"
 {
     // Where an invoice got to at SDI, derived from the receipts sharing its base name.
     //

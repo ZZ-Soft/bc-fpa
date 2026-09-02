@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-enum 73002 "FE Receipt Type"
+enum 73002 "FPA Receipt Type"
 {
     // The two-letter code SdI appends to the invoice file name:
     //     IT02155810225_HV1GH_RC_003.xml   ->  delivery receipt of IT02155810225_HV1GH

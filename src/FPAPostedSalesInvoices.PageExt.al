@@ -1,19 +1,19 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using Microsoft.Sales.History;
 
-pageextension 73011 "FE Posted Sales Invoices" extends "Posted Sales Invoices"
+pageextension 73011 "FPA Posted Sales Invoices" extends "Posted Sales Invoices"
 {
     actions
     {
         addlast(Processing)
         {
-            group(FEFatturaPA)
+            group(FPAFatturaPA)
             {
                 Caption = 'FatturaPA';
                 Image = ElectronicDoc;
 
-                action(FEExportSelected)
+                action(FPAExportSelected)
                 {
                     ApplicationArea = All;
                     Caption = 'SDI XML file';
@@ -26,7 +26,7 @@ pageextension 73011 "FE Posted Sales Invoices" extends "Posted Sales Invoices"
                         ExportSelection();
                     end;
                 }
-                action(FEShowXmlFiles)
+                action(FPAShowXmlFiles)
                 {
                     ApplicationArea = All;
                     Caption = 'FatturaPA Files';
@@ -39,7 +39,7 @@ pageextension 73011 "FE Posted Sales Invoices" extends "Posted Sales Invoices"
                         ShowXmlFilesForSelection();
                     end;
                 }
-                action(FEShowDocuments)
+                action(FPAShowDocuments)
                 {
                     ApplicationArea = All;
                     Caption = 'FatturaPA Documents';
@@ -57,8 +57,8 @@ pageextension 73011 "FE Posted Sales Invoices" extends "Posted Sales Invoices"
 
         addlast(Category_Process)
         {
-            actionref(FEExportSelected_Promoted; FEExportSelected) { }
-            actionref(FEShowDocuments_Promoted; FEShowDocuments) { }
+            actionref(FPAExportSelected_Promoted; FPAExportSelected) { }
+            actionref(FPAShowDocuments_Promoted; FPAShowDocuments) { }
         }
     }
 
@@ -72,8 +72,8 @@ pageextension 73011 "FE Posted Sales Invoices" extends "Posted Sales Invoices"
     local procedure ExportSelection()
     var
         SalesInvoiceHeader: Record "Sales Invoice Header";
-        XmlFile: Record "FE Xml File";
-        FESalesExport: Codeunit "FE Sales Export";
+        XmlFile: Record "FPA Xml File";
+        FPASalesExport: Codeunit "FPA Sales Export";
         Exported: Integer;
         Failed: Integer;
         Total: Integer;
@@ -97,11 +97,11 @@ pageextension 73011 "FE Posted Sales Invoices" extends "Posted Sales Invoices"
         // invoice is not the first one.
         if (SalesInvoiceHeader.count() = 1) then
             Message('Fattura: %1 %2', SalesInvoiceHeader."No.", SalesInvoiceHeader."Sell-to Customer Name");
-        FESalesExport.SetBatchReExport(AskAboutReExport(SalesInvoiceHeader));
+        FPASalesExport.SetBatchReExport(AskAboutReExport(SalesInvoiceHeader));
 
         repeat
             Total += 1;
-            if TryExportOne(FESalesExport, SalesInvoiceHeader, XmlFile) then begin
+            if TryExportOne(FPASalesExport, SalesInvoiceHeader, XmlFile) then begin
                 Exported += 1;
                 XmlFile.CalcFields("No. of Documents");
                 Documents += XmlFile."No. of Documents";
@@ -128,7 +128,7 @@ pageextension 73011 "FE Posted Sales Invoices" extends "Posted Sales Invoices"
     local procedure AskAboutReExport(var SalesInvoiceHeader: Record "Sales Invoice Header"): Boolean
     var
         Selected: Record "Sales Invoice Header";
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
     begin
         // Copy, not CopyFilters: a multi-row selection is expressed with MARKS, and
         // CopyFilters carries only the filters - it would silently widen the scan to every
@@ -154,14 +154,14 @@ pageextension 73011 "FE Posted Sales Invoices" extends "Posted Sales Invoices"
     /// a TryFunction and the loop carries on.
     /// </summary>
     [TryFunction]
-    local procedure TryExportOne(var FESalesExport: Codeunit "FE Sales Export"; var SalesInvoiceHeader: Record "Sales Invoice Header"; var XmlFile: Record "FE Xml File")
+    local procedure TryExportOne(var FPASalesExport: Codeunit "FPA Sales Export"; var SalesInvoiceHeader: Record "Sales Invoice Header"; var XmlFile: Record "FPA Xml File")
     begin
-        FESalesExport.ExportPostedSalesInvoice(SalesInvoiceHeader, XmlFile);
+        FPASalesExport.ExportPostedSalesInvoice(SalesInvoiceHeader, XmlFile);
     end;
 
     local procedure ShowXmlFilesForSelection()
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
     begin
         if not MarkFilesForSelection(XmlFile) then begin
             Message(NoFileMsg);
@@ -169,13 +169,13 @@ pageextension 73011 "FE Posted Sales Invoices" extends "Posted Sales Invoices"
         end;
         XmlFile.Reset();
         XmlFile.MarkedOnly(true);
-        Page.Run(Page::"FE Xml Files", XmlFile);
+        Page.Run(Page::"FPA Xml Files", XmlFile);
     end;
 
     local procedure ShowDocumentsForSelection()
     var
-        XmlFile: Record "FE Xml File";
-        XmlFileDocument: Record "FE Xml File Document";
+        XmlFile: Record "FPA Xml File";
+        XmlFileDocument: Record "FPA Xml File Document";
         Found: Boolean;
     begin
         if not MarkFilesForSelection(XmlFile) then begin
@@ -202,7 +202,7 @@ pageextension 73011 "FE Posted Sales Invoices" extends "Posted Sales Invoices"
 
         XmlFileDocument.Reset();
         XmlFileDocument.MarkedOnly(true);
-        Page.Run(Page::"FE Xml File Documents", XmlFileDocument);
+        Page.Run(Page::"FPA Xml File Documents", XmlFileDocument);
     end;
 
     /// <summary>
@@ -212,7 +212,7 @@ pageextension 73011 "FE Posted Sales Invoices" extends "Posted Sales Invoices"
     /// of them into a SetFilter would break the moment one contained a character the filter
     /// syntax treats as an operator.
     /// </summary>
-    local procedure MarkFilesForSelection(var XmlFile: Record "FE Xml File"): Boolean
+    local procedure MarkFilesForSelection(var XmlFile: Record "FPA Xml File"): Boolean
     var
         SalesInvoiceHeader: Record "Sales Invoice Header";
         Found: Boolean;

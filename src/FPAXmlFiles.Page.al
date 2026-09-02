@@ -1,13 +1,13 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-page 73000 "FE Xml Files"
+page 73000 "FPA Xml Files"
 {
     Caption = 'FatturaPA XML Files';
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
-    SourceTable = "FE Xml File";
-    CardPageId = "FE Xml File Card";
+    SourceTable = "FPA Xml File";
+    CardPageId = "FPA Xml File Card";
     Editable = false;
     SourceTableView = sorting("Imported At") order(descending);
 
@@ -110,8 +110,8 @@ page 73000 "FE Xml Files"
 
                 trigger OnAction(Files: List of [FileUpload])
                 var
-                    XmlFile: Record "FE Xml File";
-                    XmlReader: Codeunit "FE Xml Reader";
+                    XmlFile: Record "FPA Xml File";
+                    XmlReader: Codeunit "FPA Xml Reader";
                     Summary: Text;
                 begin
                     Summary := XmlReader.ImportFiles(Files, XmlFile);
@@ -121,7 +121,7 @@ page 73000 "FE Xml Files"
                     // Open the card only for a single-file import: after a batch the list
                     // itself is the useful view.
                     if (Files.Count() = 1) and (XmlFile."File Name" <> '') then
-                        Page.Run(Page::"FE Xml File Card", XmlFile);
+                        Page.Run(Page::"FPA Xml File Card", XmlFile);
                 end;
             }
             action(ShowReceipts)
@@ -169,8 +169,8 @@ page 73000 "FE Xml Files"
 
                 trigger OnAction()
                 var
-                    XmlFile: Record "FE Xml File";
-                    XmlReader: Codeunit "FE Xml Reader";
+                    XmlFile: Record "FPA Xml File";
+                    XmlReader: Codeunit "FPA Xml Reader";
                     DoneTxt: Label '%1 file(s) re-read.', Comment = '%1 = number of files';
                     Counter: Integer;
                 begin
@@ -193,8 +193,8 @@ page 73000 "FE Xml Files"
 
                 trigger OnAction()
                 var
-                    XmlFile: Record "FE Xml File";
-                    XsdValidator: Codeunit "FE Xsd Validator";
+                    XmlFile: Record "FPA Xml File";
+                    XsdValidator: Codeunit "FPA Xsd Validator";
                     DoneTxt: Label '%1 of %2 selected files are valid.', Comment = '%1 = valid count, %2 = total count';
                     ValidCount: Integer;
                     TotalCount: Integer;
@@ -245,7 +245,7 @@ page 73000 "FE Xml Files"
                 ApplicationArea = All;
                 Caption = 'Sales Export Setup';
                 Image = Setup;
-                RunObject = page "FE Sales Export Setup";
+                RunObject = page "FPA Sales Export Setup";
                 ToolTip = 'Chooses the Electronic Document Format used for outgoing invoices and how the file name progressive is built.';
             }
             action(Schemas)
@@ -253,7 +253,7 @@ page 73000 "FE Xml Files"
                 ApplicationArea = All;
                 Caption = 'XSD Schemas';
                 Image = XMLSetup;
-                RunObject = page "FE Xsd Schemas";
+                RunObject = page "FPA Xsd Schemas";
                 ToolTip = 'Loads the official FatturaPA XSD schemas used for validation.';
             }
         }

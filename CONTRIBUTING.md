@@ -70,9 +70,10 @@ Dopo ogni modifica alla catena XSLT, verifica su `docs/sample/`:
 
 ## Convenzioni
 
-- Prefisso oggetti: `FE`
-- Namespace AL: `ZZSoft.SDIBase`
-- Nomi file: `<Oggetto>.<Tipo>.al`, es. `FEXmlFile.Table.al`
+- Prefisso oggetti: `FPA`, dichiarato in `AppSourceCop.json` (`mandatoryAffixes`):
+  AppSourceCop lo pretende come errore AS0011, non come warning
+- Namespace AL: `ZZSoft.FPA`
+- Nomi file: `<Oggetto>.<Tipo>.al`, es. `FPAXmlFile.Table.al`
 - Gli XPath usano `local-name()` invece di un namespace manager: le ricevute
   reali stanno nel namespace `ivaservizi.agenziaentrate.gov.it`, non in
   `fatturapa.gov.it`, e cablare l'uno o l'altro sarebbe sbagliato

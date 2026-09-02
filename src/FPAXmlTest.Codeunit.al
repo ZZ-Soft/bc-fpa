@@ -1,12 +1,12 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using System.Utilities;
 
-codeunit 73009 "FE Xml Test"
+codeunit 73009 "FPA Xml Test"
 {
     // Dry runs of the FatturaPA writer, from a posted sales document.
     //
-    // Nothing here writes to the database. No file is created in "FE Xml File", no document
+    // Nothing here writes to the database. No file is created in "FPA Xml File", no document
     // rows are exploded, and above all NO PROGRESSIVE IS DRAWN: NumberSequence hands values out
     // outside the transaction and never takes them back, so a hundred test runs would leave a
     // hundred holes in the numbering of the invoices actually sent. The dry run supplies its own
@@ -65,7 +65,7 @@ codeunit 73009 "FE Xml Test"
 
     local procedure BuildInvoice(DocumentNo: Code[20]; var TempBlob: Codeunit "Temp Blob")
     var
-        XmlFileManager: Codeunit "FE Xml File Manager";
+        XmlFileManager: Codeunit "FPA Xml File Manager";
     begin
         XmlFileManager.SetProgressivo(CopyStr(TestProgressivoTok, 1, 10));
         XmlFileManager.BuildFromSalesInvoice(DocumentNo);
@@ -74,7 +74,7 @@ codeunit 73009 "FE Xml Test"
 
     local procedure BuildCrMemo(DocumentNo: Code[20]; var TempBlob: Codeunit "Temp Blob")
     var
-        XmlFileManager: Codeunit "FE Xml File Manager";
+        XmlFileManager: Codeunit "FPA Xml File Manager";
     begin
         XmlFileManager.SetProgressivo(CopyStr(TestProgressivoTok, 1, 10));
         XmlFileManager.BuildFromSalesCrMemo(DocumentNo);
@@ -83,8 +83,8 @@ codeunit 73009 "FE Xml Test"
 
     local procedure ValidateAndReport(var TempBlob: Codeunit "Temp Blob")
     var
-        XsdValidator: Codeunit "FE Xsd Validator";
-        Status: Enum "FE Validation Status";
+        XsdValidator: Codeunit "FPA Xsd Validator";
+        Status: Enum "FPA Validation Status";
         ResultMessage: Text;
     begin
         Status := XsdValidator.ValidateTempBlob(TempBlob, ResultMessage);
@@ -111,7 +111,7 @@ codeunit 73009 "FE Xml Test"
     /// </summary>
     local procedure Download(var TempBlob: Codeunit "Temp Blob")
     var
-        ProgressivoMgt: Codeunit "FE Progressivo Mgt.";
+        ProgressivoMgt: Codeunit "FPA Progressivo Mgt.";
         InStr: InStream;
         FileName: Text;
     begin

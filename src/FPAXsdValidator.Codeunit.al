@@ -1,9 +1,9 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using System.Utilities;
 using System.Xml;
 
-codeunit 73001 "FE Xsd Validator"
+codeunit 73001 "FPA Xsd Validator"
 {
     // Validates a FatturaPA XML against the official XSDs using codeunit "Xml Validation"
     // from the System Application (System.Xml). Supported on Business Central online - it is
@@ -11,7 +11,7 @@ codeunit 73001 "FE Xsd Validator"
     // XmlReaderSettings are not reachable from a Cloud target.
     //
     // Validation is a FILE-level operation: the schema describes the whole document, header
-    // plus all bodies, so it runs against "FE Xml File". The exploded "FE Xml File Document"
+    // plus all bodies, so it runs against "FPA Xml File". The exploded "FPA Xml File Document"
     // rows read the outcome back through a FlowField.
     //
     // FatturaPA needs TWO schemas loaded together, because the invoice schema imports the
@@ -19,7 +19,7 @@ codeunit 73001 "FE Xsd Validator"
     //   1. xmldsig-core-schema.xsd   ns = http://www.w3.org/2000/09/xmldsig#
     //   2. Schema_del_file_xml_FatturaPA_v1.2.x.xsd
     //                                ns = http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
-    // Load them in that order via the "Load Order" field on table "FE Xsd Schema".
+    // Load them in that order via the "Load Order" field on table "FPA Xsd Schema".
 
     var
         NoSchemasErr: Label 'No XSD schema has been loaded. Open the FatturaPA XSD Schemas page and load the official schemas first.';
@@ -29,10 +29,10 @@ codeunit 73001 "FE Xsd Validator"
     /// <summary>
     /// Validates the whole file and writes the outcome back onto the file record.
     /// </summary>
-    procedure Validate(var XmlFile: Record "FE Xml File"): Boolean
+    procedure Validate(var XmlFile: Record "FPA Xml File"): Boolean
     var
         TempBlob: Codeunit "Temp Blob";
-        Status: Enum "FE Validation Status";
+        Status: Enum "FPA Validation Status";
         ResultMessage: Text;
     begin
         // Through a Temp Blob, not straight off the record: SetResult below modifies the
@@ -52,10 +52,10 @@ codeunit 73001 "FE Xsd Validator"
     /// dry run needs: finding out that an invoice will be rejected is only useful while it can
     /// still be fixed rather than after it has taken a file name and a progressive.
     /// </summary>
-    procedure ValidateTempBlob(var TempBlob: Codeunit "Temp Blob"; var ResultMessage: Text) Status: Enum "FE Validation Status"
+    procedure ValidateTempBlob(var TempBlob: Codeunit "Temp Blob"; var ResultMessage: Text) Status: Enum "FPA Validation Status"
     var
         XmlValidation: Codeunit "Xml Validation";
-        XsdSchema: Record "FE Xsd Schema";
+        XsdSchema: Record "FPA Xsd Schema";
         XmlInStr: InStream;
         SchemaInStr: InStream;
     begin
@@ -93,16 +93,16 @@ codeunit 73001 "FE Xsd Validator"
     /// <summary>
     /// Convenience overload: validates the file a document belongs to.
     /// </summary>
-    procedure ValidateDocument(var XmlFileDocument: Record "FE Xml File Document"): Boolean
+    procedure ValidateDocument(var XmlFileDocument: Record "FPA Xml File Document"): Boolean
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
     begin
         if not XmlFileDocument.GetXmlFile(XmlFile) then
             exit(false);
         exit(Validate(XmlFile));
     end;
 
-    local procedure SetResult(var XmlFile: Record "FE Xml File"; Status: Enum "FE Validation Status"; ResultMessage: Text)
+    local procedure SetResult(var XmlFile: Record "FPA Xml File"; Status: Enum "FPA Validation Status"; ResultMessage: Text)
     begin
         XmlFile."Validation Status" := Status;
         XmlFile."Validation Message" := CopyStr(ResultMessage, 1, MaxStrLen(XmlFile."Validation Message"));

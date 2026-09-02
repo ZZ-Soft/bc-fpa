@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-table 73005 "FE VAT Summary Buffer"
+table 73005 "FPA VAT Summary Buffer"
 {
     // Collects the DatiRiepilogo blocks while the document lines are being written.
     //

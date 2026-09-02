@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-page 73001 "FE Xml File Card"
+page 73001 "FPA Xml File Card"
 {
     // The "cartella". What it shows depends on what the file is:
     //
@@ -13,7 +13,7 @@ page 73001 "FE Xml File Card"
     PageType = Document;
     ApplicationArea = All;
     UsageCategory = None;
-    SourceTable = "FE Xml File";
+    SourceTable = "FPA Xml File";
     InsertAllowed = false;
     ModifyAllowed = false;
 
@@ -161,7 +161,7 @@ page 73001 "FE Xml File Card"
                 }
             }
 
-            part(Documents; "FE Xml File Doc Subform")
+            part(Documents; "FPA Xml File Doc Subform")
             {
                 ApplicationArea = All;
                 Caption = 'Documents';
@@ -169,14 +169,14 @@ page 73001 "FE Xml File Card"
                 UpdatePropagation = Both;
                 Visible = IsInvoice;
             }
-            part(ReceiptErrors; "FE Receipt Errors")
+            part(ReceiptErrors; "FPA Receipt Errors")
             {
                 ApplicationArea = All;
                 Caption = 'Errors';
                 SubPageLink = "File Name" = field("File Name");
                 Visible = ShowErrors;
             }
-            part(Receipts; "FE Receipt Subform")
+            part(Receipts; "FPA Receipt Subform")
             {
                 ApplicationArea = All;
                 Caption = 'SdI Receipts';
@@ -198,7 +198,7 @@ page 73001 "FE Xml File Card"
                 Caption = 'View Whole File';
                 Image = View;
                 ToolTip = 'Renders every document in the file in a single page, as the stylesheet would show the original XML.';
-                RunObject = page "FE Xml File Viewer";
+                RunObject = page "FPA Xml File Viewer";
                 RunPageOnRec = true;
             }
             action(OpenInvoice)
@@ -236,7 +236,7 @@ page 73001 "FE Xml File Card"
 
                 trigger OnAction()
                 var
-                    XsdValidator: Codeunit "FE Xsd Validator";
+                    XsdValidator: Codeunit "FPA Xsd Validator";
                     ValidTxt: Label 'The file is valid.';
                 begin
                     if XsdValidator.Validate(Rec) then
@@ -255,7 +255,7 @@ page 73001 "FE Xml File Card"
 
                 trigger OnAction()
                 var
-                    XmlReader: Codeunit "FE Xml Reader";
+                    XmlReader: Codeunit "FPA Xml Reader";
                 begin
                     XmlReader.Explode(Rec);
                     CurrPage.Update(false);

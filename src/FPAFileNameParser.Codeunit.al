@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-codeunit 73004 "FE File Name Parser"
+codeunit 73004 "FPA File Name Parser"
 {
     // Tells an invoice from an SdI receipt purely by file name.
     //
@@ -32,7 +32,7 @@ codeunit 73004 "FE File Name Parser"
     /// Splits a file name into its SdI parts. ReceiptCode and ReceiptProgressive stay blank
     /// for an invoice.
     /// </summary>
-    procedure Parse(FileName: Text; var FileType: Enum "FE File Type"; var SdiBaseName: Code[250]; var ReceiptCode: Code[10]; var ReceiptProgressive: Code[10])
+    procedure Parse(FileName: Text; var FileType: Enum "FPA File Type"; var SdiBaseName: Code[250]; var ReceiptCode: Code[10]; var ReceiptProgressive: Code[10])
     var
         Segments: List of [Text];
         BaseName: Text;
@@ -91,34 +91,34 @@ codeunit 73004 "FE File Name Parser"
     /// Maps the two-letter code to the enum. Unrecognised codes become Other - the raw code
     /// is still kept on the record, so no receipt is ever silently dropped.
     /// </summary>
-    procedure ReceiptTypeFromCode(ReceiptCode: Code[10]): Enum "FE Receipt Type"
+    procedure ReceiptTypeFromCode(ReceiptCode: Code[10]): Enum "FPA Receipt Type"
     var
         NormalisedCode: Code[10];
     begin
         NormalisedCode := UpperCase(ReceiptCode);
 
         if NormalisedCode = '' then
-            exit(Enum::"FE Receipt Type"::" ");
+            exit(Enum::"FPA Receipt Type"::" ");
         if NormalisedCode = RcTok then
-            exit(Enum::"FE Receipt Type"::RC);
+            exit(Enum::"FPA Receipt Type"::RC);
         if NormalisedCode = NsTok then
-            exit(Enum::"FE Receipt Type"::NS);
+            exit(Enum::"FPA Receipt Type"::NS);
         if NormalisedCode = McTok then
-            exit(Enum::"FE Receipt Type"::MC);
+            exit(Enum::"FPA Receipt Type"::MC);
         if NormalisedCode = MtTok then
-            exit(Enum::"FE Receipt Type"::MT);
+            exit(Enum::"FPA Receipt Type"::MT);
         if NormalisedCode = NeTok then
-            exit(Enum::"FE Receipt Type"::NE);
+            exit(Enum::"FPA Receipt Type"::NE);
         if NormalisedCode = EcTok then
-            exit(Enum::"FE Receipt Type"::EC);
+            exit(Enum::"FPA Receipt Type"::EC);
         if NormalisedCode = SeTok then
-            exit(Enum::"FE Receipt Type"::SE);
+            exit(Enum::"FPA Receipt Type"::SE);
         if NormalisedCode = DtTok then
-            exit(Enum::"FE Receipt Type"::DT);
+            exit(Enum::"FPA Receipt Type"::DT);
         if NormalisedCode = AtTok then
-            exit(Enum::"FE Receipt Type"::AT);
+            exit(Enum::"FPA Receipt Type"::AT);
 
-        exit(Enum::"FE Receipt Type"::Other);
+        exit(Enum::"FPA Receipt Type"::Other);
     end;
 
     /// <summary>
@@ -174,7 +174,7 @@ codeunit 73004 "FE File Name Parser"
         NormalisedCode: Code[10];
     begin
         NormalisedCode := UpperCase(ReceiptCode);
-        if ReceiptTypeFromCode(NormalisedCode) = Enum::"FE Receipt Type"::Other then
+        if ReceiptTypeFromCode(NormalisedCode) = Enum::"FPA Receipt Type"::Other then
             exit('');
         exit(NormalisedCode);
     end;

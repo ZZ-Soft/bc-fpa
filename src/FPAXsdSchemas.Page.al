@@ -1,12 +1,12 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-page 73006 "FE Xsd Schemas"
+page 73006 "FPA Xsd Schemas"
 {
     Caption = 'FatturaPA XSD Schemas';
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = "FE Xsd Schema";
+    SourceTable = "FPA Xsd Schema";
     SourceTableView = sorting("Load Order");
 
     layout
@@ -52,7 +52,7 @@ page 73006 "FE Xsd Schemas"
 
                 trigger OnAction(Files: List of [FileUpload])
                 var
-                    XsdSchema: Record "FE Xsd Schema";
+                    XsdSchema: Record "FPA Xsd Schema";
                     CurrentFile: FileUpload;
                     InStr: InStream;
                     LoadedCount: Integer;
@@ -90,7 +90,7 @@ page 73006 "FE Xsd Schemas"
 
                 trigger OnAction()
                 var
-                    XsdSchema: Record "FE Xsd Schema";
+                    XsdSchema: Record "FPA Xsd Schema";
                 begin
                     XsdSchema.EnsureDefaultRows();
                     CurrPage.Update(false);

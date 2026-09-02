@@ -1,4 +1,8 @@
-pageextension 73097 "Posted Sales Invoice - UpdExt" extends "Posted Sales Invoice - Update"
+namespace ZZSoft.FPA;
+
+using Microsoft.Sales.History;
+
+pageextension 73097 "FPA Posted Sales Inv. Update" extends "Posted Sales Invoice - Update"
 {
 
     layout
@@ -6,7 +10,7 @@ pageextension 73097 "Posted Sales Invoice - UpdExt" extends "Posted Sales Invoic
         // Add changes to page layout here
         addafter("Fattura Document Type")
         {
-            field("Payment Method Code"; Rec."Payment Method Code")
+            field(FPAPaymentMethodCode; Rec."Payment Method Code")
             {
                 ApplicationArea = All;
             }

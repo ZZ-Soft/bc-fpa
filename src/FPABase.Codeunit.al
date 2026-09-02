@@ -1,18 +1,23 @@
-codeunit 73099 "FE Base"
+namespace ZZSoft.FPA;
+
+using Microsoft.EServices.EDocument;
+using Microsoft.Finance.VAT.TransactionNature;
+
+codeunit 73099 "FPA Base"
 {
 
     trigger OnRun()
     var
-        lblMsgInizio: Label 'Aggiornamento codici FE';
-        lblMsgFine: Label 'Aggiornamento codici FE completato';
+        MsgInizioLbl: Label 'Aggiornamento codici FE';
+        MsgFineLbl: Label 'Aggiornamento codici FE completato';
     begin
-        Message(lblMsgInizio);
-        FECodiciPAgamenti();
-        FECodNaturaIVA();
-        Message(lblMsgFine);
+        Message(MsgInizioLbl);
+        FPACodiciPAgamenti();
+        FPACodNaturaIVA();
+        Message(MsgFineLbl);
     end;
 
-    local procedure FECodiciPAgamenti()
+    local procedure FPACodiciPAgamenti()
     begin
         UpdateMPRecord('MP01', 'contanti');
         UpdateMPRecord('MP02', 'assegno');
@@ -45,7 +50,7 @@ codeunit 73099 "FE Base"
 
     end;
 
-    local procedure FECodNaturaIVA()
+    local procedure FPACodNaturaIVA()
     begin
         UpdateVNRecord('N1', 'escluse ex art. 15 del DPR 633/72');
         UpdateVNRecord('N2.1', 'non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del DPR 633/72');

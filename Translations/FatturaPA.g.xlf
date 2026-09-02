@@ -843,6 +843,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table FPA Xsd Schema - Field Target Namespace - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4063566566 - Method 1665861916 - NamedType 355442683" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aggiornamento codici FE</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit FPA Base - Method OnRun - NamedType MsgInizioLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4063566566 - Method 1665861916 - NamedType 4047874385" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aggiornamento codici FE completato</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit FPA Base - Method OnRun - NamedType MsgFineLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 2301848177 - NamedType 4081555706" size-unit="char" translate="yes" xml:space="preserve">
           <source>Body no. %1 was not found in file %2, which contains %3 body element(s).</source>
           <note from="Developer" annotates="general" priority="2">%1 = requested body no., %2 = file name, %3 = actual count</note>
@@ -882,6 +892,16 @@
           <source>Document type %1 cannot be exported as FatturaPA.</source>
           <note from="Developer" annotates="general" priority="2">%1 = source document type</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit FPA Sales Export - NamedType UnsupportedTypeErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3388591374 - Method 249396865 - NamedType 1822332581" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Payment Method Code is mandatory</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit FPA Sales Header Subscriber - Method OnBeforeSendToPosting - NamedType msgPaymentMethodMandatory</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3388591374 - Method 249396865 - NamedType 4226626723" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Payment Terms Code is mandatory</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit FPA Sales Header Subscriber - Method OnBeforeSendToPosting - NamedType msgPaymentTermsMandatory</note>
         </trans-unit>
         <trans-unit id="Codeunit 3765870277 - NamedType 2638143416" size-unit="char" translate="yes" xml:space="preserve">
           <source>CodiceDestinatario must be %1 characters for %2, but %3 was supplied.</source>
@@ -1099,12 +1119,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page FPA Sales Export Setup - Control TransmitterId - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1142912312 - Action 4096119838 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Updates the FE Base data with the latest information.</source>
+          <source>Updates the FPA Base data with the latest information.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page FPA Sales Export Setup - Action ViewWholeFile - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1142912312 - Action 4096119838 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Update FE Base Data</source>
+          <source>Update FPA Base Data</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page FPA Sales Export Setup - Action ViewWholeFile - Property Caption</note>
         </trans-unit>
@@ -1137,16 +1157,6 @@
           <source>Receipts</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page FPA SDI Activities - Control Receipts - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3892534910 - Action 590246112 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Opens the file list, where invoices and receipts can be uploaded.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page FPA SDI Activities - Action ImportXml - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3892534910 - Action 590246112 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Import XML Files</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page FPA SDI Activities - Action ImportXml - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3892534910 - Control 3774714209 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Needs Attention</source>
@@ -1227,6 +1237,16 @@
           <source>Awaiting Receipt</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page FPA SDI Activities - Control Sent Waiting - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3892534910 - Action 590246112 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Opens the file list, where invoices and receipts can be uploaded.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page FPA SDI Activities - Action ImportXml - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3892534910 - Action 590246112 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Import XML Files</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page FPA SDI Activities - Action ImportXml - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 238077914 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>FatturaPA / SdI</source>
@@ -1388,10 +1408,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page FPA SDI Role Center - Action XsdSchemas - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 238077914 - Action 2641374185 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 238077914 - Action 4280293476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>FatturaPA</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page FPA SDI Role Center - Action FPAFatturaPA - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page FPA SDI Role Center - Action FatturaPA - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 238077914 - Action 3423321743 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Documents</source>
@@ -2327,26 +2347,6 @@
           <source>FatturaPA Viewer</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PermissionSet FPA Viewer - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4063566566 - Method 1665861916 - NamedType 2421013571" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Aggiornamento codici FE</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit FPA Base - Method OnRun - NamedType UpdateStartedMsg</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4063566566 - Method 1665861916 - NamedType 2181104983" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Aggiornamento codici FE completato</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit FPA Base - Method OnRun - NamedType UpdateCompletedMsg</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3388591374 - Method 249396865 - NamedType 1541597121" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Payment Method Code is mandatory</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit FPA Sales Header Subscriber - Method OnBeforeSendToPosting - NamedType PaymentMethodMandatoryErr</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3388591374 - Method 249396865 - NamedType 2416530439" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Payment Terms Code is mandatory</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit FPA Sales Header Subscriber - Method OnBeforeSendToPosting - NamedType PaymentTermsMandatoryErr</note>
         </trans-unit>
       </group>
     </body>

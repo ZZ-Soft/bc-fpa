@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-page 73007 "FE Receipt Subform"
+page 73007 "FPA Receipt Subform"
 {
     // The SdI receipts of one invoice. Same table as the parent card - a receipt is just
     // another file - filtered through SubPageLink on "SdI Base Name" + File Type = Receipt.
@@ -9,7 +9,7 @@ page 73007 "FE Receipt Subform"
     PageType = ListPart;
     ApplicationArea = All;
     UsageCategory = None;
-    SourceTable = "FE Xml File";
+    SourceTable = "FPA Xml File";
     Editable = false;
     LinksAllowed = false;
     SourceTableView = sorting("SdI Base Name", "File Type", "Receipt Type");
@@ -67,7 +67,7 @@ page 73007 "FE Receipt Subform"
 
                 trigger OnAction()
                 begin
-                    Page.Run(Page::"FE Xml File Viewer", Rec);
+                    Page.Run(Page::"FPA Xml File Viewer", Rec);
                 end;
             }
             action(DownloadReceipt)

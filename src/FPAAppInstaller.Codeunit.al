@@ -1,9 +1,9 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
 using Microsoft.EServices.EDocument;
 
 
-codeunit 73049 "ZZS FE App Installer"
+codeunit 73049 "FPA App Installer"
 {
     Subtype = Install;
 

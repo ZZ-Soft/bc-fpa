@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-codeunit 73003 "FE Chunk Helper"
+codeunit 73003 "FPA Chunk Helper"
 {
     // Business Central sends each control add-in method argument as a single message, so a
     // 500 KB invoice cannot be passed in one call. This splits a BigText into chunks the

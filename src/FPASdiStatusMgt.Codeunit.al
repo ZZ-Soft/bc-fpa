@@ -1,6 +1,6 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-codeunit 73005 "FE SdI Status Mgt."
+codeunit 73005 "FPA SdI Status Mgt."
 {
     // Rolls the receipts of an invoice up into a single outcome on the invoice record.
     //
@@ -14,7 +14,7 @@ codeunit 73005 "FE SdI Status Mgt."
     /// </summary>
     procedure UpdateInvoiceStatus(BaseName: Code[250])
     var
-        Receipts: Record "FE Xml File";
+        Receipts: Record "FPA Xml File";
     begin
         if BaseName = '' then
             exit;
@@ -27,10 +27,10 @@ codeunit 73005 "FE SdI Status Mgt."
     /// Same, but over a caller-supplied set of receipts. Used by OnDelete, which has to
     /// exclude the receipt currently being deleted - it is still in the table at that point.
     /// </summary>
-    procedure UpdateInvoiceStatusFrom(BaseName: Code[250]; var Receipts: Record "FE Xml File")
+    procedure UpdateInvoiceStatusFrom(BaseName: Code[250]; var Receipts: Record "FPA Xml File")
     var
-        Invoice: Record "FE Xml File";
-        NewStatus: Enum "FE SdI Status";
+        Invoice: Record "FPA Xml File";
+        NewStatus: Enum "FPA SDI Status";
     begin
         if BaseName = '' then
             exit;
@@ -60,7 +60,7 @@ codeunit 73005 "FE SdI Status Mgt."
     /// deletable again - so a sales export keeps whatever it had. An uploaded file has no such
     /// history to protect: deleting its last receipt legitimately takes it back to unknown.
     /// </summary>
-    local procedure KeepsCurrentStatus(var Invoice: Record "FE Xml File"; NewStatus: Enum "FE SdI Status"): Boolean
+    local procedure KeepsCurrentStatus(var Invoice: Record "FPA Xml File"; NewStatus: Enum "FPA SDI Status"): Boolean
     begin
         if NewStatus <> NewStatus::" " then
             exit(false);
@@ -82,7 +82,7 @@ codeunit 73005 "FE SdI Status Mgt."
     /// SE is deliberately ignored: it says the customer's outcome message was malformed,
     /// which leaves the invoice where it was rather than moving it anywhere.
     /// </summary>
-    local procedure DeriveStatus(var Receipts: Record "FE Xml File"): Enum "FE SdI Status"
+    local procedure DeriveStatus(var Receipts: Record "FPA Xml File"): Enum "FPA SDI Status"
     var
         HasRejection: Boolean;
         HasRefusedByCustomer: Boolean;
@@ -119,22 +119,22 @@ codeunit 73005 "FE SdI Status Mgt."
             until Receipts.Next() = 0;
 
         if HasRejection then
-            exit(Enum::"FE SdI Status"::Rejected);
+            exit(Enum::"FPA SDI Status"::Rejected);
         if HasRefusedByCustomer then
-            exit(Enum::"FE SdI Status"::"Refused by Customer");
+            exit(Enum::"FPA SDI Status"::"Refused by Customer");
         if HasAcceptedByCustomer then
-            exit(Enum::"FE SdI Status"::"Accepted by Customer");
+            exit(Enum::"FPA SDI Status"::"Accepted by Customer");
         if HasTermsExpired then
-            exit(Enum::"FE SdI Status"::"Terms Expired");
+            exit(Enum::"FPA SDI Status"::"Terms Expired");
         if HasAttestation then
-            exit(Enum::"FE SdI Status"::"Transmission Attested");
+            exit(Enum::"FPA SDI Status"::"Transmission Attested");
         if HasFailedDelivery then
-            exit(Enum::"FE SdI Status"::"Not Delivered");
+            exit(Enum::"FPA SDI Status"::"Not Delivered");
         if HasDelivery then
-            exit(Enum::"FE SdI Status"::Delivered);
+            exit(Enum::"FPA SDI Status"::Delivered);
         if HasMetadata then
-            exit(Enum::"FE SdI Status"::"Metadata Notified");
-        exit(Enum::"FE SdI Status"::" ");
+            exit(Enum::"FPA SDI Status"::"Metadata Notified");
+        exit(Enum::"FPA SDI Status"::" ");
     end;
 
     local procedure IsRefusal(EsitoCode: Code[10]): Boolean

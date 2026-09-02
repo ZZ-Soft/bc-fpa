@@ -1,16 +1,16 @@
-namespace ZZSoft.SDIBase;
+namespace ZZSoft.FPA;
 
-page 73005 "FE Xml File Doc Viewer"
+page 73005 "FPA Xml File Doc Viewer"
 {
     // Renders ONE FatturaElettronicaBody. The XML handed to the add-in is built on the fly
-    // by "FE Body Extractor": file header + this body only, so a multi-document lotto shows
+    // by "FPA Body Extractor": file header + this body only, so a multi-document lotto shows
     // one invoice at a time instead of all of them stacked in a single page.
 
     Caption = 'FatturaPA Document';
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = None;
-    SourceTable = "FE Xml File Document";
+    SourceTable = "FPA Xml File Document";
     InsertAllowed = false;
     DeleteAllowed = false;
     ModifyAllowed = false;
@@ -30,10 +30,10 @@ page 73005 "FE Xml File Doc Viewer"
 
                     trigger OnDrillDown()
                     var
-                        XmlFile: Record "FE Xml File";
+                        XmlFile: Record "FPA Xml File";
                     begin
                         if Rec.GetXmlFile(XmlFile) then
-                            Page.Run(Page::"FE Xml File Card", XmlFile);
+                            Page.Run(Page::"FPA Xml File Card", XmlFile);
                     end;
                 }
                 field("Body No."; Rec."Body No.")
@@ -73,7 +73,7 @@ page 73005 "FE Xml File Doc Viewer"
                 }
             }
 
-            usercontrol(ViewerControl; "FE Stylesheet Viewer")
+            usercontrol(ViewerControl; "FPA Stylesheet Viewer")
             {
                 ApplicationArea = All;
 
@@ -91,7 +91,7 @@ page 73005 "FE Xml File Doc Viewer"
                 trigger RenderFailed(ErrorMessage: Text)
                 begin
                     Rendered := false;
-                    Session.LogMessage('FE0001', ErrorMessage, Verbosity::Warning,
+                    Session.LogMessage('FPA0001', ErrorMessage, Verbosity::Warning,
                         DataClassification::SystemMetadata, TelemetryScope::ExtensionPublisher, 'Category', 'FatturaPAViewer');
                 end;
             }
@@ -123,10 +123,10 @@ page 73005 "FE Xml File Doc Viewer"
 
                 trigger OnAction()
                 var
-                    XmlFile: Record "FE Xml File";
+                    XmlFile: Record "FPA Xml File";
                 begin
                     if Rec.GetXmlFile(XmlFile) then
-                        Page.Run(Page::"FE Xml File Card", XmlFile);
+                        Page.Run(Page::"FPA Xml File Card", XmlFile);
                 end;
             }
             action(ValidateXsd)
@@ -138,8 +138,8 @@ page 73005 "FE Xml File Doc Viewer"
 
                 trigger OnAction()
                 var
-                    XmlFile: Record "FE Xml File";
-                    XsdValidator: Codeunit "FE Xsd Validator";
+                    XmlFile: Record "FPA Xml File";
+                    XsdValidator: Codeunit "FPA Xsd Validator";
                     ValidTxt: Label 'The file is valid.';
                 begin
                     if not Rec.GetXmlFile(XmlFile) then
@@ -202,7 +202,7 @@ page 73005 "FE Xml File Doc Viewer"
 
     trigger OnAfterGetCurrRecord()
     var
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
     begin
         Rec.CalcFields("Cedente Denominazione", "Cedente P.IVA", "Cessionario Denominazione", "Cessionario P.IVA", "Validation Status");
         ShowBodyNo := Rec.GetXmlFile(XmlFile) and (XmlFile."No. of Bodies" > 1);
@@ -229,7 +229,7 @@ page 73005 "FE Xml File Doc Viewer"
     /// </summary>
     local procedure RenderCurrentDocument()
     var
-        ChunkHelper: Codeunit "FE Chunk Helper";
+        ChunkHelper: Codeunit "FPA Chunk Helper";
         DocumentXml: BigText;
         Chunks: List of [Text];
         Chunk: Text;
@@ -256,7 +256,7 @@ page 73005 "FE Xml File Doc Viewer"
     local procedure BuildFileName(): Text
     var
         FileNameTok: Label '%1_%2.html', Locked = true;
-        XmlFile: Record "FE Xml File";
+        XmlFile: Record "FPA Xml File";
     begin
         Rec.GetXmlFile(XmlFile);
         exit(StrSubstNo(FileNameTok,
