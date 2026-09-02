@@ -5,6 +5,10 @@
 rad.json
 .vscode/rad.json
 
+# launch.json porta il nome della sandbox di chi sviluppa (environmentName):
+# e' una configurazione personale, non un dato del progetto.
+.vscode/launch.json
+
 # --- build ---
 tools/.build/
 

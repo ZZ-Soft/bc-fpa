@@ -17,7 +17,9 @@ patch XSLT, setup, limiti noti). Leggila prima di toccare il viewer o il reader:
 
 - **Compilazione**: AL Language per VS Code (`Ctrl+Shift+P` -> *AL: Publish*). Nessuno step
   preliminare: gli asset generati sono gia' nel repository, un clone pulito compila.
-- **Sandbox**: `.vscode/launch.json` ha `environmentName: "TODO-nome-sandbox"`, va valorizzato.
+- **Sandbox**: `.vscode/launch.json` e' in `.gitignore`: non e' nel repository perche' porta il
+  nome della sandbox di chi sviluppa. Va creato in locale (*AL: Go!* lo genera) con
+  `environmentType: "Sandbox"` e il proprio `environmentName`.
 - **Analyzer attivi**: CodeCop, UICop, AppSourceCop; `files.encoding: utf8bom`.
 - **Rigenerare i fogli di stile** (solo dopo un aggiornamento AssoSoftware o SdI, serve Node):
 
