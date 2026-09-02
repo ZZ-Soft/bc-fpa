@@ -1,0 +1,4 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/AL/master/schemas/AppSourceCop.schema.json",
+  "mandatoryAffixes": [ "FPA" ]
+}
